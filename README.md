@@ -21,7 +21,7 @@ take care of program dependancies.
   1. Java version <= 1.8
   2. PostgreSQL <= 9.2
   3. PERL Modules: 
-                  File::Basename,
+                  File::Basename
                   Getopt::Long
                   List::Util
                   IO::Zlib
