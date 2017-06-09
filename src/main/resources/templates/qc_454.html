@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>TagLet | Girihlet</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'></link>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'></link>
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"></link>
+
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+<link rel="stylesheet" type="text/css" href="csslib/bootstrap.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/font-awesome.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/animate.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/bootstrap-switch.min.css"></link>
+
+<link rel="stylesheet" type="text/css" href="csslib/checkbox3.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/jquery.dataTables.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/dataTables.bootstrap.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/select2.min.css"></link>
+
+<link rel="stylesheet" type="text/css" href="csslib/style.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/flat-blue.css"></link>
+
+<link rel="stylesheet" href="csslib/comman_for_qc.css"></link>
+</head>
+
+<body class="flat-blue mainDivColor">
+	<span style="display: none" id="myio" th:text="${server}"></span>
+	<span style="display: none" id="idCPUFromServer" th:text="${availCPU}"></span>
+	<span style="display: none" id="userId" th:text="${userId}"></span>
+	<span style="display: none" id="userDir" th:text="${userDir}"></span>
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog" role="document">
+			<img class="" src="images/spinner.gif" alt="er"></img>
+		</div>
+	</div>
+	<div class="modal fade" id="selectFile" role="dialog">
+		<div class="modal-dialog">
+			Modal content
+			<div class="modal-content textColorForBrowseText">
+				<div class="modal-header">
+					<div class="container-fuild textColorForBrowseText">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title colorTextFile textColorForBrowseText">Files From Server.</h4>
+						<h6 class="modal-title colorTextFile textColorForBrowseText">Please double click to select.</h6>
+					</div>
+				</div>
+				<div class="modal-header">
+					<div class="container-fuild textColorForBrowseText" id="headerNavigatorId">
+						<span id="aTagHomeId"> <a href='#'>Home</a> <span
+							class="glyphicon glyphicon-chevron-right"></span>
+						</span>
+					</div>
+				</div>
+				<div class="modal-body modal-scroll">
+					<div class="container-fuild">
+						<form class="form-horizontal textColorForBrowseText" id="divSubCategorydmd"></form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="container-fuild">
+						<form>
+							<div class="form-group">
+								<label class="control-label col-sm-2 col-lg-2 classLocation">Location </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="valueSelectedDseq" readonly="readonly" disabled="disabled" />
+								</div>
+							</div>
+							<div class="form-group ">
+								<div class="col-sm-10 classPaddingTop">
+									<button type="button" class="btn btn-default textFormatForBrowseButton" id='createFolderBtn'>Create Folder</button>
+									<button type="button" class="btn btn-default textFormatForBrowseButton" id="openBtnDialog">Open</button>
+									<button type="button" id="closeFileModel" class="btn btn-default textFormatForBrowseButton" data-dismiss="modal">Cancel</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="app-container" id="idAppContainerDiv">
+		<div class="row content-container">
+			<nav class="navbar navbar-default navbar-fixed-top navbar-top">
+				<div class="container-fluid colorForhorizontalBar">
+					<div class="navbar-header">
+						<button type="button" class="navbar-expand-toggle">
+							<i class="fa fa-bars icon"></i>
+						</button>
+						<ol class="breadcrumb navbar-breadcrumb">
+							<li>Raw Data Quality Control</li> 
+							<li class="active">Long Read [ 454 / Ion Torrent ]</li>
+							<li class="active">NGSQCToolkit-v2.3.3</li>
+						</ol>
+						<button type="button"
+							class="navbar-right-expand-toggle pull-right visible-xs">
+							<i class="fa fa-th"></i>
+						</button>
+					</div>
+					<ul class="nav navbar-nav navbar-right">
+						<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+							<i class="fa fa-times icon"></i>
+						</button>
+						<li class="profile"><a href="http://girihlet.com/" target="_blank">Girihlet Non-Canonical Genomics Company</a></li>
+
+						<li class="dropdown profile"><a href="#"
+							class="dropdown-toggle" data-toggle="dropdown" role="button"
+							aria-expanded="false" id="userDivName"><span th:text="${userName}"></span>  <span class="caret"></span></a>
+							<ul class="dropdown-menu animated fadeInDown">
+								<li>
+									<div class="profile-info">
+										<h4 class="username" id="userDivOnlyName">	<span id="userName"  th:text="${userName}"></span></h4>
+										<p id="userDivEmail"><span  id="userEmail" th:text="${userEmail}"></span></p>
+										<div class="btn-group margin-bottom-2x" role="group">
+											<button type="button" class="btn btn-default bgColorForButton"
+												onclick="logoutUser();">
+												<i class="fa fa-sign-out"></i> Logout
+											</button>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<div class="side-menu sidebar-inverse" id="idForSideMenuDiv">
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="side-menu-container">
+						<div class="navbar-header colorForNavHeader">
+							<a class="navbar-brand" th:href="@{/introduction?userid=}+${userId}">
+								<div class="icon fa fa-paper-plane"></div>
+								<div class="title">
+									<h3 class="colorForGirihLetName">GirihLet</h3>
+								</div>
+							</a>
+							<button id="buttonForSideMenuDiv" type="button"
+								class="navbar-expand-toggle pull-right visible-xs">
+								<i class="fa fa-times icon"></i>
+							</button>
+						</div>
+						<ul class="nav navbar-nav">
+							<li class="panel panel-default dropdown">
+								<a data-toggle="collapse" href="#dropdown-qc">
+									<span class="icon fa fa-line-chart"></span>
+									<span class="title">Run Raw Data Quality Control</span>
+								</a>
+								<div id="dropdown-qc" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a id="idHrefqc454"  href="../qc454">Long Read [ 454 / Ion Torrent ] </a></li>
+											<li><a id="idHrefIllumina"  href="../qcillumina">Short Read [ Illumina ]</a></li>
+											<li><a id="idHrefQCReport" href="../qcreport">QC Report Generation</a></li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="panel panel-default dropdown">
+								<a id="hRefRunModule1"  href="../TagLet"> 
+									<span class="icon fa fa-tag"></span>
+									<span class="title">Run TagLet</span>
+								</a>
+								<!-- <div id="dropdown-module1" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a id="hRefRunModule1"  href="../TagLet">Fill TagLet Input Form</a></li>
+										</ul>
+										<a id="hRefRunModule1"  href="../TagLet">Fill TagLet Input Form</a>
+									</div>
+								</div> -->
+							</li>
+							<!-- <li class="panel panel-default dropdown">
+								<a data-toggle="collapse" href="#dropdown-module1"> 
+									<span class="icon fa fa-tag"></span>
+									<span class="title">Run TagLet</span>
+								</a>
+								<div id="dropdown-module1" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a id="hRefRunModule1"  href="../TagLet">Fill TagLet Input Form</a></li>
+										</ul>
+									</div>
+								</div>
+							</li> -->
+							<li class="panel panel-default dropdown">
+								<a id="idHrefInstances" href="../ResultSummary"> <span
+									class="icon fa fa-history"></span>
+									<span class="title">Show Result Summary</span>
+								</a>
+								<!-- <div id="dropdown-example" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a  id="idHrefInstances" href="../ResultSummary">Show Result Summary</a></li>
+											<li><a id="idHrefReports" href="../reports">Reports</a></li>
+										</ul>
+									</div>
+								</div> -->
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+
+<!-- Main Content -->
+
+			<div class="side-body padding-top">
+				<div class="container-fluid">
+					<section id="454QcSection">
+						<div class="row" id="forms">
+							<div class="col-lg-10 col-lg-offset-2 col-sm-8 col-sm-offset-2"
+								id="454QcSection">
+								<div id="bowtieFormsdfd">
+									<form class="form-horizontal QCForm" id="454QcForm">
+										<div class="form-group">
+											<label class="control-label col-sm-4  col-lg-4 test textClass required">
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												Project Name:
+											</label>
+											<div class="col-sm-6 col-lg-6" id="idPrjNm">
+												<input type="text" class="form-control" 
+														id="idProjectName454Qc" placeholder="project"
+														onblur="warningForEmptyField(this.id, 'idPrjNm')"></input>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-6 textClass colorTextClass" for="pwd" id="idIlluminaOptionsLable">
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													QC Options:
+												<!-- <span id="idIlluminaOptionsDivSpan" class=" glyphicon glyphicon-collapse-down iconSmallClass "></span> -->
+											</label>
+											<div class="col-sm-6 col-lg-6"> </div>
+										</div>
+										<div id="idQCOptionsDiv">
+											<div class="form-group" id="divImin">
+												<label class="control-label col-sm-4 col-lg-4 textClass"
+													for="pwd">
+														<span class=" glyphicon glyphicon-question-sign iconSmallClass textClass" 
+														data-placement="left" data-toggle="tooltip"
+														title="The cut-off value for percentage of read length that should be of given quality"></span>
+														&nbsp;
+														HQ Read Length CutOff:
+												</label>
+												<div class="col-sm-6 col-lg-6" id="parentDiv1">
+													<input type="text" class="form-control" id="idl"
+														maxlength="3" onkeypress="return isNumber(event,this,3);"
+														onblur="blurFunctionForMaxLimit(this.id, 'parentDiv1', 100, 70);"
+														value="70" min="0" max="100"></input>
+												</div>
+											</div>
+											<div class="form-group" id="divXmax">
+												<label class="control-label col-sm-4  col-lg-4 test textClass" for="pwd">
+														<span class=" glyphicon glyphicon-question-sign iconSmallClass textClass" 
+														data-placement="left" data-toggle="tooltip"
+														title="The cut-off value for PHRED quality score for high-quality filtering"></span>
+														&nbsp;
+														Phred Quality Score CutOff:
+												</label>
+												<div class="col-sm-6 col-lg-6" id="parentDiv2">
+													<input type="text" class="form-control" id="ids"
+														maxlength="3" onkeypress="return isNumber(event,this,3);"
+														onblur="blurFunctionForMaxLimit(this.id, 'parentDiv2', 40, 20);"
+														value="20" min="0" max="40"></input>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-sm-4  col-lg-4 test textClass" for="pwd" >
+												<span class="glyphicon glyphicon-question-sign iconSmallClass textClass"
+													data-placement="left" data-toggle="tooltip"
+													title="This of option will enable trimming of homopolymer nucleotides from raw reads, Minimum length of the homopolymer to be trimmed (0: to skip the homopolymer trimming)"></span>
+													&nbsp;
+													HomoPolymers Trimming:
+													<input type="checkbox" id="idCheckBoxn" value="-n" onchange="onNSelectionChanged(this);"></input>
+												</label>
+												<div class="col-sm-6 col-lg-6" id="parentDiv3">
+													<input type="text" class="form-control" id="idn"
+														onkeypress="return isNumber(event,this,1000);"
+														onblur="blurFunctionForMinLimit(this.id, 'parentDiv3', 1, 1);"
+														value="1" min="1"></input>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-sm-4  col-lg-4 test textClass" for="email">
+													<span class=" glyphicon glyphicon-question-sign iconSmallClass textClass"
+														data-placement="left" data-toggle="tooltip"
+														title=" Are sequences to be filtered on the basis of length: (Y)es or (N)o"></span>
+														&nbsp;
+														Length Filter: 
+												</label>
+												<div class="col-sm-6 col-lg-6">
+													<select class="form-control" id="idFType" onchange="onChangeFoption(this)">
+														<option value="Y"  selected="selected">Yes</option>
+														<option value="N">No</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group" id="idForOptionMDiv">
+												<label class="control-label col-sm-4  col-lg-4 test textClass" for="pwd">
+													<span class=" glyphicon glyphicon-question-sign iconSmallClass textClass"
+													data-placement="left" data-toggle="tooltip"
+													title="Filter sequences shorter than the given minimum length"></span>
+													&nbsp;
+													Minimum Length For Filter:
+												</label>
+												<div class="col-sm-6 col-lg-6" id="parentDiv4">
+													<input type="text" class="form-control" id="idm"
+														onkeypress="return isNumber(event,this,1000);"
+														onblur="blurFunctionForMinLimit(this.id, 'parentDiv4', 50, 100);"
+														value="100" min="50"></input>
+												</div>
+											</div>
+										</div>
+										<div id="qcProcessingFormDiv">
+											<div class="form-group">
+												<label class="control-label col-sm-4  col-lg-4 test textClass" for="email">
+													<span class="glyphicon glyphicon-question-sign iconSmallClass textClass"
+														data-placement="left" data-toggle="tooltip"
+															title="Number of CPUs to be used for processing."></span>
+														&nbsp;
+														Number Of Processors:
+												</label>
+												<div class="col-sm-6 col-lg-6" id="parentDiv5">
+													<input type="text" class="form-control" id="idCPU"
+														onkeypress="return isNumber(event,this,2);"
+														onblur="blurFunctionForMaxAndMinLimitForCPU(this.id, 'parentDiv5', 'idCPUFromServer', 1, 1);"
+														value="1" maxlength="4" min="1"></input>
+												</div>
+											</div>
+										</div>
+										<div id="qcOutputFormDiv">
+										<div class="form-group">
+												<label class="control-label col-sm-4  col-lg-4 test textClass" for="pwd" >
+													<span class="glyphicon glyphicon-question-sign iconSmallClass textClass"
+													data-placement="left" data-toggle="tooltip"
+													title="Outputs only statistics without filtered data output"></span>
+													&nbsp;&nbsp;&nbsp;
+													Only Statistics Output:
+													&nbsp;
+													<input type="checkbox" id="idCheckBoxOnlyStatsIllumina" value="-onlyStat"></input>
+												</label>
+												<div class="col-sm-6 col-lg-6" id="parentDiv3">
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-sm-4  col-lg-4 test textClass mytooltip" for="email">
+													<span class="glyphicon glyphicon-question-sign iconSmallClass textClass"
+												 		data-placement="left" data-toggle="tooltip"
+														data-html="true"
+														title="Output format for statistics&lt;/br&gt;1 = formatted text,&lt;/br&gt;2 = tab delimited"></span>
+													&nbsp;
+													Statistics Output Format:
+												</label>
+												<div class="col-sm-6 col-lg-6">
+													<select class="form-control" id="idTType" 
+															onchange="changeInputFileOptionChange(this);">
+														<option value="1" selected="selected">1</option>
+														<option value="2">2</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-sm-4  col-lg-4 test textClass mytooltip" for="email">
+													<span class=" glyphicon glyphicon-question-sign iconSmallClass textClass"
+														data-placement="left" data-toggle="tooltip"
+														data-html="true"
+														title="Output format for HQ filtered data&lt;/br&gt;t = text FASTA files,&lt;/br&gt;g = gzip compressed files">
+													</span>
+													&nbsp;
+													Output Format:
+												</label>
+												<div class="col-sm-6 col-lg-6">
+													<select class="form-control" id="idZType" onchange="changeInputFileOptionChange(this);">
+														<option value="g" selected="selected">g</option>
+														<option value="t">t</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-sm-10 textClass colorTextClass" for="pwd" id="">
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												Input file Options:
+											</label>
+										</div>
+										<div class="form-group" id="select454qcOutput">
+											<label class="control-label col-sm-4  col-lg-4 textClass required"
+												for="pwd" id="lableOutputDirSelect">
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												Select output folder:
+											</label>
+											<div class="col-sm-6 col-lg-6" id="idForOutputFolderDiv">
+												<input type="button" class="col-sm-4  col-lg-4  btn-file "
+													data-toggle="modal" data-target="#selectFile"
+													placeholder="Select right file"
+													id="idOutputDirSelectBrowse"
+													onclick="getAllDirectory('idOutputDirSelect','diretory');"
+													accept=".fa" value="BROWSE..."></input>
+												<div id="idOutputDirSelect" class="col-sm-6 col-lg-6 text-left">No folder selected</div>
+											</div>
+										</div>
+										<div id="idSeqLayout">
+											<div class="form-group">
+												<label class="control-label col-sm-4 col-lg-4 textClass" for="pwd">
+														<span class="glyphicon glyphicon-question-sign iconSmallClass textClass" 
+														data-placement="left" data-toggle="tooltip"
+														title="Sequencing Layout: paired end sequencing layout OR Single end sequencing layout."></span>
+														&nbsp;
+														Sequencing layout
+												</label>
+												<div class="col-sm-6 col-lg-6" id="idInputReadTypeQC454Div">
+													<select class="form-control" id="idInputReadTypeQCIllumina"
+														onchange="changeLayoutOption(this);">
+														<option value="Single" selected="selected">Single</option>
+														<option value="Paired">Paired</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div id="cloneDiv">
+											<div class="form-group">
+												<label class="control-label col-sm-4  col-lg-4 test textClass required">
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													Sample Name:
+												</label>
+												<div class="col-sm-6 col-lg-6" id="idSampleNm">
+													<input type="text" class="form-control" 
+														id="idSampleName454Qc" placeholder="Sample Name"
+														onblur="warningForEmptyField(this.id, 'idSampleNm')"></input>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-sm-4  col-lg-4 textClass" for="email">
+													<span class=" glyphicon glyphicon-question-sign iconSmallClass textClass"
+														data-placement="left" data-html="true"
+														data-toggle="tooltip"
+														title="1 = Rapid Library (Standard),&lt;/br&gt; 2 = Paired End Library,&lt;/br&gt;  3 = Amplicon PE Library,&lt;/br&gt; 4 = Small RNA Library,&lt;/br&gt; N = Do not filter for Primer/Adaptor,&lt;/br&gt; file = File for user defined primer/adaptor sequences, one per line">
+													</span>
+													&nbsp;
+													Primer/Adaptor libraries:
+												</label>
+												<div class="col-sm-6 col-lg-6">
+													<select class="form-control" id="idAdaptorLibrariesValue"
+														onchange="onChangeAdaptorLibrariesValue(this);">
+														<option value="file">Custom Adaptor File</option>
+														<option value="1">1</option>
+														<option value="2" selected="selected">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="N">N</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group" id="selectSingleFileFormGroup">
+												<label class="control-label col-sm-4  col-lg-4 textClass required"
+													for="pwd" id="lableSingleFileSelect">
+													<span class=" glyphicon glyphicon-question-sign iconSmallClass textClass"
+														data-placement="left" data-html="true"
+														data-toggle="tooltip"
+														title="File for user defined OR Custom primer/adaptor sequences, one per line">
+													</span>
+													&nbsp;
+													Select Custom Adapter File:
+												</label>
+												<div class="col-sm-6 col-lg-6" id="idForAdapterFileDiv">
+												<input type="button" class="col-sm-4  col-lg-4  btn-file "
+													data-toggle="modal" data-target="#selectFile"
+													placeholder="Select single file" id="idBroweAdaptorFile"
+													onclick="getAllDirectory('idSingleFileSelect','txt');"
+													accept=".fa" value="BROWSE..."></input>
+													<div id="idSingleFileSelect"
+													class="col-sm-6 col-lg-6 text-left">No file selected</div>
+												</div>
+											</div>
+											<div id="fileSelectionDiv">
+												<div id="idForSingleEndLayout">
+													<div class="form-group" id="selectFastaFileFormGroup">
+														<label class="control-label col-sm-4  col-lg-4 textClass required"
+															for="pwd" id="lableRightFileSelect">
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															Select input fasta file:
+														</label>
+														<div class="col-sm-6 col-lg-6" id="idForInputFileDiv">
+															<input type="button" class="col-sm-4  col-lg-4  btn-file "
+																data-toggle="modal" data-target="#selectFile"
+																placeholder="Select right file" id="idFastaFileBrowse"
+																onclick="getAllDirectory('idFastaFileSelect','fasta');"
+																accept=".fa" value="BROWSE..."></input>
+															<div id="idFastaFileSelect"
+																class="col-sm-6 col-lg-6 text-left">No file selected</div>
+														</div>
+													</div>
+													<div class="form-group" id="selectLeftFileFormGroup">
+														<label class="control-label col-sm-4  col-lg-4 textClass required"
+															for="pwd" id="idlableLeftRead">
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															Select quality file:
+														</label>
+														<div class="col-sm-6 col-lg-6" id="idForQualityFileDiv">
+															<input type="button" class="col-sm-4  col-lg-4  btn-file "
+																data-toggle="modal" data-target="#selectFile"
+																placeholder="Select right file" id="idQualityFileBrowse"
+																onclick="getAllDirectory('idQualityFileSelect','qual');"
+																accept=".fa" value="BROWSE..."></input>
+															<div id="idQualityFileSelect" class="col-sm-6 col-lg-6 text-left">No file selected</div>
+														</div>
+													</div>
+												</div>
+												<div id="idForPairedEndLayout">
+													<div class="form-group" id="selectFirstFastaFileFormGroup">
+														<label class="control-label col-sm-4  col-lg-4 textClass required" for="pwd">
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															Select first input fasta file:
+														</label>
+														<div class="col-sm-6 col-lg-6" id="idForFirstInputFileDiv">
+															<input type="button" class="col-sm-4  col-lg-4  btn-file "
+																data-toggle="modal" data-target="#selectFile"
+																placeholder="Select right file" id="idFirstFastaFileBrowse"
+																onclick="getAllDirectory('idFirstFastaFileSelect','fasta');"
+																accept=".fa" value="BROWSE..."></input>
+															<div id="idFirstFastaFileSelect"
+																class="col-sm-6 col-lg-6 text-left">No file selected</div>
+														</div>
+													</div>
+													<div class="form-group" id="selectFirstQualityFileFormGroup">
+														<label class="control-label col-sm-4  col-lg-4 textClass required" for="pwd">
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															Select first quality file:
+														</label>
+														<div class="col-sm-6 col-lg-6" id="idForFirstQualityFileDiv">
+															<input type="button" class="col-sm-4  col-lg-4  btn-file "
+																data-toggle="modal" data-target="#selectFile"
+																placeholder="Select right file" id="idFirstQualityFileBrowse"
+																onclick="getAllDirectory('idFirstQualityFileSelect','qual');"
+																accept=".fa" value="BROWSE..."></input>
+															<div id="idFirstQualityFileSelect" class="col-sm-6 col-lg-6 text-left">No file selected</div>
+														</div>
+													</div>
+													<div class="form-group" id="selectSecondFastaFileFormGroup">
+														<label class="control-label col-sm-4  col-lg-4 textClass required" for="pwd">
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															Select second input fasta file:
+														</label>
+														<div class="col-sm-6 col-lg-6" id="idForSecondInputFileDiv">
+															<input type="button" class="col-sm-4  col-lg-4  btn-file "
+																data-toggle="modal" data-target="#selectFile"
+																placeholder="Select right file" id="idSecondFastaFileBrowse"
+																onclick="getAllDirectory('idSecondFastaFileSelect','fasta');"
+																accept=".fa" value="BROWSE..."></input>
+															<div id="idSecondFastaFileSelect"
+																class="col-sm-6 col-lg-6 text-left">No file selected</div>
+														</div>
+													</div>
+													<div class="form-group" id="selectFirstQualityFileFormGroup">
+														<label class="control-label col-sm-4  col-lg-4 textClass required" for="pwd">
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															Select second quality file:
+														</label>
+														<div class="col-sm-6 col-lg-6" id="idForSecondQualityFileDiv">
+															<input type="button" class="col-sm-4  col-lg-4  btn-file "
+																data-toggle="modal" data-target="#selectFile"
+																placeholder="Select right file" id="idSecondQualityFileBrowse"
+																onclick="getAllDirectory('idSecondQualityFileSelect','qual');"
+																accept=".fa" value="BROWSE..."></input>
+															<div id="idSecondQualityFileSelect" class="col-sm-6 col-lg-6 text-left">No file selected</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group" id="addMoreSampleDiv">
+												<label class="control-label col-sm-4  col-lg-4 test textClass">
+												</label>
+												<div class="col-sm-6 col-lg-6">
+													<a class="btn btn-default bgColorForButton" 
+														onclick="addMoreSamples();">+ Add More Samples</a>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+										<div class="control-label col-sm-4  col-lg-4"></div>
+											<div class="col-sm-6 col-lg-6">
+												<a class="btn btn-default bgColorForButton bgColorForButton1" onclick="submitQC();">Submit</a>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</section>
+					
+					<!--output div start -->
+					<section id="qcCmdQutput">
+						<div align="center" id="454QcCmd">
+							<pre id="454QcCmdOutput" class="helpClass text-left">
+        			   </pre>
+						</div>
+					</section>
+					<!--output div end -->
+					
+					<!-- Attribute Window -->
+					<div class="modal-body" id="idForAttributeWindow">
+						<div class="table-responsive rowClassTable">
+							<table class="table table-bordered table-striped myTableUser">
+								<thead>
+									<tr>
+										<th>ATTRIBUTE</th>
+										<th>VALUE</th>
+									</tr>
+								</thead>
+								<tbody id="pTagCmd">
+								</tbody>
+							</table>
+						</div>
+					</div>
+				<!-- End -->
+				
+				</div>
+			</div>
+		</div>
+		<footer class="app-footer">
+			<div class="wrapper">
+				<span class="pull-right">1.0 <a href="#"> <!-- <i class="fa fa-long-arrow-up"></i> -->GirihLet
+				</a></span>GirihLet© 2016 Copyright.
+			</div>
+		</footer>
+	</div>
+
+<!-- Javascript Libs -->
+
+	<script type="text/javascript" src="jslib/jquery.min.js"></script>
+	<script type="text/javascript" src="jslib/jquery.js"></script>
+	<script type="text/javascript" src="jslib/bootstrap.min.js"></script>
+	<script type="text/javascript" src="jslib/bootstrap-switch.min.js"></script>
+	<script type="text/javascript" src="jslib/jquery.matchHeight-min.js"></script>
+	<script type="text/javascript" src="jslib/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="jslib/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript" src="jslib/select2.full.min.js"></script>
+	<script type="text/javascript" src="jslib/ace/ace.js"></script>
+	<script type="text/javascript" src="jslib/ace/mode-html.js"></script>
+	<script type="text/javascript" src="jslib/ace/theme-github.js"></script>
+	<script type="text/javascript" src="jslib/app.js"></script>
+
+	<script src="js/url.js"></script>
+	<script src="js/comman.js"></script>
+	<script src="js/ws_get_attribute_cmd2.js"></script>
+	<script src="js/libjs/utils.js"></script>
+	<script src="js/libjslogin/login.js"></script>
+	
+	<script src="js/libjsqc454/file_handling1.js"></script>
+	<script src="js/libjsqc454/file_handling_final.js"></script>
+	<script src="js/libjsqc454/qcform_management.js"></script>
+	
+	<script src="js/libjsqc454/wsQC.js"></script>
+	<script src="js/libjsqc454/validation_qc.js"></script>
+	<script src="js/libjsqc454/rest_utils_for_454QC.js"></script>
+	<script src="js/libjsqc454/validation_Of_Rest_Utils.js"></script>
+
+</body>
+
+</html>
+

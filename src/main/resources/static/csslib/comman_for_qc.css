@@ -1,0 +1,426 @@
+@CHARSET "UTF-8";
+/* assembly */
+#selectSingleFileFormGroupAlignment, #assemblyCmd, #addButtonReadPrep, #cuffLinkQutput, #idOptionsForLibNormMetho,#dseqCmdQutputz{
+	display: none;
+}
+/* #valueSelectedDseq{
+  opacity:1px;
+} */
+
+.classBlackColor{
+	background-color:#eeeeee;
+	height: 40px;
+}
+.classWhiteColor{
+background-color:#fff;
+color:#000;
+	height: 40px;
+}
+.classSelectedFilesDiv {
+	border: 1px solid #8AC007;
+}
+#upAnchor{
+	color: #fff;
+	 text-decoration: underline;
+}
+#downAnchor{
+	color: #fff;
+	 text-decoration: underline;
+}
+
+/* trinity */
+#selectOptionalFormGroup1, #selectOptionalFormGroup2,
+	#selectOptionalFormGroup3, #divFAOptions, #selectSingleFileFormGroup, #trinityCmd{
+	display: none;
+}
+#btnRunbowtie {
+	padding: 5px;
+}
+
+.colorCollapseClass {
+	color: #000 !important;
+}
+
+.iconSmallClass {
+	font-size: 15px !important;
+	padding-left: 4px;
+}
+
+/* .textClass {
+	font-size: 18px !important;
+	font: bold !important;
+	text-align: left !important;
+	z-index: 10px !important;
+}
+ */
+.colorTextClass {
+	color: #06246d !important;
+}
+
+.checkBoxClassV {
+	padding-left: 10px !important;
+}
+
+/* #close {
+	float: right;
+	display: inline-block;
+	padding: 2px 5px;
+	position: relative;
+	top: -1px;
+	right: -15px;
+} */
+
+.cmdOutputDivClass {
+	display: none;
+}
+
+.textClassFile {
+	font-size: 18px !important;
+	font: normal; ! important;
+	text-align: left !important;
+}
+
+/* model */
+.colorTextFile {
+	color: #000 !important;
+}
+
+.modal-body {
+	max-width: 100% !important;
+	overflow-x: auto !important;
+}
+
+.modal-scroll {
+	height: 300px;
+	overflow-y: auto;
+}
+
+.iconSmallClass {
+	font-size: 15px !important;
+	padding-left: 4px;
+}
+/* button */
+.classPaddingTop {
+	padding-top: 10px;
+	float: right;
+}
+
+/* tooltip */
+.test+.tooltip>.tooltip-inner {
+	background-color: #8AC007;
+	color: #000;
+	border: 1px solid green;
+	padding: 8px;
+	font-size: 18px;
+}
+
+.textClass {
+	font-size: 18px !important;
+	font: bold !important;
+	text-align: left !important;
+	z-index: 10px !important;
+}
+
+.helpClass {
+	width: 100% !important;
+	font-size: 15px !important;
+	background-color: #000 !important;
+	color: #8AC007 !important;
+	overflow: auto !important;
+}
+
+/* .iframeReport{
+
+	z-index: -1;
+	bottom:0;
+	height: 100%;
+	width: 100%;
+} */
+
+/* deseq */
+.atagdeseq{
+	color: green;
+}
+table {
+    width:100%;
+}
+table, th, td {
+    border: 1px solid black !important;
+    border-collapse: collapse !important;
+}
+#myTableClass{
+	border: 1px solid black !important;
+    border-collapse: collapse !important;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+    color: black;
+}.helpClass {
+	width: 100% !important;
+	height: 475px !important;
+	font-size: 15px !important;
+	background-color: #000 !important;
+	color: #8AC007 !important;
+	overflow: auto !important;
+}
+table#myTableClass tr:nth-child(even) {
+    background-color: #eee;
+}
+table#myTableClass tr:nth-child(odd) {
+   background-color:#fff;
+}
+table#myTableClass th	{
+    background-color: white;
+    color: black;
+}
+#tableBodyListUser td{
+
+	 vertical-align: middle !important;
+}
+.myspanProcessDetails{
+float:right;
+	
+}
+.myspanProcessDetails a{
+vertical-align: middle !important;
+margin: 5px;
+}
+
+/* 
+#####################################
+#									#
+#	Changes made by nitin 			#
+#									#
+#####################################
+*/
+
+.myErrorBorder
+{
+	border: thin solid red !important;
+}
+.myDivFloat
+{
+	float: left !important;
+	padding: 4px;
+}
+/* .textForSubmitButton
+{
+	font-size: 18px !important;
+	color: black !important;
+	font: bold !important;
+	text-align: left !important;
+} */
+/* .bgColorForButton
+{
+	background-color: #78BE17 !important;
+    border: none !important;
+    color: black !important;
+    font-size: 16px !important;
+    font: normal !important;
+	text-align: center !important;
+	padding: 6px 1px !important;
+	text-transform:uppercase !important;
+}
+ */
+
+/* .required:AFTER
+{
+	content:" *" !important;
+	color: red !important;
+	font-size: 22px !important;
+	position:relative;
+} */
+
+.required::AFTER 
+{ 
+    content: "*" !important;
+    color: red !important;
+}
+
+.myLabel
+{
+    display: inline-block !important;
+    text-align: right !important;
+}
+
+.tooltip-inner
+{
+    text-align: left !important;
+}
+
+.myPara
+{
+	color: black !important;
+	font-size: 22px !important;
+	font-weight: normal !important;
+	text-align: center !important;
+}
+.changeWordInPara
+{
+	color: #78BE17 !important;
+	font: normal;
+}
+.italicFontForSpeciesName
+{
+	font-style: italic !important;
+}
+
+/* 
+##################### 
+#	Close Button	#
+#####################
+*/
+
+.fragment
+{
+	border: 1px dotted #000000;
+	padding-top: 8px;
+    padding-bottom: 1px;
+    padding-right: 15px;
+    padding-left: 8px;
+    border-radius: 8px !important;
+}
+
+.bgColorForCloseButton 
+{
+    background-color: #204a87	 !important; /* Green */
+    float: right !important;
+    border-style: double !important;
+    border-color: white !important;
+    color: white !important;
+    padding: 6px 14px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    font-size: 10px !important;
+    font-weight: bold !important;
+    margin: 4px 2px !important;
+    -webkit-transition-duration: 0.4s !important; /* Safari */
+    transition-duration: 0.4s !important;
+    cursor: pointer !important;
+    text-transform:uppercase !important;
+    border-radius: 8px !important;
+}
+.close {
+	float: right !important;
+	display: inline-block !important;
+	padding: 2px 5px !important;
+	position: relative !important;
+	top :-1px !important;
+	right:-15px !important;
+}
+
+.bgColorForButton 
+{
+    background-color: #204a87 !important; /* Green */
+    border: none !important;
+    color: white !important;
+    padding: 6px 14px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    margin: 4px 2px !important;
+    -webkit-transition-duration: 0.4s !important; /* Safari */
+    transition-duration: 0.4s !important;
+    cursor: pointer !important;
+    text-transform:uppercase !important;
+    border-radius: 8px !important;
+}
+.bgColorForButton1
+{
+    background-color: white !important;
+    color: black !important;
+    border: 2px solid #000000!important;
+}
+
+.bgColorForButton1:hover
+{
+    background-color: #204a87!important;
+    color: white !important;
+}
+
+.imageLogoSqit{
+	width: 125px;
+	height: 50px;
+	margin-left: 15px;
+	margin-top: 8px;
+}
+.imageLogoBionivid{
+	width: 80px;
+	height: 45px;
+	margin-left: 8px;		
+	
+}
+.titlemy{
+	text-align: center;
+}
+
+/* 
+	New Theme
+*/
+
+.mainDivColor{
+	background-color: #bfcdda !important;
+}
+.colorForhorizontalBar{
+	background-color: #60768c !important;
+}
+.colorForNavHeader{
+	background-color: #343d46 !important;
+}
+.colorForRawDataIcon {
+    background-color: #2d5880 !important;;
+}
+/* #rawDataQualityControlDiv:hover{
+	background-color: #0878e0 !important;
+} */
+
+/* a:hover {
+    background-color: blue !important;
+} */
+.colorForRemoveButton{
+	background-color: #cc0000!important;
+}
+.colorForViewOrDownloadButton{
+	background-color: #204a87 !important;
+}
+.colorForGirihLetName{
+	color: #3465a4 !important;
+	font-size: 32px !important;;
+	font-weight: bold !important;;
+}
+.colorForGirihLetNameOnIndexPage{
+	padding-top: 20px;
+	color: #040430 !important;
+	font-size: 90px !important;
+	font-weight: bold !important;
+	font-style: normal !important;
+	text-align: center !important;
+}
+.colorForGirihLetIntroOnIndex{
+	color: #ffffff !important;
+	text-align: center !important;
+	font-size: 32px !important;
+}
+.colorForGriletDataAnalytic{
+	color: #0b0b41 !important;
+	text-align: center !important;
+	font-size: 24px !important;
+}
+
+/*
+	CSS for browse Button
+*/
+
+.textFormatForBrowseButton
+{
+	color: white !important;
+	background-color: #204a87 !important;
+}
+.textColorForBrowseText
+{
+	color: #204a87 !important;
+}

@@ -1,0 +1,385 @@
+ <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>TagLet | Girihlet</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'></link>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'></link>
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"></link>
+
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+<link rel="stylesheet" type="text/css" href="csslib/bootstrap.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/font-awesome.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/animate.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/bootstrap-switch.min.css"></link>
+
+<link rel="stylesheet" type="text/css" href="csslib/checkbox3.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/jquery.dataTables.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/dataTables.bootstrap.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/select2.min.css"></link>
+
+<link rel="stylesheet" type="text/css" href="csslib/style.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/flat-blue.css"></link>
+
+<link rel="stylesheet" href="csslib/comman.css"></link>
+
+</head>
+
+<body class="flat-blue mainDivColor">
+<div class="modal fade" id="myModalProcessLog" role="dialog">
+		<div class="modal-dialog " id="dddmiiii">
+			<div class="modal-content" >
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title textForInstaceLogHeader">Instance Log</h4>
+				</div>
+				<div class="modal-body" >
+					<div  id="processcmd">
+							<pre id="processlog" class="helpClass text-left textForInstaceLog">
+            			</pre>
+            			</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default bgColorForButton" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="myModalProcessesCmd" role="dialog">
+		<div class="modal-dialog ">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title textForInstaceLogHeader">Instance Command</h4>
+				</div>
+				<div class="modal-body textForInstaceLog">
+				<div id="myProcessCommand"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default bgColorForButton" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog ">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title textForInstaceLogHeader">Instance Attribute</h4>
+				</div>
+				<div class="modal-body textForInstaceLog">
+					<div class="rowClassTable">
+						<table class="table table-bordered table-striped myTableUser">
+							<thead>
+								<tr>
+									<th>ATTRIBUTE</th>
+									<th>VALUE</th>
+
+								</tr>
+							</thead>
+							<tbody id="pTagCmd">
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default bgColorForButton" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<span style="display:none" id="myio" th:text="${server}"></span>
+	<span style="display: none" id="userId" th:text="${userId}"></span>
+	<span style="display: none" id="userDir" th:text="${userDir}"></span>
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog" role="document">
+			<img class="" src="images/spinner.gif" alt="er"></img>
+
+		</div>
+	</div>
+	<div class="modal fade" id="selectFile" role="dialog">
+		<div class="modal-dialog">
+			Modal content
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="container-fuild">
+
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title colorTextFile">Files From Server.</h4>
+						<h6 class="modal-title colorTextFile">
+							Please double click to select.
+						</h6>
+
+					</div>
+				</div>
+				<div class="modal-header">
+					<div class="container-fuild" id="headerNavigatorId">
+						<span id="aTagHomeId"> <a>Home</a> <span
+							class="glyphicon glyphicon-chevron-right"></span>
+						</span>
+					</div>
+				</div>
+				<div class="modal-body modal-scroll">
+					<div class="container-fuild">
+						<form class="form-horizontal" id="divSubCategorydmd"></form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="container-fuild">
+						<form>
+							<div class="form-group">
+								<label class="control-label col-sm-2 col-lg-2 classLocation">
+									Location </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="valueSelectedDseq"
+										readonly="readonly"/>
+								</div>
+							</div>
+
+							<div class="form-group ">
+
+								<div class="col-sm-10 classPaddingTop">
+								<!-- <a
+								class="btn btn-default createBtn" id='createFolderBtn'
+								>Create Folder</a> -->
+								<button type="button" class="btn btn-default classPaddingTop"
+										id='createFolderBtn'>Create Folder</button>
+									<button type="button" class="btn btn-default classPaddingTop"
+										id="openBtnDialog">Open</button>
+									<button type="button" id="closeFileModel"
+										class="btn btn-default classPaddingTop" data-dismiss="modal">Cancel</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> 
+
+	<div class="app-container" id="idAppContainerDiv">
+		<div class="row content-container">
+			<nav class="navbar navbar-default navbar-fixed-top navbar-top">
+				<div class="container-fluid colorForhorizontalBar">
+					<div class="navbar-header">
+						<button type="button" class="navbar-expand-toggle">
+							<i class="fa fa-bars icon"></i>
+						</button>
+						<ol class="breadcrumb navbar-breadcrumb">
+							<li>Result Summary</li>
+							<!-- <li class="active">Instances</li> -->
+						</ol>
+
+						<button type="button"
+							class="navbar-right-expand-toggle pull-right visible-xs">
+							<i class="fa fa-th"></i>
+						</button>
+					</div>
+					<ul class="nav navbar-nav navbar-right">
+						<button type="button"  class="navbar-right-expand-toggle pull-right visible-xs">
+							<i class="fa fa-times icon"></i>
+						</button>
+						<li class="profile"><a href="http://girihlet.com/" target="_blank">Girihlet Non-Canonical Genomics Company</a></li>
+						<li class="dropdown profile"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+							aria-expanded="false" id="userDivName"><span th:text="${userName}"></span> <span
+								class="caret"></span></a>
+							<ul class="dropdown-menu animated fadeInDown">
+								<!-- 	<li class="profile-img"><img src="../images/profile.jpg"
+									class="profile-img" /></li> -->
+								<li>
+									<div class="profile-info">
+										<h4 class="username" id="userDivOnlyName">	<span id="userName"  th:text="${userName}"></span></h4>
+										<p id="userDivEmail"><span  id="userEmail" th:text="${userEmail}"></span></p>
+										<div class="btn-group margin-bottom-2x" role="group">
+											<!-- <button type="button" class="btn btn-default">
+												<i class="fa fa-user"></i> Profile
+											</button> -->
+											<button type="button" class="btn btn-default bgColorForButton"
+												onclick="logoutUser();">
+												<i class="fa fa-sign-out"></i> Logout
+											</button>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<div class="side-menu sidebar-inverse" id="idForSideMenuDiv">
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="side-menu-container">
+						<div class="navbar-header colorForNavHeader">
+							<a class="navbar-brand" th:href="@{/introduction?userid=}+${userId}">
+								<div class="icon fa fa-paper-plane"></div>
+								<div class="title">
+									<h3 class="colorForGirihLetName">GirihLet</h3>
+								</div>
+							</a>
+							<button id="buttonForSideMenuDiv" type="button"
+								class="navbar-expand-toggle pull-right visible-xs">
+								<i class="fa fa-times icon"></i>
+							</button>
+						</div>
+						<ul class="nav navbar-nav">
+							<li class="panel panel-default dropdown">
+								<a data-toggle="collapse" href="#dropdown-qc">
+									<span class="icon fa fa-line-chart"></span>
+									<span class="title">Run Raw Data Quality Control</span>
+								</a>
+								<div id="dropdown-qc" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a id="idHrefqc454"  href="../qc454">Long Read [ 454 / Ion Torrent ] </a></li>
+											<li><a id="idHrefIllumina"  href="../qcillumina">Short Read [ Illumina ]</a></li>
+											<li><a id="idHrefQCReport" href="../qcreport">QC Report Generation</a></li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="panel panel-default dropdown">
+								<a id="hRefRunModule1"  href="../TagLet"> 
+									<span class="icon fa fa-tag"></span>
+									<span class="title">Run TagLet</span>
+								</a>
+								<!-- <div id="dropdown-module1" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a id="hRefRunModule1"  href="../TagLet">Fill TagLet Input Form</a></li>
+										</ul>
+										<a id="hRefRunModule1"  href="../TagLet">Fill TagLet Input Form</a>
+									</div>
+								</div> -->
+							</li>
+							<!-- <li class="panel panel-default dropdown">
+								<a data-toggle="collapse" href="#dropdown-module1"> 
+									<span class="icon fa fa-tag"></span>
+									<span class="title">Run TagLet</span>
+								</a>
+								<div id="dropdown-module1" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a id="hRefRunModule1"  href="../TagLet">Fill TagLet Input Form</a></li>
+										</ul>
+									</div>
+								</div>
+							</li> -->
+							<li class="panel panel-default dropdown">
+								<a id="idHrefInstances" href="../ResultSummary"> <span
+									class="icon fa fa-history"></span>
+									<span class="title">Show Result Summary</span>
+								</a>  
+								<!-- <div id="dropdown-example" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a  id="idHrefInstances" href="../ResultSummary">Show Result Summary</a></li>
+											<li><a id="idHrefReports" href="../reports">Reports</a></li>
+										</ul>
+									</div>
+								</div> -->
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<!-- Main Content -->
+			<div class="container-fluid">
+				<div class="side-body padding-top">
+					<div class="row"  id="trinity">
+						<div id="sectionUserProcesses">
+							<div class="col-lg-12">
+								<h5 class="pull-right">
+									<center>
+									<span id="idSpanCurrentRefreshTime">Status on 10-05-16 01:12</span> <button type="button"  class="btn btn-success bgColorForButton" onclick="wsGetUserProcesses();" id="btnRefresh" >Refresh</button>
+									</center>
+					
+								</h5>
+							</div>
+							<div class="col-lg-12 " id="processTable">
+								<div class=" panel-default divClassInstancesCmd">
+									<div class="panel-body  ">
+										<div class=" rowClassTable">
+											<table class="table table-bordered table-striped myTableUser">
+												<thead>
+													<tr class="textColorForTableHeader">
+														<th align="center">APPLICATION NAME</th>
+														<th align="center">PROCESS NAME</th>
+														<th align="center">PROCESS STATUS</th>
+														<th align="center">PROCESS TIME</th>
+														<th align="center">NEXT STEP</th>
+														<th align="center">ACTION</th>
+													</tr>
+												</thead>
+												<tbody id="tableBodyListUser">
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<iframe src="" id="iframeReport" style="width: 100%;"
+						frameborder="0" scrolling="no">
+						<p>It appears your web browser doesn't support iframes.</p>
+					</iframe>
+				</div>
+			</div>
+		</div>
+		<footer class="app-footer">
+			<div class="wrapper">
+				<span class="pull-right">1.0 <a href="#"> <!-- <i class="fa fa-long-arrow-up"></i> -->GirihLet
+				</a></span>GirihLet© 2016 Copyright.
+			</div>
+		</footer>
+	</div>
+
+	<!-- Javascript Libs -->
+	
+	<script type="text/javascript" src="jslib/jquery.min.js"></script>
+	<script type="text/javascript" src="jslib/jquery.js"></script>
+	<script type="text/javascript" src="jslib/bootstrap.min.js"></script>
+	<script type="text/javascript" src="jslib/bootstrap-switch.min.js"></script>
+	<script type="text/javascript" src="jslib/jquery.matchHeight-min.js"></script>
+	<script type="text/javascript" src="jslib/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="jslib/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript" src="jslib/select2.full.min.js"></script>
+	<script type="text/javascript" src="jslib/ace/ace.js"></script>
+	<script type="text/javascript" src="jslib/ace/mode-html.js"></script>
+	<script type="text/javascript" src="jslib/ace/theme-github.js"></script>
+	<script type="text/javascript" src="jslib/app.js"></script>
+
+	<script src="js/ws_get_attribute_cmd2.js"></script>
+	<script src="js/url.js"></script>
+	<script src="js/comman.js"></script>
+	<script src="js/libjslogin/login.js"></script>
+	<script src="js/libjs/utils.js"></script>
+	<script src="js/user_js/ws_get_processes.js"></script>
+	<script src="js/user_js/ws_get_attribute_cmd.js"></script>
+	<script src="js/user_js/ws_request_password.js"></script>
+	
+	<!-- <script src="js/report.js"></script>
+	<script type="text/javascript">
+		$(document).ready(new function() {
+			wsGetReports();
+		});
+	</script> -->
+	<script type="text/javascript">
+	$(document).ready(new function(){
+		wsGetUserProcesses();
+		setHeightToThisWindow(document.getElementById("dddmiiii"));
+	});
+	</script>
+	<script>
+	$(document).ready(function(){
+	    $('[data-toggle="tooltip"]').tooltip();
+	});
+</script>
+</body>
+
+</html>
+

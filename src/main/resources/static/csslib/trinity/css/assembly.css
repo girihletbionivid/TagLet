@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+#selectSingleFileFormGroupAlignment{
+	display: none;
+}
+
+.colorTextClass {
+	color: #8AC007 !important;
+}
+.colorCollapseClass {
+	color: #000 !important;
+}
+#assemblyCmd {
+	display: none;
+}/* #aligmentAndEstimateDiv {
+	height: 500px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	scrollbar-base-color: orange !important;
+	scrollbar-arrow-color: green !important;
+	scrollbar-DarkShadow-Color: blue !important;
+} */

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>New way to Biology</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<link
+	href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400'
+	rel='stylesheet' type='text/css'></link>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900'
+	rel='stylesheet' type='text/css'></link>
+<link
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet"></link>
+
+<link rel="stylesheet" type="text/css" href="csslib/bootstrap.min.css"></link>
+<link rel="stylesheet" type="text/css"
+	href="csslib/font-awesome.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/animate.min.css"></link>
+<link rel="stylesheet" type="text/css"
+	href="csslib/bootstrap-switch.min.css"></link>
+
+<link rel="stylesheet" type="text/css" href="csslib/checkbox3.min.css"></link>
+<link rel="stylesheet" type="text/css"
+	href="csslib/jquery.dataTables.min.css"></link>
+<link rel="stylesheet" type="text/css"
+	href="csslib/dataTables.bootstrap.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/select2.min.css"></link>
+
+<link rel="stylesheet" type="text/css" href="csslib/style.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/flat-blue.css"></link>
+
+<!--  <link rel="stylesheet" href="csslib/trinity/css/index.css"></link>  -->
+<!-- <link rel="stylesheet" href="csslib/trinity/css/assembly.css"></link> -->
+<!-- <link rel="stylesheet" href="csslib/trinity/css/newmy.css"></link>  -->
+ <link rel="stylesheet" href="csslib/comman.css"></link>
+</head>
+
+<body class="flat-blue">
+
+
+
+<span style="display:none" id="myio" th:text="${server}"></span>
+	<span style="display: none" id="userId" th:text="${userId}"></span>
+	<span style="display: none" id="userDir" th:text="${userDir}"></span>
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog" role="document">
+			<img class="" src="images/spinner.gif" alt="er"></img>
+
+		</div>
+	</div>
+
+
+	<div class="app-container" id="idAppContainerDiv">
+		<div class="row content-container">
+			<nav class="navbar navbar-default navbar-fixed-top navbar-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-expand-toggle">
+							<i class="fa fa-bars icon"></i>
+						</button>
+						<ol class="breadcrumb navbar-breadcrumb">
+							<li>Instances and Reports</li>
+							<li class="active">Instances</li>
+						</ol>
+
+						<button type="button"
+							class="navbar-right-expand-toggle pull-right visible-xs">
+							<i class="fa fa-th"></i>
+						</button>
+					</div>
+				<ul class="nav navbar-nav navbar-right">
+						<button type="button"  class="navbar-right-expand-toggle pull-right visible-xs">
+							<i class="fa fa-times icon"></i>
+						</button>
+						<li class="profile"><a href="http://www.bionivid.com/" target="_blank"
+							>Bionivid-Genome "IT" Company</a></li>
+
+						<li class="dropdown profile"><a href="#"
+							class="dropdown-toggle" data-toggle="dropdown" role="button"
+							aria-expanded="false" id="userDivName"><span th:text="${userName}"></span> <span
+								class="caret"></span></a>
+							<ul class="dropdown-menu animated fadeInDown">
+								<!-- 	<li class="profile-img"><img src="../images/profile.jpg"
+									class="profile-img" /></li> -->
+								<li>
+									<div class="profile-info">
+										<h4 class="username" id="userDivOnlyName">	<span id="userName"  th:text="${userName}"></span></h4>
+										<p id="userDivEmail"><span  id="userEmail" th:text="${userEmail}"></span></p>
+										<div class="btn-group margin-bottom-2x" role="group">
+											<!-- <button type="button" class="btn btn-default">
+												<i class="fa fa-user"></i> Profile
+											</button> -->
+											<button type="button" class="btn btn-default"
+												onclick="logoutUser();">
+												<i class="fa fa-sign-out"></i> Logout
+											</button>
+										</div>
+									</div>
+								</li>
+							</ul></li>
+					</ul>
+				</div>
+			</nav>
+			<div class="side-menu sidebar-inverse" id="idForSideMenuDiv">
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="side-menu-container">
+						<div class="navbar-header">
+							<a class="navbar-brand" th:href="@{/internal_index?userid=}+${userId}">
+								<div class="icon fa fa-paper-plane"></div>
+								<div class="title"><img class="imageLogoSqit" src="../images/SQ_it.png" align="middle"></img></div>
+							</a>
+							<button id="buttonForSideMenuDiv" type="button"
+								class="navbar-expand-toggle pull-right visible-xs">
+								<i class="fa fa-times icon"></i>
+							</button>
+						</div>
+						<ul class="nav navbar-nav">
+							<li class="panel panel-default dropdown">
+								<a data-toggle="collapse" href="#dropdown-qc">
+									<span class="icon fa fa-search"></span>
+									<span class="title">Run Raw Data Quality Control</span>
+								</a>
+								<div id="dropdown-qc" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a id="idHrefqc454"  href="../qc454">Long Read [ 454 / Ion Torrent ] </a></li>
+											<li><a id="idHrefIllumina"  href="../qcillumina">Short Read [ Illumina ]</a></li>
+											<li><a id="idHrefQCReport" href="../qcreport">QC Report Generation</a></li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="panel panel-default dropdown">
+								<a data-toggle="collapse" href="#dropdown-module1"> 
+									<span class="icon fa fa-leaf"></span>
+									<span class="title">Run TagLet</span>
+								</a>
+								<div id="dropdown-module1" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a id="hRefRunModule1"  href="../run1stProgram">Fill TagLet Input Form</a></li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="panel panel-default dropdown">
+								<a data-toggle="collapse" href="#dropdown-example"> <span
+									class="icon fa fa-history"></span>
+									<span class="title">Instances and Reports</span>
+								</a> 
+								<div id="dropdown-example" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a  id="idHrefInstances" href="../instances">Instances</a></li>
+											<li><a id="idHrefReports" href="../reports">Reports</a></li>
+										</ul>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!-- /.navbar-collapse -->
+				</nav>
+			</div>
+			<!-- Main Content -->
+			<div class="container-fluid">
+				<div class="side-body padding-top">
+				<div class="row"  id="trinity">
+						<div id="sectionUserProcesses">
+
+			<div class="col-lg-12 " id="processTable">
+				<div class="divClassInstancesCmd">
+					<div class="panel-body  ">
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			
+	
+			
+				<div class="modal-header">
+					<div class="container-fuild" id="headerNavigatorId">
+						<span id="aTagHomeId"> <a href='#'>Home</a> <span
+							class="glyphicon glyphicon-chevron-right"></span>
+						</span>
+					</div>
+				</div>
+				<div class="modal-body modal-scroll">
+					<div class="container-fuild">
+
+						<div class="table-responsive rowClassTable">
+							<table class="table table-fixed myTableUser">
+								<thead>
+									<tr>
+										<th class="col-xs-8">NAME</th>
+										<th class="col-xs-2">Size</th>
+										<th class="col-xs-2">Last Modified</th>
+									</tr>
+								</thead>
+								<tbody id="divSubCategorydmd">
+
+								</tbody>
+							</table>
+						</div>
+
+
+					</div>
+				</div>
+				
+			
+
+		
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+					</div>
+				</div>
+			</div>
+		</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<footer class="app-footer">
+			<div class="wrapper">
+				<span class="pull-right">1.0 <a href="#"> <!-- <i class="fa fa-long-arrow-up"></i> -->GirihLet
+				</a></span>GirihLet© 2016 Copyright.
+			</div>
+		</footer>
+	</div>
+	<!-- Javascript Libs -->
+	<script type="text/javascript" src="jslib/jquery.min.js"></script>
+	<script type="text/javascript" src="jslib/jquery.js"></script>
+	<script type="text/javascript" src="jslib/bootstrap.min.js"></script>
+	<script type="text/javascript" src="jslib/bootstrap-switch.min.js"></script>
+	<script type="text/javascript" src="jslib/jquery.matchHeight-min.js"></script>
+	<script type="text/javascript" src="jslib/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="jslib/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript" src="jslib/select2.full.min.js"></script>
+	<script type="text/javascript" src="jslib/ace/ace.js"></script>
+	<script type="text/javascript" src="jslib/ace/mode-html.js"></script>
+	<script type="text/javascript" src="jslib/ace/theme-github.js"></script>
+	<script type="text/javascript" src="jslib/app.js"></script>
+
+
+	<!-- my -->
+<!-- 	<script type="text/javascript"
+		src="jslib/trinityjs/ws_get_attribute_cmd2.js"></script> -->
+		<script src="js/ws_get_attribute_cmd2.js"></script>
+
+	<!-- <script src="jslib/trinityjs/bootstrap.min.js"></script>  -->
+	<!-- <script type="text/javascript" src="jslib/trinityjs/url.js"></script> -->
+<script src="js/url.js"></script><script src="js/comman.js"></script>
+<!-- 	<script type="text/javascript"
+		src="jslib/libjs/directory_handling_trinity.js"></script>
+	<script type="text/javascript" src="jslib/libjs/utils.js"></script>
+	<script type="text/javascript" src="jslib/libjs/file_handling1.js"></script>
+	<script type="text/javascript" src="jslib/libjs/custom_report.js"></script>
+	<script type="text/javascript" src="jslib/libjs/validation.js"></script>
+	<script type="text/javascript"
+		src="jslib/libjs/trinity_form_mangement.js"></script> -->
+
+
+		<script src="js/libjslogin/login.js"></script>
+	<script src="js/libjs/utils.js"></script>
+	<script src="js/user_js/ws_get_processes.js"></script>
+	<script src="js/user_js/ws_get_attribute_cmd.js"></script>
+	<script src="js/user_js/ws_request_password.js"></script>
+	<script src="js/user_folder.js"></script>
+	<script type="text/javascript">
+	$(document).ready(new function(){
+		getAllDirectory("idSpanCurrentRefreshTime","dddd");
+		setHeightToThisWindow(document.getElementById("divClassInstancesCmd"));
+		
+		
+	});
+
+	</script>
+</body>
+
+</html>
+

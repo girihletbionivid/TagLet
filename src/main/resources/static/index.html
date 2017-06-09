@@ -1,0 +1,660 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Genome Station- New way to Bio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<link href="css/home_page_css.css" rel="stylesheet" />
+<link href="css/simple-sidebar.css" rel="stylesheet" />
+<link href="css/lightbox.css" rel="stylesheet" />
+<script>
+var server="${name}";
+</script>
+</head>
+<body>
+<div class="modal fade" id="myModalSpr" tabindex="-1" role="dialog"
+		data-backdrop="static" data-keyboard="false"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<img class="" src="images/spinner.gif" alt="er">
+		</div>
+	</div>
+	<div class="modal fade myclassModel" id="forgetModel" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header container-fuild">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<div id="waitingDiv">
+						<h4 class='modal-title'>Request for new password</h4>
+					</div>
+
+				</div>
+				<div class="modal-body">
+					<form role="form">
+						<div class="form-group">
+							<input type="text" class="form-control form-effect"
+								id="emailIdForget" placeholder="Email Id">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+
+					<a class="btn btn-default btn-sub" data-dismiss="modal">Close</a> <a
+						class="btn btn-default btn-sub" id="aTagRequestPassword"
+						onclick="wsRequestPassword();">Request</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="modal fade myclassModel" id="changeModel" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header container-fuild">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<div id="waitingDivChangePass">
+						<h4 class='modal-title'>Change password</h4>
+					</div>
+				</div>
+				<div class="modal-body">
+					<p>
+						<form role="form">
+							<div class="form-group">
+								<input type="password" class="form-control form-effect"
+									id="changeNewPassword" placeholder="New password"> <input
+									type="password" class="form-control form-effect"
+									id="changeConfirmPassword" placeholder="Confirm password">
+							</div>
+						</form>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<a class="btn btn-default btn-sub" data-dismiss="modal">Close</a> <a
+						class="btn btn-default btn-sub" id="aTagChangePassword"
+						onclick="wsChangePassword();">Request</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog ">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Instance Attribute</h4>
+				</div>
+				<div class="modal-body">
+					<div class="table-responsive rowClassTable">
+						<table class="table table-bordered table-striped myTableUser">
+							<thead>
+								<tr>
+									<th>ATTRIBUTE</th>
+									<th>VALUE</th>
+
+								</tr>
+							</thead>
+							<tbody id="pTagCmd">
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<header class="header" id="headerSection" >
+
+	<div class="container-fluid">
+		<div class="row headerTextBox" id="header-row">
+			<div class="col-md-6 ">
+				<a class="navbar-brand logo classColor" href="#">Bionivid</a>
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle menu-button"
+						data-toggle="collapse" data-target="#myNavbar">
+						<span class="glyphicon glyphicon-align-justify"></span>
+					</button>
+
+				</div>
+			</div>
+			<div class="col-md-6">
+				<nav class="collapse navbar-collapse" id="myNavbar"
+					role="navigation">
+				<ul class="nav navbar-nav navbar-right menu">
+					<li id="aTagHome"><a href="#page-top"
+						class="page-scroll active" onclick="setNullButton('aTagHome');"
+						id="aHome">Home</a></li>
+					<li id="aTagFeatures"><a href="#section2" id="aFeatures"
+						class="page-scroll active" onclick="setNullButton('aTagFeatures');">Features</a></li>
+					<li id="aTagLogin"><a href="#loginSection"
+						class="page-scroll active" onclick="loginBtnClick();" id="aLogin">Login</a></li>
+					<li id="aTagRegister"><a href="#registrationSection"
+						id="aRegister" class="page-scroll active"
+						onclick="registerBtnClick();">Register</a></li>
+					<!-- <li id="aTagLogout"><a onclick="stopSession();"
+						class="page-scroll logoutbtn">Logout</a></li> -->
+					<li id="aTagContact" onclick="setNullButton('aTagContact');"><a
+						id="aContact" href="#section4" class="page-scroll active">Contact</a></li>
+				</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	</header>
+
+	<div class="container-fluid main" id="page-top">
+		<div class="myfirstPage">
+			<div class="col-md-12  fullcll" id="page-top1">
+				<div
+					class="col-md-4 col-md-offset-4 inner col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+					<div class="text-box">
+						<p class="intro">Bionivid "A Genome 'IT' company"</p>
+						<h2>SQIT</h2>
+						<h3>A Denovo Transcriptome Assembly</h3>
+						<p>
+							<a href="#section2" class="link-button"  onclick="setNullButton('aTagFeatures');">Features</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid features" id="section2">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="text-center features-text">Featur</h2>
+					<div class="col-md-6 col-sm-12 col-xs-12 icon-box">
+						<div class="col-md-2 col-sm-2 col-xs-12">
+							<div class="iconing">
+								<i class="glyphicon glyphicon-pencil"></i>
+							</div>
+						</div>
+						<div
+							class="col-md-9 col-md-offset-1 col-sm-10 col-xs-12 icon-text-box">
+							<h4>
+								<span class='blackColorClass'>Raw Data Quality Control</span>
+							</h4>
+							<p>
+								User friendly GUI for performing quality control of NGS Raw Data
+								across the platform. <a
+									href="http://www.nipgr.res.in/ngsqctoolkit.html"
+									target="_blank">NGS-QC-toolkit</a> has been used to process the
+								Raw Data.
+							</p>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12 col-xs-12 icon-box">
+						<div class="col-md-2 col-sm-2 col-xs-12">
+							<div class="iconing">
+								<i class="glyphicon glyphicon-cog"></i>
+							</div>
+						</div>
+						<div
+							class="col-md-9 col-md-offset-1 col-sm-10 col-xs-12 icon-text-box">
+							<h4>
+								<span class='blackColorClass'>RNA-Seq Denovo</span>
+							</h4>
+							<p>
+								User friendly GUI for performing denovo assembly of RNA-Seq
+								data. The process invovles sample merging, assembly,
+								validatation and reporting of RNA-Seq assembly. <a
+									href="https://github.com/trinityrnaseq/trinityrnaseq/wiki"
+									target="_blank">Trinity</a>,<a
+									href="https://en.wikipedia.org/wiki/SAMtools" target="_blank">
+									Samtools</a>, <a
+									href="http://bowtie-bio.sourceforge.net/manual.shtml"
+									target="_blank"> Bowtie</a> and various In-house developed
+								scripts have been used to process the quality controlled read.
+							</p>
+						</div>
+					</div>
+
+
+					<div class="col-md-6 col-sm-12 col-xs-12 icon-box">
+						<div class="col-md-2 col-sm-2 col-xs-12">
+							<div class="iconing">
+								<i class="glyphicon glyphicon-user"></i>
+							</div>
+						</div>
+						<div
+							class="col-md-9 col-md-offset-1 col-sm-10 col-xs-12 icon-text-box">
+							<h4>
+								<span class='blackColorClass'>RNA-Seq Differential
+									Analysis</span>
+							</h4>
+							<p>
+								User friendly GUI for performing differential expression
+								profilling of RNA-Seq data, with automated reporting. <a
+									href="http://bioconductor.org/packages/release/bioc/html/DESeq.html"
+									target="_blank">DESeq</a> has been used to process the data.
+							</p>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12 col-xs-12 icon-box">
+						<div class="col-md-2 col-sm-2 col-xs-12">
+							<div class="iconing">
+								<i class="glyphicon glyphicon-user"></i>
+							</div>
+						</div>
+						<div
+							class="col-md-9 col-md-offset-1 col-sm-10 col-xs-12 icon-text-box">
+							<h4>
+								<span class='blackColorClass'>Metagenome 16s RNA Analysis</span>
+							</h4>
+							<p>
+								User friendly GUI for performing comprehensive analysis and
+								automated reporting of 16s RNA amplicon sequencing. The
+								processes involves Read Prepration, Dereplication, Clusturing,
+								OTU identification & Diversity Analysis using Taxonomic
+								Profiling. <a
+									href="http://drive5.com/usearch/manual/uparse_pipeline.html"
+									target="_blank">UPARSE</a> tool has been used for processing of
+								data.
+							</p>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12 col-xs-12 icon-box">
+						<div class="col-md-2 col-sm-2 col-xs-12">
+							<div class="iconing"></div>
+						</div>
+						<div
+							class="col-md-9 col-md-offset-1 col-sm-10 col-xs-12 icon-text-box">
+							<h4></h4>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="homePad">
+		<div class="container-fluid mysection" id="loginSection">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2 class="text-center portfolio-text">LOGIN</h2>
+						<div id='waitingDivLogin'></div>
+						<div
+							class="col-md-6 col-sm-12 col-xs-12  col-xs-12 col-sm-offset-3 contact-form">
+							<form role="form">
+								<div class="form-group">
+									<input type="text" class="form-control form-effect"
+										id="emailLogin" placeholder="User Name">
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control form-effect"
+										id="passwordLogin" placeholder="Password">
+								</div>
+
+								<a class="btn btn-default btn-sub" id="aTagLoginRequest"
+									onclick="wsLogin();">SIGN IN</a> <a
+									class="btn btn-default btn-sub" onclick='forgetBtnClick();'
+									id="aTagForgetPassword" data-toggle="modal"
+									data-target="#forgetModel"> Forgot password ?</a>
+								<!-- <input type="button"
+											class="col-sm-4  col-lg-4 col-lg-4 btn-file "
+											data-toggle="modal" data-target="#selectFile"
+											placeholder="Select Control file" id='idControlFileR1Browse'
+											onclick="getAllDirectory('idControlFileR1Select','fastq');"
+											accept=".fa" value="BROWSE...">
+											 -->
+
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid mysection" id="registrationSection">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2 class="text-center portfolio-text">REGISTRATION</h2>
+						<div id='waitingDivRegistration'></div>
+						<div
+							class="col-md-6 col-sm-12 col-xs-12  col-xs-12 col-sm-offset-3 contact-form">
+							<form id="adminRegistrationFrom" role="form">
+								<div class="form-group">
+									<input type="text" class="form-control form-effect"
+										id="userName" name="userName" placeholder="Full Name"
+										onblur="validateUserName();" />
+								</div>
+								<div class="form-group">
+									<input type="email" class="form-control form-effect"
+										id="emailId" name="emailId" placeholder="User Name"
+										onblur="validateEmailId();" />
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control form-effect"
+										id="password" name="password" placeholder="Password"
+										onblur="validatePassword();" />
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control form-effect"
+										id="repassword" placeholder="Comfirm Password"
+										onblur="validateConfirmPassword();" />
+								</div>
+								<a class="btn btn-default btn-sub" id="aTagRegistrationRequest"
+									onclick="registerAdminWs();">SIGN UP</a>
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="wrapper">
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+
+				<!-- 	<li class="sidebar-brand">
+						<a href="#" class="textBlackClass">SQIT </a></li> -->
+				<li class="sidebar-brand "><a href="#" id="userDivName" class="textBlackClass"
+					> </a></li>
+				<li onclick="changeClass(this);" class="changeActive"><a onclick="showFrame('qc.html');"  href="#" class="textBlackClass">Raw
+						Data Quality Control</a></li>
+
+				<li onclick="changeClass(this);"><a onclick="showFrame('trinity.html');" href="#"
+					class="textBlackClass ">RNA-Seq Denovo</a></li>
+				<li onclick="changeClass(this);"><a onclick="showFrame('dseq.html');" href="#" class="textBlackClass">RNA-Seq
+						Differential</a></li>
+
+				<!-- 	<li><a onclick="showFrame('bast.html');"
+					class="textBlackClass">Blast </a></li> -->
+				<li onclick="changeClass(this);"><a onclick="showFrame('uparse.html');"
+					class="textBlackClass">Metagenome 16s RNA</a></li> 
+				 <li onclick="changeClass(this);"><a onclick="showFrame('reseq.html');"
+					class="textBlackClass">RNA Resequecing</a></li> 
+					<li><a onclick="showFrame('ionTorrent.html');"
+					class="textBlackClass">ION Torrent</a></li> 
+					<!-- 	<li  onclick="changeClass(this);"><a onclick="showFrame('a.html');"
+					class="textBlackClass">Annotation Engine</a></li> -->
+				<li onclick="changeClass(this);"><a href="#sectionUserProcesses" class="textBlackClass"
+					onclick="wsGetUserProcesses();">Running Instances </a></li>
+				<li onclick="changeClass(this);"><a href="#sectionUserReports" class="textBlackClass"
+					onclick="wsGetReports();">View Reports </a></li>
+				<!-- 	<li><a href="#" class="textBlackClass">Overview</a></li>
+				<li><a href="#" class="textBlackClass">Events</a></li>
+				<li><a href="#" class="textBlackClass">About</a></li>
+			
+				<li><a href="#" class="textBlackClass">Services</a></li>
+				<li><a href="#" class="textBlackClass">Contact</a></li> -->
+				<li onclick="changeClass(this);" id="aTagLogout"><a onclick="stopSession();"
+					class="textBlackClass">Logout</a></li>
+				<li onclick="changeClass(this);" id="aTagChangePassword"><a data-target="#changeModel"
+					class="textBlackClass " data-toggle="modal"
+					onclick="changeBtnClick();">Change Password</a></li>
+      
+				
+			</ul>
+			  <div class="liClass">
+					<img src="images/Bionivid-Logo.png" alt="bionivid"
+						class="classIconBionivid  sidebar-brand" />
+				</div> 
+			<!--  <div class="liClass">
+					<img src="images/Bionivid-Logo.png" alt="bionivid"
+						class="classIconBionivid  liClass" />
+				</div>  -->
+		</div>
+		<div class="drawerBtnClass">
+		
+			<!-- <button class="navbar  myNavBtnClass " href="#menu-toggle" id="menu-toggle">  -->
+	<!-- <i class="fa fa-bars myccd" aria-hidden="true"></i> -->
+	<img src="images/bars1.png" class="myccd" alt="ss" href="#menu-toggle" id="menu-toggle"/>
+<!-- </i> --><!-- </button>  -->
+				
+		</div>
+		<iframe src="qc.html" class="myframe" id="frameOfMainContainer">
+			<p>Your browser does not support iframes.</p>
+		</iframe>
+		<!--  <iframe src="dseq.html" class="myframe" id="frameOfMainContainer">
+			<p>Your browser does not support iframes.</p>
+		</iframe>
+		<iframe src="qc.html" class="myframe" id="frameOfMainContainer">
+			<p>Your browser does not support iframes.</p>
+		</iframe>
+		<iframe src="uparse.html" class="myframe" id="frameOfMainContainer">
+			<p>Your browser does not support iframes.</p>
+		</iframe> -->
+		<!-- /#page-content-wrapper -->
+		<div id="sectionUserProcesses">
+			<div class="col-lg-12">
+				<h3>
+					<center>List Of Proccess</center>
+					
+				</h3>
+					<h5 class="pull-right">
+					<center><span id="idSpanCurrentRefreshTime">Status on 10-05-16 01:12</span> <button type="button"  class="btn btn-success" onclick="wsGetUserProcesses();"
+									id="btnRefresh" >Refresh</button></center>
+					
+				</h5>
+				<!-- <h5>
+					<center>List Of Proccess</center>
+				</h5> -->
+			</div>
+
+			<div class="col-lg-12 " id="processTable">
+				<div class="panel panel-default divClassInstancesCmd">
+					<div class="panel-body  ">
+			
+						<div class="table-responsive rowClassTable">
+							<table class="table table-bordered table-striped myTableUser">
+								<thead>
+									<tr>
+										<th>PROCESS NAME</th>
+										<th>PROCESS STATUS</th>
+										<th>PROCESS START TIME</th>
+										<th>PROCESS END TIME</th>
+										<th>ACTION</th>
+										<th>NEXT STEP</th>
+									</tr>
+								</thead>
+								<tbody id="tableBodyListUser">
+
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+		<div id="sectionUserReports">
+			<div class="col-lg-12">
+				<h1>
+					<center>List Of Reports</center>
+				</h1>
+			</div>
+
+			<div class="col-lg-12 " id="processTable">
+				<div class="panel panel-default divClassInstancesCmd">
+					<div class="panel-body  ">
+
+						<div class="table-responsive rowClassTable">
+							<table class="table table-bordered table-striped myTableUser">
+								<thead>
+									<tr>
+										<th>PROJECT NAME</th>
+										<th>PROCESS NAME</th>
+										<th>DATE OF CREATION</th>
+										<th>FILE NAME</th>
+										<th colspan='2'>ACTION</th>
+									</tr>
+								</thead>
+								<tbody id="tableBodyListReports">
+
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+		<div id="divShowListReportPdf" class="row">
+			<iframe src="" id="iframeListReport"
+				style="width: 100%; height: 100%;" frameborder="0" scrolling="no">
+				<p>It appears your web browser doesn't support iframes.</p>
+			</iframe>
+		</div>
+	</div>
+	<div id="bottom-pad">
+		<div class="container-fluid countspace">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 countbg">
+						<div class="col-xs-12 col-sm-3 col-md-3">
+							<div class="counter-item">
+								<i class="glyphicon glyphicon-cloud"></i>
+								<div class="timer" data-from="0" data-to="100" data-speed="5000"
+									data-refresh-interval="50"></div>
+								<h5>Files uploaded</h5>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-3 col-md-3">
+							<div class="counter-item">
+								<i class="glyphicon glyphicon-check"></i>
+								<div class="timer" data-from="0" data-to="88" data-speed="5000"
+									data-refresh-interval="50"></div>
+								<h5>Projects completed</h5>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-3 col-md-3">
+							<div class="counter-item">
+								<i class="glyphicon glyphicon-console"></i>
+								<div class="timer" data-from="0" data-to="3297"
+									data-speed="5000" data-refresh-interval="50"></div>
+								<h5>Lines of code written</h5>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-3 col-md-3">
+							<div class="counter-item">
+								<i class="glyphicon glyphicon-user"></i>
+								<div class="timer" data-from="0" data-to="86" data-speed="5000"
+									data-refresh-interval="50"></div>
+								<h5>Happy clients</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid contact" id="section4">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2 class="text-center portfolio-text">Contact</h2>
+						<div class="col-md-6 col-sm-12 col-xs-12contact-form">
+							<form role="form">
+								<div class="form-group">
+									<input type="text" class="form-control form-effect" id="name"
+										placeholder="Name">
+								</div>
+								<div class="form-group">
+									<input type="email" class="form-control form-effect" id="email"
+										placeholder="Email">
+								</div>
+								<div class="form-group">
+									<textarea type="textarea" class="form-control form-effect"
+										id="text" placeholder="Message"></textarea>
+								</div>
+								<button type="submit" class="btn btn-default btn-sub">Submit</button>
+							</form>
+						</div>
+						<div class="col-md-6 col-sm-12 col-xs-12 address-space">
+							<div id="map-canvas"></div>
+							<div class="address">
+								<h3>Address</h3>
+								<p>
+									<i class="glyphicon glyphicon-map-marker"></i>1234 House Name,
+									City Name, India
+								</p>
+								<p>
+									<i class="glyphicon glyphicon-earphone"></i>(111) 123-4567 |
+									(111) 123-7654 (FAX)
+								</p>
+								<p>
+									<i class="glyphicon glyphicon-envelope"></i>Info@example.com
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="container-fluid notes">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12 notes-bg">
+					<div class="container">
+						<div class="col-md-8 col-sm-8 col-xs-12">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+								Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
+						</div>
+						<div
+							class="col-md-offset-1 col-md-2 col-md-offset-1 col-sm-offset-1 col-sm-2 col-sm-offset-1 col-xs-12">
+							<button type="button" class="btn btn-default btneff">Read
+								More</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- <div class="container-fluid footer">
+		<div class="row">
+			<div class="col-md-12">
+				<p>Copyright © 2013 Bionivid. All Rights Reserved.</p>
+			</div>
+		</div>
+	</div> -->
+	<!-- <script src="js/google_map.js"></script> -->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="js/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery.countTo.js"></script>
+	<script type="text/javascript" src="js/jquery.waypoints.min.js"></script>
+
+	<script src="js/lightbox.min.js"></script>
+	<script src="js/url.js"></script>
+
+	<script src="js/user_js/registration.js"></script>
+	<!-- <script src="js/libjslogin/login.js"></script> -->
+	<script src="js/user_js/login.js"></script>
+	<script src="js/user_js/ws_get_processes.js"></script>
+	<script src="js/url.js"></script>
+
+	<script src="js/user_js/ws_get_attribute_cmd.js"></script>
+	<script src="js/user_js/ws_request_password.js"></script>
+	<script src="js/report.js"></script>
+	<script src="js/libjs/utils.js"></script>
+
+</body>
+</html>

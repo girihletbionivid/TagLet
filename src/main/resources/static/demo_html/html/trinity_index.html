@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Genome Station- New way to Bio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<link
+	href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400'
+	rel='stylesheet' type='text/css'></link>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900'
+	rel='stylesheet' type='text/css'></link>
+<link
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet"></link>
+
+<link rel="stylesheet" type="text/css" href="demo_html/css/bootstrap.min.css"></link>
+<link rel="stylesheet" type="text/css"
+	href="../css/font-awesome.min.css"></link>
+<link rel="stylesheet" type="text/css" href="demo_html/css/animate.min.css"></link>
+<link rel="stylesheet" type="text/css"
+	href="../css/bootstrap-switch.min.css"></link>
+
+<link rel="stylesheet" type="text/css" href="demo_html/css/checkbox3.min.css"></link>
+<link rel="stylesheet" type="text/css"
+	href="demo_html/css/jquery.dataTables.min.css"></link>
+<link rel="stylesheet" type="text/css"
+	href="demo_html/css/dataTables.bootstrap.css"></link>
+<link rel="stylesheet" type="text/css" href="demo_html/css/select2.min.css"></link>
+
+<link rel="stylesheet" type="text/css" href="demo_html/css/style.css"></link>
+<link rel="stylesheet" type="text/css" href="demo_html/css/flat-blue.css"></link>
+
+<link rel="stylesheet" href="demo_html/css/trinity/css/index.css"></link>
+<link rel="stylesheet" href="demo_html/css/trinity/css/assembly.css"></link>
+<link rel="stylesheet" href="demo_html/css/trinity/css/newmy.css"></link>
+</head>
+
+<body class="flat-blue">
+	<div class="modal fade" id="selectFile" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="container-fuild">
+
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title colorTextFile">Files From Server.</h4>
+						<h6 class="modal-title colorTextFile">
+							Please double click to select.<a
+								class="btn btn-default createBtn" id='createFolderBtn'
+								onclick='createFolder("md");'>Create Folder</a>
+						</h6>
+
+					</div>
+				</div>
+				<div class="modal-header">
+					<div class="container-fuild" id="headerNavigatorId">
+						<span id="aTagHomeId"> <a>Home</a> <span
+							class="glyphicon glyphicon-chevron-right"></span>
+						</span>
+					</div>
+				</div>
+				<div class="modal-body modal-scroll">
+					<div class="container-fuild">
+
+
+						<form class="form-horizontal" id="divSubCategorydmd"></form>
+
+
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="container-fuild">
+						<form>
+							<div class="form-group">
+								<label class="control-label col-sm-2 col-lg-2 classLocation">
+									Location </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="valueSelectedDseq"
+										readonly="readonly"><input>
+								</div>
+							</div>
+
+							<div class="form-group ">
+
+								<div class="col-sm-10 classPaddingTop">
+									<button type="button" class="btn btn-default classPaddingTop"
+										id="openBtnDialog">Open</button>
+									<button type="button" id="closeFileModel"
+										class="btn btn-default classPaddingTop" data-dismiss="modal">Cancel</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="app-container">
+		<div class="row content-container">
+			<nav class="navbar navbar-default navbar-fixed-top navbar-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-expand-toggle">
+							<i class="fa fa-bars icon"></i>
+						</button>
+						<ol class="breadcrumb navbar-breadcrumb">
+							<li>RNA-Seq Denovo</li>
+							<li class="active">TRINITY</li>
+						</ol>
+
+						<button type="button"
+							class="navbar-right-expand-toggle pull-right visible-xs">
+							<i class="fa fa-th"></i>
+						</button>
+					</div>
+					<ul class="nav navbar-nav navbar-right">
+						<button type="button"
+							class="navbar-right-expand-toggle pull-right visible-xs">
+							<i class="fa fa-times icon"></i>
+						</button>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-expanded="false"><i
+								class="fa fa-comments-o"></i></a>
+							<ul class="dropdown-menu animated fadeInDown">
+								<li class="title">Notification <span
+									class="badge pull-right">0</span>
+								</li>
+								<li class="message">No new notification</li>
+							</ul></li>
+						<li class="dropdown danger"><a href="#"
+							class="dropdown-toggle" data-toggle="dropdown" role="button"
+							aria-expanded="false"><i class="fa fa-star-half-o"></i> 4</a>
+							<ul class="dropdown-menu danger  animated fadeInDown">
+								<li class="title">Notification <span
+									class="badge pull-right">4</span>
+								</li>
+								<li>
+									<ul class="list-group notifications">
+										<a href="#">
+											<li class="list-group-item"><span class="badge">1</span>
+												<i class="fa fa-exclamation-circle icon"></i> new
+												registration</li>
+										</a>
+										<a href="#">
+											<li class="list-group-item"><span class="badge success">1</span>
+												<i class="fa fa-check icon"></i> new orders</li>
+										</a>
+										<a href="#">
+											<li class="list-group-item"><span class="badge danger">2</span>
+												<i class="fa fa-comments icon"></i> customers messages</li>
+										</a>
+										<a href="#">
+											<li class="list-group-item message">view all</li>
+										</a>
+									</ul>
+								</li>
+							</ul></li>
+						<li class="dropdown profile"><a href="#"
+							class="dropdown-toggle" data-toggle="dropdown" role="button"
+							aria-expanded="false">Yogesh Werulkar <span class="caret"></span></a>
+							<ul class="dropdown-menu animated fadeInDown">
+								<li class="profile-img"><img src="../image/profile.jpg"
+									class="profile-img"></li>
+								<li>
+									<div class="profile-info">
+										<h4 class="username">Yogesh Werulkar</h4>
+										<p>yogesh@bionivid.com</p>
+										<div class="btn-group margin-bottom-2x" role="group">
+											<button type="button" class="btn btn-default">
+												<i class="fa fa-user"></i> Profile
+											</button>
+											<button type="button" class="btn btn-default">
+												<i class="fa fa-sign-out"></i> Logout
+											</button>
+										</div>
+									</div>
+								</li>
+							</ul></li>
+					</ul>
+				</div>
+			</nav>
+			<div class="side-menu sidebar-inverse">
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="side-menu-container">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="#">
+								<div class="icon fa fa-paper-plane"></div>
+								<div class="title">SQIT</div>
+							</a>
+							<button type="button"
+								class="navbar-expand-toggle pull-right visible-xs">
+								<i class="fa fa-times icon"></i>
+							</button>
+						</div>
+						<ul class="nav navbar-nav">
+							<li class=""><a href="index.html"> <span
+									class="icon fa fa-tachometer"></span><span class="title">Home</span>
+							</a></li>
+							<li class="panel panel-default dropdown"><a
+								data-toggle="collapse" href="#dropdown-element"> <span
+									class="icon fa fa-desktop"></span><span class="title">Raw
+										Data Quality Control</span>
+							</a> <!-- Dropdown level 1 -->
+								<div id="dropdown-element" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a href="ui-kits/theming.html">454QC</a></li>
+											<li><a href="ui-kits/grid.html">Illumina</a></li>
+											<li><a href="ui-kits/button.html">Report</a></li>
+										</ul>
+									</div>
+								</div></li>
+							<li class="active panel panel-default dropdown"><a
+								data-toggle="collapse" href="#dropdown-table"> <span
+									class="icon fa fa-table"></span><span class="title">RNA-Seq
+										Denovo</span>
+							</a> <!-- Dropdown level 1 -->
+								<div id="dropdown-table" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a href="table/table.html">Merge</a></li>
+											<li><a href="../html/trinity_index.html">Trinity</a></li>
+											<li><a href="../html/assembly_index.html">Assembly</a></li>
+											<li><a href="table/datatable.html">RNA-Seq
+													Differential</a></li>
+											<li><a href="table/datatable.html">Report</a></li>
+										</ul>
+									</div>
+								</div></li>
+							<li class="panel panel-default dropdown"><a
+								data-toggle="collapse" href="#dropdown-form"> <span
+									class="icon fa fa-file-text-o"></span><span class="title">Metagenome
+										16s RNA</span>
+							</a> <!-- Dropdown level 1 -->
+								<div id="dropdown-form" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a href="form/ui-kits.html">Read Preparation</a></li>
+											<li><a href="form/ui-kits.html">Dereplication</a></li>
+											<li><a href="form/ui-kits.html">Clustering And
+													Chimera Filtering</a></li>
+											<li><a href="form/ui-kits.html">OTU Table</a></li>
+											<li><a href="form/ui-kits.html">Taxonomy</a></li>
+											<li><a href="form/ui-kits.html">Report</a></li>
+										</ul>
+									</div>
+								</div></li>
+							<!-- Dropdown-->
+							<li class="panel panel-default dropdown"><a
+								data-toggle="collapse" href="#component-example"> <span
+									class="icon fa fa-cubes"></span><span class="title">RNA
+										Resequecing</span>
+							</a> <!-- Dropdown level 1 -->
+								<div id="component-example" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a href="components/pricing-table.html">Genome
+													Indexing</a></li>
+											<li><a href="components/chartjs.html">Tophat</a></li>
+											<li><a href="components/chartjs.html">Cufflink</a></li>
+											<li><a href="components/chartjs.html">Cuffmerge</a></li>
+											<li><a href="components/chartjs.html">CuffDiff</a></li>
+											<li><a href="components/chartjs.html">Reports</a></li>
+										</ul>
+									</div>
+								</div></li>
+							<!-- Dropdown-->
+							<li class="panel panel-default dropdown"><a
+								data-toggle="collapse" href="#dropdown-example"> <span
+									class="icon fa fa-slack"></span><span class="title">Current
+										and Histroy</span>
+							</a> <!-- Dropdown level 1 -->
+								<div id="dropdown-example" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a href="pages/login.html">Instances</a></li>
+											<li><a href="pages/index.html">Reports</a></li>
+										</ul>
+									</div>
+								</div></li>
+							<!-- Dropdown-->
+							<li class="panel panel-default dropdown"><a
+								data-toggle="collapse" href="#dropdown-icon"> <span
+									class="icon fa fa-archive"></span><span class="title">Others</span>
+							</a> <!-- Dropdown level 1 -->
+								<div id="dropdown-icon" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a href="icons/glyphicons.html">ION Torrent</a></li>
+											<li><a href="icons/font-awesome.html">Annotation</a></li>
+										</ul>
+									</div>
+								</div></li>
+							<li><a href="license.html"> <span
+									class="icon fa fa-thumbs-o-up"></span><span class="title">License</span>
+							</a></li>
+						</ul>
+					</div>
+					<!-- /.navbar-collapse -->
+				</nav>
+			</div>
+			<!-- Main Content -->
+			<div class="container-fluid">
+				<div class="side-body padding-top">
+					<div id="trinity">
+						<div class="row" id="forms">
+							<div class="col-xs-6 col-lg-2"></div>
+							<div class="col-xs-12 col-sm-6 col-lg-10">
+								<div id="trinityForms">
+									<form class="form-horizontal" id="trinityForm">
+										<h3>Give necessary info to run Trinity</h3>
+										<div class="form-group">
+											<label
+												class="control-label col-sm-4  col-lg-4 test textClass">Project
+												Name<span></span>
+											</label>
+											<div class="col-sm-6 col-lg-6">
+												<input type="text" class="form-control" id="idProjectName"
+													placeholder="project"></input>
+											</div>
+										</div>
+										<div class="form-group">
+											<label
+												class="control-label col-sm-4  col-lg-4 test textClass"
+												for="email" data-placement="left" data-toggle="tooltip"
+												title="Input reads type fasta or fastq">Sequence
+												type<span
+												class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+											</label>
+											<div class="col-sm-6 col-lg-6">
+												<select class="form-control" id="idSequenceType"
+													onchange="changeInputFileOptionChange(this);">
+													<option value="Fasta" selected="selected">Fasta</option>
+													<option value="Fastq">Fastq</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label
+												class="control-label col-sm-4  col-lg-4 test textClass "
+												for="email" data-placement="left" data-toggle="tooltip"
+												title="Input sequence format paired read (read sequenc from both end)  or single read.">Sequence
+												format<span
+												class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+											</label>
+											<div class="col-sm-6 col-lg-6">
+												<select class="form-control" id="idInputReadType"
+													onchange="changeOption(this);">
+													<option value="Paired" selected="selected">Paired</option>
+													<option value="Single">Single</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label
+												class="control-label col-sm-4  col-lg-4 test textClass"
+												for="pwd" data-placement="left" data-toggle="tooltip"
+												title="Strand-specific RNA-Seq read orientation, if paired: RF or FR,if single: F or R.   (dUTP method = RF)">SS
+												lib type<span
+												class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+											</label>
+											<div class="col-sm-6 col-lg-6">
+												<select class="form-control" id="idSSLibType">
+													<option value="FR" selected="selected">FR</option>
+													<option value="RF">RF</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label
+												class="control-label col-sm-4  col-lg-4 test textClass"
+												for="pwd" data-placement="left" data-toggle="tooltip"
+												title="number of CPUs to use, default: 2">CPU<span
+												class=" glyphicon glyphicon-question-sign iconSmallClass"></span></label>
+											<div class="col-sm-6 col-lg-6">
+												<input type="text" class="form-control" id="idCPU"
+													maxlength="2" onkeypress="return isNumber(event,this,1);"
+													placeholder="CPU" value="2"></input>
+											</div>
+										</div>
+										<div class="form-group">
+											<label
+												class="control-label col-sm-4  col-lg-4 test textClass"
+												for="pwd" data-placement="left" data-toggle="tooltip"
+												title="minimum assembled contig length to repor(def=200)">Min
+												contig length<span
+												class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+											</label>
+											<div class="col-sm-6 col-lg-6">
+												<input type="text" class="form-control"
+													id="idMinContigLength" maxlength="3"
+													onkeypress="return isNumber(event,this,3);"
+													placeholder="Min contig" value="200"></input>
+											</div>
+										</div>
+										<div class="form-group">
+											<label
+												class="control-label col-sm-4  col-lg-4 test textClass"
+												for="pwd" data-placement="left" data-toggle="tooltip"
+												title="minimum Kmer converage report(def=2)">Min
+												Kmer Cov<span
+												class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+											</label>
+											<div class="col-sm-6 col-lg-6">
+												<input type="text" class="form-control" id="idMinKmerCov"
+													maxlength="3" onkeypress="return isNumber(event,this,3);"
+													placeholder="Min Kmer" value="2"></input>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label
+												class="control-label col-sm-4  col-lg-4 test textClass"
+												for="pwd" data-placement="left" data-toggle="tooltip"
+												title="Gb of RAM, ie.  '--max_memory 10G'">Max
+												Memory<span
+												class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+											</label>
+											<div class="col-sm-6 col-lg-6">
+												<input type="text" class="form-control" id="idMaxMemory"
+													maxlength="4" onkeypress="return isNumber(event,this,2);"
+													placeholder="Max Memory" value="2"></input>
+											</div>
+										</div>
+										<div class="form-group" id="selectTrinityTypeFormGroup">
+											<label class="control-label col-sm-4  col-lg-4 textClass"
+												for="pwd"> Assembly(Optional)</label>
+											<div class="col-sm-6 col-lg-6">
+												<div class="checkbox">
+
+
+													<div class="divHybridCB">
+														<label class="textClass"><input type="checkbox"
+															id="idOptionalSelect1"
+															onchange="onChangeHybridCheckBox(this);"></input>Hybrid
+															Assembly</label>
+													</div>
+													<div class="divRefferenceCB">
+														<label class="textClass"><input type="checkbox"
+															id="idOptionalSelect2"
+															onchange="onChangeRefferenceCheckBox(this);"></input>
+															Refference Assembly
+															<div id="divFAOptions">
+																<div class="radio">
+																	<label><input type="radio" name="optradio"
+																		onchange="rbtnWithFAChanged(this);" id="idrbtnWithFA"></input>With
+																		Row Input</label>
+																</div>
+																<div class="radio">
+																	<label><input type="radio" name="optradio"
+																		onchange="rbtnWithoutFAChanged(this);"
+																		id="idrbtnWithoutFA"></input>Without Row Input</label>
+																</div>
+															</div> </label>
+													</div>
+
+
+												</div>
+
+											</div>
+										</div>
+										<div id="fileSelectionDiv">
+											<div class="form-group" id="selectOptionalFormGroup1">
+												<label class="control-label col-sm-4  col-lg-4 textClass"
+													for="pwd" id="idlableLongRead">Select Long Read
+													file</label>
+												<div class="col-sm-6 col-lg-6">
+													<input type="button" class="col-sm-4  col-lg-4  btn-file "
+														data-toggle="modal" data-target="#selectFile"
+														placeholder="Select Long file"
+														id='idOptionalSelectFile1Browse'
+														onclick="getAllDirectory('idOptionalSelectFile1','fasta,fasta_filtered');"
+														accept=".fa" value="BROWSE..."></input>
+													<div id="idOptionalSelectFile1"
+														class="col-sm-6 col-lg-6 text-left">No file selected</div>
+												</div>
+											</div>
+											<div class="form-group" id="selectRightFileFormGroup">
+												<label class="control-label col-sm-4  col-lg-4 textClass"
+													for="pwd" id="lableRightFileSelect">Select right
+													file</label>
+												<div class="col-sm-6 col-lg-6">
+													<input type="button" class="col-sm-4  col-lg-4  btn-file "
+														data-toggle="modal" data-target="#selectFile"
+														placeholder="Select right file" id='idRightFileBrowse'
+														onclick="getAllDirectory('idRightFileSelect','fasta,fasta_filtered');"
+														accept=".fa" value="BROWSE..."></input>
+													<div id="idRightFileSelect"
+														class="col-sm-6 col-lg-6 text-left">No file selected</div>
+												</div>
+											</div>
+											<div class="form-group" id="selectSingleFileFormGroup">
+												<label class="control-label col-sm-4  col-lg-4 textClass"
+													for="pwd" id="lableSingleFileSelect">Select single
+													file</label>
+												<div class="col-sm-6 col-lg-6">
+													<input type="button" class="col-sm-4  col-lg-4  btn-file "
+														data-toggle="modal" data-target="#selectFile"
+														placeholder="Select single file" id='idSingleFileBrowse'
+														onclick="getAllDirectory('idSingleFileSelect','fasta,fasta_filtered');"
+														accept=".fa" value="BROWSE..."></input>
+													<div id="idSingleFileSelect"
+														class="col-sm-6 col-lg-6 text-left">No file selected</div>
+												</div>
+											</div>
+											<div class="form-group" id="selectLeftFileFormGroup">
+												<label class="control-label col-sm-4  col-lg-4 textClass"
+													for="pwd" id="idlableLeftRead">Select left file</label>
+												<div class="col-sm-6 col-lg-6">
+													<input type="button" class="col-sm-4  col-lg-4  btn-file "
+														data-toggle="modal" data-target="#selectFile"
+														placeholder="Select right file" id='idLeftFileBrowse'
+														onclick="getAllDirectory('idLeftFileSelect','fasta,fasta_filtered');"
+														accept=".fa" value="BROWSE..."></input>
+													<div id="idLeftFileSelect"
+														class="col-sm-6 col-lg-6 text-left">No file selected</div>
+												</div>
+											</div>
+
+											<div class="form-group" id="selectOptionalFormGroup2">
+												<label
+													class="control-label col-sm-4  col-lg-4  test textClass"
+													for="pwd" data-placement="left" data-toggle="tooltip"
+													title="sorted gnome guided bam">Select genome
+													guided bam<span
+													class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+												</label>
+												<div class="col-sm-6 col-lg-6">
+													<input type="button" class="col-sm-4  col-lg-4  btn-file "
+														data-toggle="modal" data-target="#selectFile"
+														placeholder="Select right file"
+														onclick="getAllDirectory('idOptionalSelectFile2','bam');"
+														accept=".fa" value="BROWSE..."></input>
+													<div id="idOptionalSelectFile2"
+														class="col-sm-6 col-lg-6 text-left">No file selected</div>
+												</div>
+											</div>
+											<div class="form-group" id="selectOptionalFormGroup3">
+												<label
+													class="control-label col-sm-4  col-lg-4 test textClass"
+													for="pwd">Max Intron </label>
+												<div class="col-sm-6 col-lg-6">
+													<input type="text" class="form-control" id="idMaxIntron"
+														onkeypress="return isNumber(event,this,5);"
+														placeholder="Max Intron" value="1000"></input>
+												</div>
+											</div>
+										</div>
+										<div class="form-group" id="selectOutputFolder">
+											<label
+												class="control-label col-sm-4  col-lg-4  test textClass">Select
+												Output Folder </label>
+											<div class="col-sm-6 col-lg-6">
+												<input type="button" class="col-sm-4  col-lg-4  btn-file "
+													data-toggle="modal" data-target="#selectFile"
+													placeholder="Select output directory"
+													onclick="getAllDirectory('idTrinityOutputDir','diretory');"
+													accept=".fa" value="BROWSE..."></input>
+												<div id="idTrinityOutputDir"
+													class="col-sm-6 col-lg-6 text-left">No folder
+													selected</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-sm-offset-2 col-sm-10">
+												<a class="btn btn-default" onclick="submitFormTrinity();"
+													id="btnRunTrinity">Submit</a>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div align="center" id="trinityCmd">
+							<pre id="trinityCmdOutput" class="helpClass text-left">
+           				 </pre>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer class="app-footer">
+			<div class="wrapper">
+				<span class="pull-right">2.1 <a href="#"> <!-- <i class="fa fa-long-arrow-up"></i> -->Bionivid
+				</a></span> © 2016 Copyright.
+			</div>
+		</footer>
+	</div>
+	<!-- Javascript Libs -->
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap-switch.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.matchHeight-min.js"></script>
+	<script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="../js/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/select2.full.min.js"></script>
+	<script type="text/javascript" src="../js/ace/ace.js"></script>
+	<script type="text/javascript" src="../js/ace/mode-html.js"></script>
+	<script type="text/javascript" src="../js/ace/theme-github.js"></script>
+	<script type="text/javascript" src="../js/app.js"></script>
+
+
+	<!-- my -->
+	<script type="text/javascript"
+		src="../js/trinityjs/ws_get_attribute_cmd2.js"></script>
+
+	<!-- <script src="../js/trinityjs/bootstrap.min.js"></script>  -->
+	<script type="text/javascript" src="../js/trinityjs/url.js"></script>
+
+	<script type="text/javascript"
+		src="../js/libjs/directory_handling_trinity.js"></script>
+	<script type="text/javascript" src="../js/libjs/utils.js"></script>
+	<script type="text/javascript" src="../js/libjs/file_handling1.js"></script>
+	<script type="text/javascript" src="../js/libjs/custom_report.js"></script>
+	<script type="text/javascript" src="../js/libjs/validation.js"></script>
+	<script type="text/javascript"
+		src="../js/libjs/trinity_form_mangement.js"></script>
+
+
+	<script src="../js/libjs/merge_trinity.js"></script>
+
+	<script type="text/javascript" src="../js/index.js"></script>
+</body>
+
+</html>
+

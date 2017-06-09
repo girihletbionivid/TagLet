@@ -1,0 +1,429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8"/>
+<meta http-equiv='cache-control' content='no-cache'/>
+<meta http-equiv='expires' content='0'/>
+<meta http-equiv='pragma' content='no-cache'/>
+<title>TagLet | Girihlet</title>
+
+<link href="css/bootstrap.min.css" rel="stylesheet"></link>
+<link href="css/grayscale.css" rel="stylesheet"></link>
+<link rel="stylesheet" href="csslib/comman.css"></link>
+
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+
+<link rel="stylesheet" href="csslib/comman_for_qc.css"></link>
+<link rel="stylesheet" href="csslib/comman.css"></link>
+
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" onload="onloadFunction();">
+<span style="display:none" id="myio" th:text="${server}"></span>
+	<div class="modal fade myclassModel" id="forgetModel" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header container-fuild">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<div id="waitingDiv">
+						<h4 class='modal-title'>Request for new password</h4>
+					</div>
+
+				</div>
+				<div class="modal-body">
+					<form role="form">
+						<div class="form-group">
+							<input type="text" class="form-control form-effect"
+								id="emailIdForget" placeholder="User Name" ></input>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+
+					<a class="btn btn-default btn-sub" data-dismiss="modal">Close</a> <a
+						class="btn btn-default btn-sub" id="aTagRequestPassword"
+						onclick="wsRequestPassword();">Request</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		data-backdrop="static" data-keyboard="false"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<img class="" src="images/spinner.gif" alt="er"/>
+			<button type="button" id="btnSpinnerClose" class="close"
+				data-dismiss="modal" aria-label="Close"></button>
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						Please wait
+						<h4 class="modal-title" id="myModalLabel">Please wait</h4>
+					</div>
+					<div class="modal-body"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save
+							changes</button>
+					</div>
+				</div>
+		</div>
+	</div>
+	<div class="modal fade" id="selectFile" role="dialog">
+		<div class="modal-dialog">
+
+			Modal content
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="container-fuild">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title colorTextFile">Files From Server.</h4>
+						<h6 class="modal-title colorTextFile">Please double click to
+							select.</h6>
+					</div>
+				</div>
+				<div class="modal-body modal-scroll">
+					<div class="container-fuild">
+						<form class="form-horizontal" id="divSubCategorydmd"></form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- Navigation -->
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-main-collapse">
+					<span class="glyphicon glyphicon-align-justify"></span>
+				</button>
+
+				<a class="navbar-brand page-scroll" href="http://www.bionivid.com/" id="homeBtID"> 
+					<span class="light">Developed By<span class="spanBionividName"> Bionivid Technology</span></span> 
+				</a>
+			</div>
+
+			<div
+				class="collapse navbar-collapse navbar-right navbar-main-collapse">
+				<ul class="nav navbar-nav">
+					<li class="hidden"><a href="#page-top"></a></li>
+					<!-- <li><a class="page-scroll" href="#page-top">Home</a></li>
+					<li><a class="page-scroll" href="#featuresSection">Features</a></li> -->
+					<li id="liLogin"><a class="page-scroll" href="#loginSection" id="loginbtn" onclick="loginReset();">Login</a></li>
+					<li id="liRegister"><a class="page-scroll" href="#registerSection" onclick="registerReset();">Register</a></li>
+					<li><a class="page-scroll" href="#contact">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<header class="intro">
+		<div class="intro-body">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 classHeading">
+
+						<div class="transbox">
+							<h4 class="brand-heading colorForGirihLetNameOnIndexPage">GirihLet</h4>
+							<h4 class="brand-heading colorForGirihLetIntroOnIndex">Welcome To Girihlet's Genomics Data Analytics Platform</h4>
+							<!-- <h3 class="brand-heading colorForGriletDataAnalytic"></h3> -->
+						</div>
+						<!-- <p class="intro-text">
+							Trinity at yout doorStep.<br>Bionivid IT Completement
+							Research
+						</p> -->
+						<a href="#loginSection" class="btn btn-circle page-scroll"> <i
+							class="fa fa-angle-double-down animated"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+<!-- 
+	<section id="featuresSection" class="text-center whiteBack">
+		<div class="container">
+			<div class="row" id="forms">
+
+				<div class="row">
+					<div class="col-sm-12 block-3 section-description">
+						<h2 class="myheading">Features</h2>
+						<div class="divider-1">
+							<span></span>
+						</div>
+						<p>User Interface for freedom from command line,
+							automated analytical reports for accelerated insights and
+							ameliorated pipelines and guided workflows</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3 block-3-box wow fadeInUp">
+						<div class="block-3-box-icon">
+							<span aria-hidden="true" class="icon fa fa-line-chart"></span>
+						</div>
+						<h3>Raw Data Quality Control</h3>
+						<p>
+							Performing quality control of NGS Raw Data across the platform <a
+								shape="rect" target="_blank"
+								href="http://www.nipgr.res.in/ngsqctoolkit.html">NGS-QC-Toolkit</a>
+							has been used to process the Raw Data.
+						</p>
+					</div>
+					<div class="col-sm-3 block-3-box wow fadeInDown">
+						<div class="block-3-box-icon">
+							<span aria-hidden="true" class="icon fa  fa-cubes"></span>
+						</div>
+						<h3>Metagenome 16s RNA ANLYS</h3>
+						<p>
+							Performing comprehensive analysis and automated reporting of 16s
+							RNA amplicon sequencing.
+							 The
+								processes involves Read Prepration, Dereplication, Clusturing,
+								OTU identification & Diversity Analysis using Taxonomic
+								Profiling. 
+							<a href="http://drive5.com/usearch/manual/uparse_pipeline.html"
+								target="_blank">UPARSE</a> tool has been used for processing of
+							data.
+						</p>
+					</div>
+					<div class="col-sm-3 block-3-box wow fadeInUp">
+						<div class="block-3-box-icon">
+							<span aria-hidden="true" class="icon fa  fa-flask"></span>
+						</div>
+						<h3>RNA-Seq Denovo ANLYS</h3>
+						<p>
+							Performing sample merging, assembly, validatation and reporting
+							of RNA-Seq assembly. <a
+								href="https://github.com/trinityrnaseq/trinityrnaseq/wiki"
+								target="_blank">Trinity</a>,<a
+								href="https://en.wikipedia.org/wiki/SAMtools" target="_blank">
+								Samtools</a>, <a
+								href="http://bowtie-bio.sourceforge.net/manual.shtml"
+								target="_blank"> Bowtie</a> and various In-house developed
+							scripts have been used to process the quality controlled read.
+						</p>
+					</div>
+					<div class="col-sm-3 block-3-box wow fadeInDown">
+						<div class="block-3-box-icon">
+							<span aria-hidden="true" class=" icon fa fa-recycle"></span>
+						</div>
+						<h3>RNA-Seq Differential ANLYS</h3>
+						<p>
+							Performing differential expression profiling of RNA-Seq data,
+							with automated reporting. <a
+								href="http://bioconductor.org/packages/release/bioc/html/DESeq.html"
+								target="_blank">DESeq</a> has been used to process the data.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section> -->
+
+	<section id="loginSection" class="text-center requiredHeight customReportforms">
+		<div class="container content-section   ">
+			<div class="row">
+				<div class="col-lg-6 col-lg-offset-3 col-sm-6 col-sm-offset-3">
+					<h3>LOGIN</h3>
+					<div id='waitingDivLogin'></div>
+					<form role="form" id="formLogin">
+						<div class="form-group">
+							<input type="text" class="form-control form-effect"
+								id="emailLogin" placeholder="Your Registered E-mail Id Is Your User Name"/>
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control form-effect"
+								id="passwordLogin" placeholder="Password"/>
+						</div>
+						<a class="btn btn-default btn-sub bgColorForButton" id="aTagLoginRequest"
+							onclick="wsLogin();">SIGN IN</a> <a
+							class="btn btn-default btn-sub bgColorForButton colorForRemoveButton" onclick='forgetBtnClick();'
+							id="aTagForgetPassword" data-toggle="modal"
+							data-target="#forgetModel"> FORGOT PASSWORD ?</a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="registerSection"
+		class="text-center requiredHeight customReportforms">
+		<div class="container content-section">
+		<div class="row">
+			<div class="col-lg-6 col-lg-offset-3 col-sm-6 col-sm-offset-3">
+				<h3>REGISTER</h3>
+				<div id='waitingDivRegistration'></div>
+				<form id="adminRegistrationFrom" role="form">
+					<div class="form-group">
+						<input type="text" class="form-control form-effect" id="userName"
+							name="userName" placeholder="Name" onblur="validateUserName();" />
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control form-effect" id="designation"
+							name="designation" placeholder="Designation" onblur="OnblurDesignation();"/>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control form-effect" id="institute"
+							name="institute" placeholder="Name Of The Institute" onblur="OnblurInstitute();" />
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control form-effect" id="address"
+							name="address" placeholder="Address" onblur="OnblurAddress();" />
+					</div>
+					<div class="form-group">
+						<input type="email" class="form-control form-effect" id="emailId"
+							name="emailId" placeholder="E-mail Id" onblur="validateEmailId();" />
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control form-effect"
+							id="password" name="password" placeholder="Password"
+							onblur="validatePassword();" />
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control form-effect"
+							id="repassword" placeholder="Comfirm Password"
+							onblur="validateConfirmPassword();" />
+					</div>
+					<a class="btn btn-default btn-sub bgColorForButton" id="aTagRegistrationRequest"
+						onclick="registerAdminWs();">SIGN UP</a>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="container-fluid ">
+	<div class="container content-section requiredHeight">
+				<div class="row">
+					<div class="col-md-12">
+					<h2 class="myheading">Contact</h2>
+						<div id="map"></div>
+						<div class="col-md-6 col-sm-12 col-xs-12contact-form">
+						<h2 class="myheadingContact">Send us a message</h2>
+							<form role="form" >
+								<div class="form-group">
+									<input type="text" class="form-control form-effect" id="name"
+										placeholder="Name"/>
+								</div>
+								<div class="form-group">
+									<input type="email" class="form-control form-effect" id="email"
+										placeholder="Email"/>
+								</div>
+								<div class="form-group">
+									<textarea type="textarea" class="form-control form-effect"
+										id="text" placeholder="Message"></textarea>
+								</div>
+								<button type="submit" class="btn btn-default btn-sub bgColorForButton">Submit</button>
+							</form>
+						</div>
+						<div class="col-md-6 col-sm-12 col-xs-12 address-space">
+							
+							 <div class="address">
+							 <h2 class="myheadingContact">Address</h2>
+								<p>
+									East Coast: Yuuge facility, needs two addresses
+								</p>
+								<p>
+									Regular mail: 310 E. 67th St.
+								</p>
+								<p>
+									Packages: 303-319 East 66th St.
+								</p>
+								<p>
+									Room 3-82, New York Blood Center, New York, NY 10065
+								</p>
+							</div> 
+						</div>
+					</div>
+				</div>
+			</div>
+	</section>
+
+	<!-- Map Section -->
+	
+
+	<footer class = "colorForhorizontalBar">
+		<div class="container text-center">
+			<p onclick="myMap();">Copyright &copy;2016 Girihlet. All Rights Reserved.</p>
+		</div>
+	</footer>
+
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Plugin JavaScript -->
+	<script src="js/jquery.easing.min.js"></script>
+
+
+	<!-- Custom Theme JavaScript -->
+	<script src="js/grayscale.js"></script>
+	<script src="js/url.js"></script>
+
+	<script src="js/user_js/registration1.js"></script>
+	<!-- <script src="js/libjslogin/login.js"></script> -->
+	<script src="js/libjs/utils.js"></script>
+	<script src="js/user_js/login1.js"></script>
+	<script src="js/user_js/ws_get_processes.js"></script>
+	
+
+	<script src="js/user_js/ws_get_attribute_cmd.js"></script>
+	<script src="js/user_js/ws_request_password.js"></script>
+	<script src="js/report.js"></script>
+
+	<script type="text/javascript">
+	 var map;
+     function initMap() {
+    	 var uluru = {lat: 40.7646109,lng: -73.9601181 };
+       	 map = new google.maps.Map(document.getElementById('map'), {
+         center: {lat: 40.7646109,lng: -73.9601181 },
+         zoom: 12
+       });
+       var marker = new google.maps.Marker({
+           position: uluru,
+           map: map
+         });
+     };
+	/* 	$(document).ready(function() {
+			alert("D");
+			$(".requiredHeight").height($(document).height());
+			$(".requiredHeight").height($(window).height());
+			$(window).resize(function() {
+				$(".requiredHeight").height($(document).height());
+			});
+			
+		}); */ 
+		function onloadFunction(){
+			$("#homeBtID").click();
+			$(".requiredHeight").height($(document).height());
+			$(".requiredHeight").height($(window).height());
+			$(window).resize(function() {
+				$(".requiredHeight").height($(document).height());
+			});
+			
+		}
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnQaKOtnQTot1fDb_f0gxN7IP6uGcBmL4&amp;callback=initMap"></script> 
+
+<!-- 	<script type="text/javascript" src="js/jquery.countTo.js"></script>
+	<script type="text/javascript" src="js/jquery.waypoints.min.js"></script>
+	<script src="js/lightbox.min.js"></script> -->
+	
+</body>
+</html>

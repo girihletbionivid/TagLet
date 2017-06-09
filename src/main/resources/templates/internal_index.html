@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>TagLet | Girihlet</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'></link> 
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'></link>
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"></link>
+<link href="css/internalgrayscale.css" rel="stylesheet"/>
+
+<link rel="stylesheet" type="text/css" href="csslib/bootstrap.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/font-awesome.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/animate.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/bootstrap-switch.min.css"></link>
+
+<link rel="stylesheet" type="text/css" href="csslib/checkbox3.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/jquery.dataTables.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/dataTables.bootstrap.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/select2.min.css"></link>
+
+<link rel="stylesheet" type="text/css" href="csslib/style.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/flat-blue.css"></link>
+
+<link rel="stylesheet" href="csslib/comman.css"></link>
+
+</head>
+<body class="flat-blue mainDivColor">
+	<span style="display: none" id="myio" th:text="${server}"></span>
+	<span style="display: none" id="myMaxMemory" th:text="${maxMerory}"></span>
+	<span style="display: none" id="myRam" th:text="${ram}"></span>
+	<span style="display: none" id="userId" th:text="${userId}"></span>
+	<span style="display: none" id="userDir" th:text="${userDir}"></span>
+	<a id="aTagCall" style="display: none" ></a>
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog" role="document">
+			<img class="" src="images/spinner.gif" alt="er"></img>
+		</div>
+	</div>
+	<div class="modal fade" id="selectFile" role="dialog">
+		<div class="modal-dialog">
+			Modal content
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="container-fuild">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title colorTextFile">Files From Server.</h4>
+						<h6 class="modal-title colorTextFile">Please double click to select.</h6>
+					</div>
+				</div>
+				<div class="modal-header">
+					<div class="container-fuild" id="headerNavigatorId">
+						<span id="aTagHomeId"> <a href='#'>Home</a> <span
+							class="glyphicon glyphicon-chevron-right"></span>
+						</span>
+					</div>
+				</div>
+				<div class="modal-body modal-scroll">
+					<div class="container-fuild">
+						<form class="form-horizontal" id="divSubCategorydmd"></form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="container-fuild">
+						<form>
+							<div class="form-group">
+								<label class="control-label col-sm-2 col-lg-2 classLocation">
+									Location </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="valueSelectedDseq"
+										readonly="readonly" disabled="disabled" />
+								</div>
+							</div>
+							<div class="form-group ">
+								<div class="col-sm-10 classPaddingTop">
+									<button type="button" class="btn btn-default "
+										id='createFolderBtn'>Create Folder</button>
+									<button type="button" class="btn btn-default "
+										id="openBtnDialog">Open</button>
+									<button type="button" id="closeFileModel"
+										class="btn btn-default " data-dismiss="modal">Cancel</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="app-container" id="idAppContainerDiv">
+		<div class="row content-container ">
+			<nav class="navbar navbar-default navbar-fixed-top navbar-top">
+				<div class="container-fluid colorForhorizontalBar">
+					<div class="navbar-header">
+						<button type="button" class="navbar-expand-toggle">
+							<i class="fa fa-bars icon"></i>
+						</button>
+						<ol class="breadcrumb navbar-breadcrumb">
+							<!-- <li>SQIT</li> -->
+							<li class="active">Girihlet Genomics Data Analytics Platform</li>
+						</ol>
+						<button type="button"
+							class="navbar-right-expand-toggle pull-right visible-xs">
+							<i class="fa fa-th"></i>
+						</button>
+					</div>
+					<ul class="nav navbar-nav navbar-right">
+						<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+							<i class="fa fa-times icon"></i>
+						</button>
+						<li class="profile"><a href="http://girihlet.com/" target="_blank">Girihlet Non-Canonical Genomics Company</a></li>
+
+						<li class="dropdown profile">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+								aria-expanded="false" id="userDivName"><span th:text="${userName}"></span> <span
+								class="caret"></span>
+							</a>
+							<ul class="dropdown-menu animated fadeInDown">
+								<li>
+									<div class="profile-info">
+										<h4 class="username" id="userDivOnlyName">	<span id="userName"  th:text="${userName}"></span></h4>
+										<p id="userDivEmail"><span  id="userEmail" th:text="${userEmail}"></span></p>
+										<div class="btn-group margin-bottom-2x" role="group">
+											<button type="button" class="btn btn-default bgColorForButton"
+												onclick="logoutUser();">
+												<i class="fa fa-sign-out"></i> Logout
+											</button>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<div class="side-menu sidebar-inverse" id="idForSideMenuDiv">
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="side-menu-container">
+						<div class="navbar-header colorForNavHeader">
+							<a class="navbar-brand" th:href="@{/introduction?userid=}+${userId}">
+								<div class="icon fa fa-paper-plane"></div>
+								<div class="title">
+									<h3 class="colorForGirihLetName">GirihLet</h3>
+								</div>
+							</a>
+							<button id="buttonForSideMenuDiv" type="button"
+								class="navbar-expand-toggle pull-right visible-xs">
+								<i class="fa fa-times icon"></i>
+							</button>
+						</div>
+						<ul class="nav navbar-nav">
+							<li class="panel panel-default dropdown">
+								<a data-toggle="collapse" href="#dropdown-qc">
+									<span class="icon fa fa-line-chart"></span>
+									<span class="title">Run Raw Data Quality Control</span>
+								</a>
+								<div id="dropdown-qc" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a id="idHrefqc454"  href="../qc454">Long Read [ 454 / Ion Torrent ] </a></li>
+											<li><a id="idHrefIllumina"  href="../qcillumina">Short Read [ Illumina ]</a></li>
+											<li><a id="idHrefQCReport" href="../qcreport">QC Report Generation</a></li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="panel panel-default dropdown">
+								<a id="hRefRunModule1"  href="../TagLet"> 
+									<span class="icon fa fa-tag"></span>
+									<span class="title">Run TagLet</span>
+								</a>
+								<!-- <div id="dropdown-module1" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a id="hRefRunModule1"  href="../TagLet">Fill TagLet Input Form</a></li>
+										</ul>
+										<a id="hRefRunModule1"  href="../TagLet">Fill TagLet Input Form</a>
+									</div>
+								</div> -->
+							</li>
+							<!-- <li class="panel panel-default dropdown">
+								<a data-toggle="collapse" href="#dropdown-module1"> 
+									<span class="icon fa fa-tag"></span>
+									<span class="title">Run TagLet</span>
+								</a>
+								<div id="dropdown-module1" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a id="hRefRunModule1"  href="../TagLet">Fill TagLet Input Form</a></li>
+										</ul>
+									</div>
+								</div>
+							</li> -->
+							<li class="panel panel-default dropdown">
+								<a id="idHrefInstances" href="../ResultSummary"> <span
+									class="icon fa fa-history"></span>
+									<span class="title">Show Result Summary</span>
+								</a>  
+								<!-- <div id="dropdown-example" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a  id="idHrefInstances" href="../ResultSummary">Show Result Summary</a></li>
+											<li><a id="idHrefReports" href="../reports">Reports</a></li>
+										</ul>
+									</div>
+								</div> -->
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<div class="side-body padding-top">
+				<div class="container-fluid">
+					<div id="trinity">
+						<section id="featuresSection" class="text-center whiteBack">
+							<div class="container">
+								<div class="row" id="forms">
+									<div class="row">
+										<div class="col-sm-12 block-3 section-description">
+											<h2 class="myheading">Features</h2>
+											<!-- <div class="divider-1">
+												<span></span>
+											</div> -->
+											<p>User Interface for freedom from command line,
+												automated analytical reports for accelerated insights and
+												ameliorated pipelines and guided workflows.
+											</p>
+										</div>
+										<div class="col-sm-3 block-3-box wow fadeInUp">
+										<a th:href="@{/qc454?userid=}+${userId}">
+											<div class="block-3-box-icon" id="rawDataQualityControlDiv">
+												<span aria-hidden="true" class="icon fa fa-line-chart"></span>
+											</div>
+										</a>
+											<h3 id="rawDataQualityControl">Raw Data QC</h3>
+											<p> Performing quality control of NGS Raw Data across the platform <a shape="rect" target="_blank" href="http://www.nipgr.res.in/ngsqctoolkit.html">NGS-QC-Toolkit</a>
+												has been used to process the Raw Data.
+											</p>
+										</div>
+										<div class="col-sm-3 block-3-box wow fadeInDown">
+										<a th:href="@{/run1stProgram?userid=}+${userId}">
+											<div class="block-3-box-icon" id="moduel1Div">
+												<span aria-hidden="true" class="icon fa fa-tag"></span>
+											</div>
+										</a>
+											<h3 id="module2">TagLet</h3>
+											<p>
+												Finds unique tags and their abundance to represent raw reads, from given input.
+											</p>
+										</div>
+										<div class="col-sm-3 block-3-box wow fadeInUp">
+											<div class="block-3-box-icon" id="module2Div">
+												<span aria-hidden="true" class="icon fa fa-cubes"></span>
+											</div>
+											<h3 id="module2">Module 2</h3>
+											<p>
+											</p>
+										</div>
+										<div class="col-sm-3 block-3-box wow fadeInUp">
+											<div class="block-3-box-icon" id="module2Div">
+												<span class="icon fa fa-quora" aria-hidden="true"></span>
+											</div>
+											<h3 id="module2">Make Quotation</h3>
+											<p>
+											</p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-3 block-3-box wow fadeInUp">
+											<a href="http://www.gstack.in">
+												<div class="block-3-box-icon" id="gstackDiv">
+													<span aria-hidden="true" class=" icon fa fa-recycle"></span>
+												</div>
+											</a>
+											<h3 id="Gstack">GStack</h3>
+											<p>Access your data through secure genomics hybrid cloud platform .<a href="http://www.gstack.in">GStack</a></p>
+										</div>
+									</div>
+				
+									<!-- <div class="row">
+										<div class="col-sm-3 block-3-box wow fadeInUp">
+											<div class="block-3-box-icon colorForRawDataIcon" id="rawDataQualityControlDiv"
+												onclick="aTagCall(../qc454?userid=1);">
+												<span aria-hidden="true" class="icon fa fa-line-chart"></span>
+											</div>
+											<h3 id="rawDataQualityControl">Raw Data Quality Control</h3>
+											<p> Performing quality control of NGS Raw Data across the platform 
+												<a shape="rect" target="_blank" href="http://www.nipgr.res.in/ngsqctoolkit.html">
+													NGS-QC-Toolkit
+												</a>
+													has been used to process the Raw Data.
+											</p>
+										</div>
+									</div>
+									<div class="row1">
+										<div class="col-sm-3 block-3-box wow fadeInUp">
+											<div class="block-3-box-icon colorForRawDataIcon" id="rawDataQualityControlDiv">
+												<span aria-hidden="true" class="icon fa fa-line-chart"></span>
+											</div>
+											<h3 id="rawDataQualityControl">Module 1</h3>
+											<p> Performing quality control of NGS Raw Data across the platform 
+												<a shape="rect" target="_blank" href="http://www.nipgr.res.in/ngsqctoolkit.html">
+													NGS-QC-Toolkit
+												</a>
+													has been used to process the Raw Data.
+											</p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-3 block-3-box wow fadeInUp">
+											<div class="block-3-box-icon colorForRawDataIcon" id="rawDataQualityControlDiv">
+												<span aria-hidden="true" class="icon fa fa-line-chart"></span>
+											</div>
+											<h3 id="rawDataQualityControl">Make Quatation</h3>
+											<p> Performing quality control of NGS Raw Data across the platform 
+												<a shape="rect" target="_blank">
+													NGS-QC-Toolkit
+												</a>
+													has been used to process the Raw Data.
+											</p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-3 block-3-box wow fadeInUp">
+											<div class="block-3-box-icon colorForRawDataIcon" id="rawDataQualityControlDiv">
+												<span aria-hidden="true" class="icon fa fa-line-chart"></span>
+											</div>
+											<h3 id="rawDataQualityControl">GStack</h3>
+											<p> Performing quality control of NGS Raw Data across the platform 
+												<a shape="rect" target="_blank" href="http://www.gstack.in">
+													NGS-QC-Toolkit
+												</a>
+													has been used to process the Raw Data.
+											</p>
+										</div>
+									</div> -->
+								</div>
+							</div>
+					</section>
+				</div>
+				<div align="center" id="trinityCmd" class="row">
+					<pre id="trinityCmdOutput" class="helpClass text-left">
+	 				</pre>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 	<footer class="app-footer">
+		<div class="wrapper">
+			<span class="pull-right">1.0 <a href="#"> <i class="fa fa-long-arrow-up"></i>GirihLet
+				</a></span>GirihLet© 2016 Copyright.
+		</div>
+	</footer> -->
+	
+</div>
+
+<!-- Javascript Libs -->
+
+<script type="text/javascript" src="jslib/jquery.min.js"></script>
+<script type="text/javascript" src="jslib/jquery.js"></script>
+<script type="text/javascript" src="jslib/bootstrap.min.js"></script>
+<script type="text/javascript" src="jslib/bootstrap-switch.min.js"></script>
+<script type="text/javascript" src="jslib/jquery.matchHeight-min.js"></script>
+<script type="text/javascript" src="jslib/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="jslib/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="jslib/select2.full.min.js"></script>
+<script type="text/javascript" src="jslib/ace/ace.js"></script>
+<script type="text/javascript" src="jslib/ace/mode-html.js"></script>
+<script type="text/javascript" src="jslib/ace/theme-github.js"></script>
+<script type="text/javascript" src="jslib/app.js"></script>
+<script src="js/url.js"></script>
+<script src="js/comman.js"></script>
+<script src="js/libjs/directory_handling_trinity.js"></script>
+<script src="js/libjs/utils.js"></script>
+<script src="js/internalcomman.js"></script>
+<script src="js/libjs/file_handling_final.js"></script>
+
+<script src="js/libjs/validation.js"></script>
+<script src="js/libjs/add_multi_files.js"></script>
+<script src="js/libjslogin/login.js"></script>
+
+</body>
+</html>
+

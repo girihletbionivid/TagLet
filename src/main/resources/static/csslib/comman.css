@@ -1,0 +1,574 @@
+@CHARSET "UTF-8";
+/* assembly */
+#selectSingleFileFormGroupAlignment, #assemblyCmd, #addButtonReadPrep, #cuffLinkQutput, #idOptionsForLibNormMetho,#dseqCmdQutputz{
+	display: none;
+}
+/* #valueSelectedDseq{
+  opacity:1px;
+} */
+
+.classBlackColor{
+	background-color:#eeeeee;
+	height: 40px;
+}
+.classWhiteColor{
+	color:#000;
+	height: 40px;
+}
+.classSelectedFilesDiv {
+	border: 1px solid #8AC007;
+}
+#upAnchor{
+	color: #fff;
+	 text-decoration: underline;
+}
+#downAnchor{
+	color: #fff;
+	 text-decoration: underline;
+}
+
+.close {
+	float: right;
+	display: inline-block;
+	padding: 2px 5px;
+position: relative;
+top :-1px;
+right:-15px;	
+}
+
+/* trinity */
+#selectOptionalFormGroup1, #selectOptionalFormGroup2,
+	#selectOptionalFormGroup3, #divFAOptions, #selectSingleFileFormGroup, #trinityCmd{
+	display: none;
+}
+#btnRunbowtie {
+	padding: 5px;
+}
+
+.colorCollapseClass {
+	color: #000 !important;
+}
+
+.iconSmallClass {
+	font-size: 15px !important;
+	padding-left: 4px;
+}
+
+/* .textClass {
+	font-size: 18px !important;
+	font: bold !important;
+	text-align: left !important;
+	z-index: 10px !important;
+}
+ */
+.colorTextClass {
+	color: #06246d !important;
+}
+
+.checkBoxClassV {
+	padding-left: 10px !important;
+}
+/* 
+#close {
+	float: right;
+	display: inline-block;
+	padding: 2px 5px;
+	position: relative;
+	top: -1px;
+	right: -15px;
+} */
+
+.cmdOutputDivClass {
+	display: none;
+}
+
+.textClassFile {
+	font-size: 18px !important;
+	font: normal; ! important;
+	text-align: left !important;
+}
+
+/* model */
+.colorTextFile {
+	color: #000 !important;
+}
+
+.modal-body {
+	max-width: 100% !important;
+	overflow-x: auto !important;
+}
+
+.modal-scroll {
+	height: 500px;
+	overflow-y: auto;
+}
+
+.iconSmallClass {
+	font-size: 15px !important;
+	padding-left: 4px;
+	background-color: none !important;
+}
+/* button */
+.classPaddingTop {
+	padding-top: 10px;
+	float: right;
+}
+
+/* tooltip */
+.tooltip>.tooltip-inner {
+	background-color: #8AC007;
+	color: #000;
+	border: 1px solid green;
+	padding: 8px;
+	font-size: 18px;
+}
+
+.textClass 
+{
+	font-size: 18px !important;
+	font: bold !important;
+	text-align: left !important;
+	z-index: 10;
+}
+.helpClass {
+	width: 100% !important;
+	font-size: 15px !important;
+	background-color: #000 !important;
+	color: #8AC007 !important;
+	overflow: auto !important;
+}
+
+/* .iframeReport{
+
+	z-index: -1;
+	bottom:0;
+	height: 100%;
+	width: 100%;
+} */
+
+/* deseq */
+.atagdeseq{
+	color: green !important;
+}
+table {
+    width:100%;
+}
+table, th, td {
+    border: 1px solid black !important;
+    border-collapse: collapse !important;
+}
+#myTableClass{
+	border: 1px solid black !important;
+    border-collapse: collapse !important;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+    color: black;
+}.helpClass {
+	width: 100% !important;
+	height: 475px !important;
+	font-size: 15px !important;
+	background-color: #000 !important;
+	color: #8AC007 !important;
+	overflow: auto !important;
+}
+table#myTableClass tr:nth-child(even) {
+    background-color: #eee;
+}
+table#myTableClass tr:nth-child(odd) {
+   background-color:#fff;
+}
+table#myTableClass th	{
+    background-color: white;
+    color: black;
+}
+#tableBodyListUser td{
+
+	 vertical-align: middle !important;
+}
+.myspanProcessDetails{
+float:right;
+}
+.myspanProcessDetails a{
+vertical-align: middle !important;
+margin: 5px;
+}
+.myDyanamicRowFont{
+	font-size: 18px !important;
+}
+/* 
+#####################################
+#									#
+#	Changes made by nitin 			#
+#									#
+#####################################
+*/
+
+.fontColorForSearch
+{
+	font-style: italic !important;
+	color: #78BE17 !important;
+}
+.myErrorBorder
+{
+	border: thin solid red;
+}
+.myDivFloat
+{
+	float: left !important;
+	padding: 4px;
+}
+/* .textForSubmitButton
+{
+	font-size: 18px !important;
+	color: black !important;
+	font: bold !important;
+	text-align: left !important;
+} */
+/* .bgColorForButton
+{
+	background-color: #78BE17 !important;
+    border: none !important;
+    color: black !important;
+    font-size: 16px !important;
+    font: normal !important;
+	text-align: center !important;
+	padding: 6px 1px !important;
+	text-transform:uppercase !important;
+}
+ */
+.bgColorForButton 
+{
+    background-color: #204a87 !important; /* Green */
+    border: none !important;
+    color: white !important;
+    padding: 6px 14px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    margin: 4px 2px !important;
+    -webkit-transition-duration: 0.4s !important; /* Safari */
+    transition-duration: 0.4s !important;
+    cursor: pointer !important;
+    text-transform:uppercase !important;
+    border-radius: 8px !important;
+}
+.bgColorForButton1
+{
+    background-color: white !important;
+    color: black !important;
+    border: 2px solid #78BE17 !important;
+}
+
+.bgColorForButton1:hover
+{
+    background-color: #78BE17 !important;
+    color: white !important;
+}
+
+.required:AFTER
+{
+	content:" *" !important;
+	color: red !important;
+	
+}
+
+.tooltip-inner
+{
+    text-align: left !important;
+}
+
+/* 
+##################### 
+#	Close Button	#
+#####################
+*/
+
+.fragment
+{
+	border: 1px dotted #78BE17;
+	padding-top: 8px;
+    padding-bottom: 1px;
+    padding-right: 15px;
+    padding-left: 8px;
+    border-radius: 8px !important;
+    margin-bottom: 10px;
+}
+
+.bgColorForCloseButton 
+{
+    background-color: #78BE17 !important; /* Green */
+    float: right;
+	display: inline-block;
+	padding: 2px 5px;
+	position: relative;
+	top :-1px;
+	right:-15px;	
+    border-style: double !important;
+    border-color: white !important;
+    color: white !important;
+    padding: 6px 14px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    font-size: 10px !important;
+    font-weight: bold !important;
+    margin: 4px 2px !important;
+    -webkit-transition-duration: 0.4s !important; /* Safari */
+    transition-duration: 0.4s !important;
+    cursor: pointer !important;
+    text-transform:uppercase !important;
+    border-radius: 8px !important;
+}
+
+/* #close
+{
+    float:right;
+    display:inline-block;
+}
+ */
+
+.classhide{
+	display: none;
+}
+.classhidewithspace{
+	visibility:hidden;
+}
+.imagedivderep{
+	 width: 180px;
+    height: 120px;
+}
+.imagedivderep img {
+    width: 100%;
+    height: auto;
+}
+
+
+.fragmentForCuffLink
+{
+	border: 1px dotted #78BE17;
+	padding-top: 8px;
+    padding-bottom: 1px;
+    padding-right: 15px;
+    padding-left: 8px;
+    border-radius: 8px !important;
+    margin-bottom: 10px;
+}
+.imageLogoSqit{
+	width: 50px !important;
+	height: 20px !important;;
+	margin-left: 15px !important;;
+	margin-top: 8px !important;;
+}
+.imageLogoBionivid{
+	width: 80px;
+	height: 45px;
+	margin-left: 8px;		
+	
+}
+.titlemy{
+	text-align: center;
+}
+.table-fixed thead {
+  width: 97%;
+}
+.table-fixed tbody {
+  height: 230px;
+  overflow-y: auto;
+  width: 100%;
+}
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+  display: block;
+}
+.table-fixed tbody td, .table-fixed thead > tr> th {
+  float: left;
+  border-bottom-width: 0;
+}
+
+/* 
+	New Theme
+*/
+
+.mainDivColor{
+	background-color: #bfcdda !important;
+}
+.colorForhorizontalBar{
+	background-color: #60768c !important;
+}
+.colorForNavHeader{
+	background-color: #343d46 !important;
+}
+.colorForRawDataIcon {
+    background-color: #2d5880 !important;
+}
+/* #rawDataQualityControlDiv:hover{
+	background-color: #0878e0 !important;
+} */
+
+/* a:hover {
+    background-color: blue !important;
+} */
+.colorForRemoveButton{
+	background-color: #cc0000!important;
+}
+.colorForViewOrDownloadButton{
+	background-color: #204a87 !important;
+	min-height:5px !important;
+}
+.colorForGirihLetName{
+	color: #3465a4!important;
+	font-size: 32px !important;;
+	font-weight: bold !important;;
+}
+.colorForGirihLetNameOnIndexPage{
+	padding-top: 20px;
+	color: #040430 !important;
+	font-size: 90px !important;
+	font-weight: bold !important;
+	font-style: normal !important;
+	text-align: center !important;
+}
+.colorForGirihLetIntroOnIndex{
+	color: #ffffff !important;
+	text-align: center !important;
+	font-size: 32px !important;
+}
+.colorForGriletDataAnalytic{
+	color: #0b0b41 !important;
+	text-align: center !important;
+	font-size: 24px !important;
+}
+
+/* 
+		Text Formating For instances page
+ */
+ 
+.textFormatForStart
+{
+	font-size: 13px !important;
+	color: #204a87!important;
+	font-weight: bold !important;
+	text-align: center !important;
+	
+}
+
+.textFormatForPending
+{
+	font-size: 13px !important;
+	color: #4e9a06!important;
+	font-weight: bold !important;
+	text-align: center !important;
+}
+.textFormatForEnd
+{
+	font-size: 13px !important;
+	color: #4e9a06 !important;
+	font-weight: bold !important;
+	text-align: center !important;
+}
+
+.textFormatForError
+{
+	font-size: 13px !important;
+	color: #ef2929!important;
+	font-weight: bold !important;
+	text-align: center !important;
+}
+
+.textColorForRemoveButton
+{
+	font-size: 12px !important;
+	color: #eeeeec !important;
+	font-weight: bold !important;
+	text-align: center !important;
+}
+
+.textColorForTableHeader
+{
+	font-size: 14px !important;
+	color: #204a87 !important;
+	font-weight: bold !important;
+	text-align: center !important;
+}
+.redTextColor
+{
+	color: #ef2929!important;
+	font-size: 12px !important;
+	font-weight: bold !important;
+	text-align: center !important;
+}
+.backgroundForUL
+{
+	background-color: transparent !important;
+	padding: 0px !important;
+	border: none !important;
+}
+
+.widhtForDropDownDiv
+{
+	width: 175px !important;
+	background-color: none  !important;
+	text-align: center !important;
+	padding-top: 6px !important;
+	padding-bottom: 0px !important;
+	
+}
+.cellpaddingInstance 
+{
+	text-align: center !important;
+	vertical-align: middle !important;
+}
+
+.colorForButton
+{
+	width: 100px !important;
+	background-color: #204a87 !important;
+	border: none !important;
+    color: white !important;
+    padding: 0px 4px !important;
+    text-align: center !important;
+    text-transform:uppercase !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    border-radius: 4px !important;
+}
+
+.textForInstaceLog
+{
+	background-color: white !important;
+	font-size: 14px !important;
+	color: #204a87!important;
+	font-weight: bold !important;
+}
+.textForInstaceLogHeader
+{
+	color: #204a87!important;
+}
+
+.textForInstaceAtrributeTable
+{
+	font-size: 14px !important;
+	color: #204a87!important;
+	font-weight: bold !important;
+}
+/*
+	CSS for browse Button
+*/
+
+.textFormatForBrowseButton
+{
+	color: white !important;
+	background-color: #204a87 !important;
+}
+
+
+.tooltip:after
+{
+	background-color: white !important;	
+}

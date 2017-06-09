@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<title>Welcome to SQIT-Trinity</title>
+<link href="css/trinity/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/trinity/css/index.css" />
+<link href="css/trinity/css/grayscale.css" rel="stylesheet">
+<link rel="stylesheet" href="css/trinity/css/assembly.css" />
+<link rel="stylesheet" href="css/trinity/css/newmy.css" />
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css">
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" >
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		data-backdrop="static" data-keyboard="false"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<img class="" src="images/spinner.gif" alt="er">
+
+		</div>
+	</div>
+	<div class="modal fade" id="selectFile" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="container-fuild">
+
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title colorTextFile">Files From Server.</h4>
+						<h6 class="modal-title colorTextFile">
+							Please double click to select.<a
+								class="btn btn-default createBtn" id='createFolderBtn'
+								onclick='createFolder("md");'>Create Folder</a>
+						</h6>
+
+					</div>
+				</div>
+				<div class="modal-header">
+					<div class="container-fuild" id="headerNavigatorId">
+					<span  id="aTagHomeId">
+					<a >Home</a>
+					<span class="glyphicon glyphicon-chevron-right"></span>
+					</span>
+					</div>
+				</div>
+				<div class="modal-body modal-scroll">
+					<div class="container-fuild">
+
+
+						<form class="form-horizontal" id="divSubCategorydmd"></form>
+
+
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="container-fuild">
+						<form>
+							<div class="form-group">
+								<label class="control-label col-sm-2 col-lg-2 classLocation">
+									Location </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="valueSelectedDseq"
+										readonly>
+								</div>
+							</div>
+
+							<div class="form-group ">
+								
+								<div class="col-sm-10 classPaddingTop">
+									<button type="button" class="btn btn-default classPaddingTop"
+										id="openBtnDialog">Open</button>
+									<button type="button" id="closeFileModel"
+										class="btn btn-default classPaddingTop" data-dismiss="modal">Cancle</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<nav class="navbar navbar-custom navbar-fixed-top"
+		role="navigation">
+		<div class="container classAlignToRight">
+			<div
+				class="collapse navbar-collapse navbar-right navbar-main-collapse">
+				<ul class="nav navbar-nav">
+					<!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+
+					<li><a class="page-scroll" href="#aboutMerge"
+						onclick="showMergeForm();" id="atagMerge">Merge Files</a></li>
+					<li><a class="page-scroll" href="#about"
+						onclick="showTrinityForm();" id="atagTrinity">Run Trinity</a></li>
+					<li><a class="page-scroll" href="#assemblyValidation"
+						onclick="showAssemblyForm();" id="atagAssembly">Assembly Validation</a></li>
+					<li><a class="page-scroll" href="#customReport"
+						onclick="showCustomReportForm();" id="atagReport">Create Report</a></li>
+
+					<!-- <li><a class="page-scroll" href="#help" >Help</a></li> -->
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<section id="aboutMerge" class="container content-section text-center">
+		<div class="row" id="forms">
+			<div class="col-lg-8 col-sm-8 col-lg-offset-2 col-sm-offset-2">
+
+				<div id="mergeForms">
+
+					<form class="form-horizontal" id="mergeForm">
+						<h3>Give necessary info to Merge</h3>
+						<div class="form-group">
+							<label
+								class="control-label col-sm-4  col-lg-4 col-lg-4 test textClass"
+								for="email" data-placement="left" data-toggle="tooltip"
+								title="Input reads type fasta or fastq">Sequence type<span
+								class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+							</label>
+							<div class="col-lg-6 col-sm-6 col-lg-6">
+								<select class="form-control" id="idSequenceTypeMerge"
+									onchange="changeInputFileOptionChangeMerge(this);">
+									<option value="Fastq" selected>Fastq</option>
+									<option value="Fasta">Fasta</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label
+								class="control-label col-lg-4 col-sm-4  col-lg-4 test textClass "
+								for="email" data-placement="left" data-toggle="tooltip"
+								title="Input sequence format paired read (read sequenc from both end)  or single read.">Sequence
+								Formate<span
+								class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+							</label>
+							<div class="col-lg-6 col-sm-6 col-lg-6">
+								<select class="form-control" id="idInputReadTypeMerge"
+									onchange="changeMergeOption(this);">
+									<option value="Paired" selected>Paired</option>
+									<option value="Single">Single</option>
+								</select>
+							</div>
+						</div>
+
+						<div id="fileControlSelectionDiv">
+							<div id="singleMergeelected"></div>
+							<div id="mergeSingle">
+								<div class="form-group" id="selectMergeSingleFileFormGroup">
+									<label
+										class="control-label col-sm-4  col-lg-4 col-lg-4 textClass"
+										for="pwd" id="lableMergeSingleFileSelect">Select Input
+										file</label>
+
+								</div>
+								<div id="selectedSingleMergeControlFiles"></div>
+								<div class="form-group"
+									id="selectMergeSingleControlFileFormGroup">
+									<!-- <label
+										class="control-label col-lg-4 col-sm-4  col-lg-4 textClass"
+										for="pwd" id="lableMergeSingleControlFileSelect">Select
+										Input file</label> -->
+									<div class="col-sm-6 col-lg-6 col-lg-6">
+										<input type="button"
+											class="col-lg-4 col-sm-4  col-lg-4  btn-file "
+											data-toggle="modal" data-target="#selectFile"
+											placeholder="Select Control file"
+											id='idMergeSingleControlFileBrowse'
+											onclick="getAllDirectory('idMergeSingleControlFileSelect','fastq');"
+											accept=".fa" value="BROWSE...">
+										<div id="idMergeSingleControlFileSelect"
+											class="col-lg-6 col-sm-6 col-lg-6">No file selected</div>
+										<div class="col-sm-2 col-lg-2 col-lg-2">
+											<a class="btn btn-default "
+												onclick="addSingleMergeSelected()();" id="btnAddMerge">+</a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<div id="mergePaired">
+								<!-- <div class="form-group" id="selectControlFileFormGroup">
+									<label
+										class="control-label col-sm-4  col-lg-4 col-lg-4 textClass"
+										for="pwd" id="lableControlFileSelect">Select Input
+										file</label>
+
+								</div> -->
+								<div class="form-group" id="selectControlFileFormGroup">
+									<label
+										class="control-label col-sm-4  col-lg-4 col-lg-4 textClass"
+										for="pwd" id="lableControlFileSelect2">Select R1 file</label>
+
+								</div>
+								<div id="constrolSelectedR1"></div>
+								<div class="form-group" id="selectControlFileR1FormGroup">
+									<!-- <label
+										class="control-label col-sm-4  col-lg-4 col-lg-4 textClass"
+										for="pwd" id="lableControlR1FileSelect">Select R1 file</label> -->
+									<div class="col-sm-6 col-lg-6 col-lg-6">
+										<input type="button"
+											class="col-sm-4  col-lg-4 col-lg-4 btn-file "
+											data-toggle="modal" data-target="#selectFile"
+											placeholder="Select Control file" id='idControlFileR1Browse'
+											onclick="getAllDirectory('idControlFileR1Select','fastq');"
+											accept=".fa" value="BROWSE...">
+										<div id="idControlFileR1Select"
+											class="col-lg-6 col-sm-6 col-lg-6">No file selected</div>
+										<div class="col-sm-2 col-lg-2 col-lg-2">
+											<a class="btn btn-default " onclick="addSelectedR1();"
+												id="btnAddMerge">+</a>
+										</div>
+									</div>
+								</div>
+								<div class="form-group" id="selectControlFileFormGroup">
+									<label
+										class="control-label col-sm-4  col-lg-4 col-lg-4 textClass"
+										for="pwd" id="lableControlFileSelect2">Select R2 file</label>
+
+								</div>
+								<div id="constrolSelectedR2"></div>
+								<div class="form-group" id="selectControlFileR2FormGroup">
+									<!-- <label
+										class="control-label col-sm-4  col-lg-4 col-lg-4 textClass"
+										for="pwd" id="lableControlR2FileSelect">Select R2 file</label> -->
+									<div class="col-sm-6 col-lg-6">
+										<input type="button"
+											class="col-sm-4  col-lg-4  col-lg-4 btn-file "
+											data-toggle="modal" data-target="#selectFile"
+											placeholder="Select Control file" id='idControlFileR2Browse'
+											onclick="getAllDirectory('idControlFileR2Select','fastq');"
+											accept=".fa" value="BROWSE...">
+										<div id="idControlFileR2Select"
+											class="col-sm-6 col-lg-6 col-lg-6">No file selected</div>
+										<div class="col-sm-2 col-lg-2 col-lg-2">
+											<a class="btn btn-default " onclick="addSelectedR2();"
+												id="btnAddMerge">+</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-group" id="divImin">
+							<label class="control-label col-sm-4 col-lg=4 test textClass" for="pwd">Untreated
+								Project Name </label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="text" class="form-control"
+									id="idProcesseName" placeholder="projectName">
+							</div>
+						</div>
+							<div class="form-group" id="selectMergeOutputFormGroup">
+								<label
+									class="control-label col-sm-4  col-lg-4 col-lg-4 textClass"
+									for="pwd" id="lableMergeOutputSelect">Select output
+									folder</label>
+								<div class="col-sm-6 col-lg-6 col-lg-6">
+									<input type="button"
+										class="col-sm-4  col-lg-4 col-lg-4 btn-file "
+										data-toggle="modal" data-target="#selectFile"
+										placeholder="Select treatement file" id='idMergeOutputBrowse'
+										onclick="getAllDirectory('idMergeOutputSelect','diretory');"
+										accept=".fa" value="BROWSE...">
+									<div id="idMergeOutputSelect"
+										class="col-lg-6 col-sm-6 col-lg-6">No folder selected</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10 col-lg-10">
+								<!-- data-toggle="modal" data-target="#myModal" -->
+								<a class="btn btn-default" onclick="submitFormMergePaired();"
+									id="btnRunMerge">Submit</a>
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+		<div id="divShowMergePdf " class="row">
+			<embed id="embedShowPdf" class="col-lg-12 col-sm-12" src="">
+		</div>
+		<div align="center" id="mergeCmd">
+			<pre id="mergeCmdOutput" class="helpClass text-left">
+</pre>
+
+		</div>
+	</section>
+	<!-- ===============================trinity================================= -->
+
+	<!-- About Section -->
+	<section id="about" class="container content-section text-center">
+		<div class="row" id="forms">
+			<div
+				class="col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2 col-sm-8 col-sm-offset-2">
+
+				<div id="trinityForms">
+
+					<form class="form-horizontal" id="trinityForm">
+						<h3>Give necessary info to run Trinity</h3>
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 test textClass">Project
+								Name<span></span>
+							</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="text" class="form-control" id="idProjectName"
+									placeholder="project" >
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 test textClass"
+								for="email" data-placement="left" data-toggle="tooltip"
+								title="Input reads type fasta or fastq">Sequence type<span
+								class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+							</label>
+							<div class="col-sm-6 col-lg-6">
+								<select class="form-control" id="idSequenceType"
+									onchange="changeInputFileOptionChange(this);">
+									<option value="Fasta" selected>Fasta</option>
+									<option value="Fastq">Fastq</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 test textClass "
+								for="email" data-placement="left" data-toggle="tooltip"
+								title="Input sequence format paired read (read sequenc from both end)  or single read.">Sequence
+								Formate<span
+								class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+							</label>
+							<div class="col-sm-6 col-lg-6">
+								<select class="form-control" id="idInputReadType"
+									onchange="changeOption(this);">
+									<option value="Paired" selected>Paired</option>
+									<option value="Single">Single</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 test textClass"
+								for="pwd" data-placement="left" data-toggle="tooltip"
+								title="Strand-specific RNA-Seq read orientation, if paired: RF or FR,if single: F or R.   (dUTP method = RF)">SS
+								lib type<span
+								class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+							</label>
+							<div class="col-sm-6 col-lg-6">
+								<select class="form-control" id="idSSLibType">
+									<option value="FR" selected>FR</option>
+									<option value="RF">RF</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 test textClass"
+								for="pwd" data-placement="left" data-toggle="tooltip"
+								title="number of CPUs to use, default: 2">CPU<span
+								class=" glyphicon glyphicon-question-sign iconSmallClass"></span></label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="number" class="form-control" id="idCPU"
+									maxlength="1" onkeypress="return isNumber(event,this,1);"
+									placeholder="CPU" value="2">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 test textClass"
+								for="pwd" data-placement="left" data-toggle="tooltip"
+								title="minimum assembled contig length to repor(def=200)">Min
+								contig length<span
+								class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+							</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="number" class="form-control" id="idMinContigLength"
+									maxlength="3" onkeypress="return isNumber(event,this,3);"
+									placeholder="Min contig" value="200">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 test textClass"
+								for="pwd" data-placement="left" data-toggle="tooltip"
+								title="minimum Kmer converage report(def=2)">Min Kmer
+								Cov<span
+								class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+							</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="number" class="form-control" id="idMinKmerCov"
+									maxlength="3" onkeypress="return isNumber(event,this,3);"
+									placeholder="Min Kmer" value="2">
+							</div>
+						</div>
+						<!-- 	--min_kmer_cov -->
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 test textClass"
+								for="pwd" data-placement="left" data-toggle="tooltip"
+								title="Gb of RAM, ie.  '--max_memory 10G'">Max Memory<span
+								class=" glyphicon glyphicon-question-sign iconSmallClass"></span></label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="number" class="form-control" id="idMaxMemory"
+									maxlength="1" onkeypress="return isNumber(event,this,2);"
+									placeholder="Max Memory" value="2">
+							</div>
+						</div>
+						<div class="form-group" id="selectTrinityTypeFormGroup">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd"> Assembly(Optional)</label>
+							<div class="col-sm-6 col-lg-6">
+								<div class="checkbox">
+
+
+									<div class="divHybridCB">
+										<label class="textClass"><input type="checkbox"
+											id="idOptionalSelect1"
+											onchange="onChangeHybridCheckBox(this);"> Hybrid
+											Assembly</label>
+									</div>
+									<div class="divRefferenceCB">
+										<label class="textClass"><input type="checkbox"
+											id="idOptionalSelect2"
+											onchange="onChangeRefferenceCheckBox(this);">
+											Refference Assembly
+											<div id="divFAOptions">
+												<div class="radio">
+													<label><input type="radio" name="optradio"
+														onchange="rbtnWithFAChanged(this);" id="idrbtnWithFA">With
+														Row Input</label>
+												</div>
+												<div class="radio">
+													<label><input type="radio" name="optradio"
+														onchange="rbtnWithoutFAChanged(this);"
+														id="idrbtnWithoutFA">Without Row Input</label>
+												</div>
+											</div> </label>
+									</div>
+
+
+								</div>
+
+							</div>
+						</div>
+						<div id="fileSelectionDiv">
+							<div class="form-group" id="selectOptionalFormGroup1">
+								<label class="control-label col-sm-4  col-lg-4 textClass"
+									for="pwd" id="idlableLongRead">Select Long Read file</label>
+								<div class="col-sm-6 col-lg-6">
+									<input type="button" class="col-sm-4  col-lg-4  btn-file "
+										data-toggle="modal" data-target="#selectFile"
+										placeholder="Select Long file"
+										id='idOptionalSelectFile1Browse'
+										onclick="getAllDirectory('idOptionalSelectFile1','fasta,fasta_filtered');"
+										accept=".fa" value="BROWSE...">
+									<div id="idOptionalSelectFile1" class="col-sm-6 col-lg-6">No file selected</div>
+								</div>
+							</div>
+							<div class="form-group" id="selectRightFileFormGroup">
+								<label class="control-label col-sm-4  col-lg-4 textClass"
+									for="pwd" id="lableRightFileSelect">Select right file</label>
+								<div class="col-sm-6 col-lg-6">
+									<input type="button" class="col-sm-4  col-lg-4  btn-file "
+										data-toggle="modal" data-target="#selectFile"
+										placeholder="Select right file" id='idRightFileBrowse'
+										onclick="getAllDirectory('idRightFileSelect','fasta,fasta_filtered');"
+										accept=".fa" value="BROWSE...">
+									<div id="idRightFileSelect" class="col-sm-6 col-lg-6">No file selected</div>
+								</div>
+							</div>
+							<div class="form-group" id="selectSingleFileFormGroup">
+								<label class="control-label col-sm-4  col-lg-4 textClass"
+									for="pwd" id="lableSingleFileSelect">Select single file</label>
+								<div class="col-sm-6 col-lg-6">
+									<input type="button" class="col-sm-4  col-lg-4  btn-file "
+										data-toggle="modal" data-target="#selectFile"
+										placeholder="Select single file" id='idSingleFileBrowse'
+										onclick="getAllDirectory('idSingleFileSelect','fasta,fasta_filtered');"
+										accept=".fa" value="BROWSE...">
+									<div id="idSingleFileSelect" class="col-sm-6 col-lg-6">No
+										file selected</div>
+								</div>
+							</div>
+							<div class="form-group" id="selectLeftFileFormGroup">
+								<label class="control-label col-sm-4  col-lg-4 textClass"
+									for="pwd" id="idlableLeftRead">Select left file</label>
+								<div class="col-sm-6 col-lg-6">
+									<input type="button" class="col-sm-4  col-lg-4  btn-file "
+										data-toggle="modal" data-target="#selectFile"
+										placeholder="Select right file" id='idLeftFileBrowse'
+										onclick="getAllDirectory('idLeftFileSelect','fasta,fasta_filtered');"
+										accept=".fa" value="BROWSE...">
+									<div id="idLeftFileSelect" class="col-sm-6 col-lg-6">No file selected</div>
+								</div>
+							</div>
+
+							<div class="form-group" id="selectOptionalFormGroup2">
+								<label class="control-label col-sm-4  col-lg-4  test textClass"
+									for="pwd" data-placement="left" data-toggle="tooltip"
+									title="sorted gnome guided bam">Select genome guided
+									bam<span
+									class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+								</label>
+								<div class="col-sm-6 col-lg-6">
+									<input type="button" class="col-sm-4  col-lg-4  btn-file "
+										data-toggle="modal" data-target="#selectFile"
+										placeholder="Select right file"
+										onclick="getAllDirectory('idOptionalSelectFile2','bam');"
+										accept=".fa" value="BROWSE...">
+									<div id="idOptionalSelectFile2" class="col-sm-6 col-lg-6">No file selected</div>
+								</div>
+							</div>
+							<div class="form-group" id="selectOptionalFormGroup3">
+								<label class="control-label col-sm-4  col-lg-4 test textClass"
+									for="pwd">Max Intron </label>
+								<div class="col-sm-6 col-lg-6">
+									<input type="number" class="form-control" id="idMaxIntron"
+										onkeypress="return isNumber(event,this,5);"
+										placeholder="Max Intron" value="1000">
+								</div>
+							</div>
+						</div>
+						<div class="form-group" id="selectOutputFolder">
+							<label class="control-label col-sm-4  col-lg-4  test textClass">Select
+								Output Folder </label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="button" class="col-sm-4  col-lg-4  btn-file "
+									data-toggle="modal" data-target="#selectFile"
+									placeholder="Select output directory"
+									onclick="getAllDirectory('idTrinityOutputDir','diretory');"
+									accept=".fa" value="BROWSE...">
+								<div id="idTrinityOutputDir" class="col-sm-6 col-lg-6">No folder selected</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<a class="btn btn-default" onclick="submitFormTrinity();"
+									id="btnRunTrinity">Submit</a>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div id="reportGenerationForm">
+
+					<form class="form-horizontal" id="reportForm">
+						<h3>Generate Report</h3>
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd">Organism Name:</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="text" class="form-control" id="idOrganismName"
+									placeholder="Organism Name">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd">Scientist Name:</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="text" class="form-control" id="idScientistName"
+									placeholder="Scientist Name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd">Affiliation:</label>
+							<div class="col-sm-6 col-lg-6">
+								<textarea class="form-control" placeholder="Specialization"
+									rows="4" id="idSpecialization"></textarea>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd">PlatForm:</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="text" class="form-control" id="idPlateform"
+									placeholder="PlateForm">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd">Name of Sample:</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="text" class="form-control" id="idNameOfSample"
+									placeholder="Name of Sample">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd">Address:</label>
+							<div class="col-sm-6 col-lg-6">
+
+								<textarea class="form-control" id="idAddress"
+									placeholder="Address" rows="3"></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<a class="btn btn-default" onclick="wsGenerateReport();">Generate
+									Report</a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="divShowPdf " class="row">
+			<embed id="embedShowPdf" class="col-lg-12" src="">
+		</div>
+		<div align="center" id="trinityCmd">
+			<pre id="trinityCmdOutput" class="helpClass text-left">
+            </pre>
+			<a class="btn btn-default" id="generateReportBtn"
+				onclick="generateReportForm();">Generate Output Report</a>
+		</div>
+	</section>
+	
+	<section id="assemblyValidation"
+		class="container content-section text-center ">
+		<div class="row" id="aligmentAndEstimate">
+			<div class="col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2">
+				<!--===============================start of Assembly============================  -->
+				<div id="aligmentAndEstimateDiv">
+					<form class="form-horizontal" id="aligmentAndEstimateForm">
+						<h3>Assemblly Validation And Clustering</h3>
+
+						<div class="form-group">
+							<label class="control-label col-sm-10 textClass colorTextClass"
+								for="pwd" id="parameterInputDiv">Input Parameters:<span
+								id="inputDivSpan"
+								class=" glyphicon glyphicon-collapse-down iconSmallClass "></span></label>
+						</div>
+						<div id='inputDiv'>
+							<div class="form-group">
+								<label class="control-label col-sm-4  col-lg-4 test textClass"
+									data-placement="left" data-toggle="tooltip"
+									title="Input reads type fasta or fastq">Sequence type<span
+									class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+								</label>
+								<div class="col-sm-6 col-lg-6">
+									<select class="form-control"
+										id="idSequenceTypeAligmentAndEstimate"
+										onchange="changeInputFileAligmentAndEstimate(this);">
+										<option value="fa" selected>Fasta</option>
+										<option value="fq">Fastq</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-4  col-lg-4 test textClass "
+									data-placement="left" data-toggle="tooltip"
+									title="Input sequence format paired read (read sequenc from both end)  or single read.">Sequence
+									Formate<span
+									class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+								</label>
+								<div class="col-sm-6 col-lg-6">
+									<select class="form-control"
+										id="idInputReadTypeAligmentAndEstimate"
+										onchange="changeAligmentAndEstimate(this);">
+										<option value="paired" selected>Paired</option>
+										<option value="single">Single</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-4  col-lg-4 test textClass "
+									data-placement="left" data-toggle="tooltip"
+									title="Input sequence format paired read (read sequenc from both end)  or single read.">Estimation
+									Method<span
+									class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+								</label>
+								<div class="col-sm-6 col-lg-6">
+									<select class="form-control"
+										id="idEstimateMethodTypeAligmentAndEstimate"
+										onchange="changeEstimateMethodOption(this);">
+										<option value="RSEM" selected>RSEM</option>
+										<option value="eXpress">eXpress</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-4  col-lg-4 test textClass "
+									data-placement="left" data-toggle="tooltip"
+									title="Input sequence format paired read (read sequenc from both end)  or single read.">Alignment
+									Method<span
+									class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+								</label>
+								<div class="col-sm-6 col-lg-6">
+									<select class="form-control"
+										id="idAlignmentMethodTypeAligmentAndEstimate"
+										onchange="changeAlignmentMethodOptionAligmentAndEstimate(this);">
+										<option value="bowtie" selected>bowtie</option>
+										<option value="bowtie2" id="bowtie2OpationId">bowtie2</option>
+										<option value="bam">bam file</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-sm-4  col-lg-4 test textClass "
+									data-placement="left" data-toggle="tooltip"
+									title="strand-specific library type">SS_lib_type <span
+									class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+								</label>
+								<div class="col-sm-6 col-lg-6">
+									<select class="form-control"
+										id="idSSLibTypeAligmentAndEstimate"
+										onchange="changeSSLibOptionAligmentAndEstimate(this);">
+										<option value="FR" selected>FR</option>
+										<option value="RF">RF</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-4  col-lg-4 test textClass "
+									data-placement="left" data-toggle="tooltip"
+									title="number of threads to use (default = 4)">Thread
+									Counts<span
+									class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+								</label>
+								<div class="col-sm-6 col-lg-6">
+									<input type="number" class="form-control"
+										id="idAlignmentThreadCount" max="9" min="1" value="4">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-4  col-lg-4 test textClass ">Maximum
+									insert size </label>
+								<div class="col-sm-6 col-lg-6">
+									<input type="number" class="form-control"
+										id="idAlignmentMaxInsertSize" max="9" min="1" value="800">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-10 textClass colorTextClass"
+								for="pwd" id="transcriptInputDiv">Transcript Coverage:<span
+								id="transcriptDivSpan"
+								class=" glyphicon glyphicon-collapse-down iconSmallClass "></span></label>
+						</div>
+						<div id='transcriptDiv'>
+							<div class="form-group">
+								<label class="control-label col-sm-4  col-lg-4 test textClass ">
+									Sample name </label>
+								<div class="col-sm-6 col-lg-6">
+									<input type="text" class="form-control"
+										id="idAlignmentSampleName" value="sampleName_output">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-4  col-lg-4 test textClass "
+									data-placement="left" data-toggle="tooltip"
+									title="default 70 is recommended">Coverage<span
+									class=" glyphicon glyphicon-question-sign iconSmallClass"></span>
+								</label>
+								<div class="col-sm-6 col-lg-6">
+									<input type="number" class="form-control"
+										id="idAlignmentCoverage" value="70">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-4  col-lg-4 test textClass ">
+									Read Depth </label>
+								<div class="col-sm-6 col-lg-6">
+									<input type="number" class="form-control"
+										id="idAlignmentReadDepth" max="20" min="1" value="5">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-10 textClass colorTextClass"
+								for="pwd" id="parameterClusteringDiv">Clustering
+								Parameters:<span id="clusteringDivSpan"
+								class=" glyphicon glyphicon-collapse-down iconSmallClass "></span>
+							</label>
+						</div>
+						<div id='clusteringDivAsse'>
+
+							<div class="form-group">
+								<label class="control-label col-sm-4  col-lg-4 test textClass ">
+									sequence identity threshold </label>
+								<div class="col-sm-6 col-lg-6">
+									<input type="number" class="form-control"
+										id="idClusteringSeqThreshold" min="0" value="0.9">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-4  col-lg-4 test textClass ">
+									length difference cutoff</label>
+								<div class="col-sm-6 col-lg-6">
+									<input type="number" class="form-control"
+										id="idClusteringLengthDiffCut" min="0" value="0.8">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-4  col-lg-4 test textClass ">
+									length of description</label>
+								<div class="col-sm-6 col-lg-6">
+									<input type="number" class="form-control"
+										id="idClusteringLengthOfDes" min="0" value="20">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-4  col-lg-4 test textClass ">
+									memory limit (in MB)</label>
+								<div class="col-sm-6 col-lg-6">
+									<input type="number" class="form-control"
+										id="idClusteringMemLimit" min="0" value="800">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-4  col-lg-4 test textClass ">
+									Output File Name</label>
+								<div class="col-sm-6 col-lg-6">
+									<input type="text" class="form-control"
+										id="idClusteringOutPutFileName" value="cluster">
+								</div>
+							</div>
+
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 test textClass">Project
+								Name<span></span>
+							</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="text" class="form-control" id="idProjectNameAssembly"
+									placeholder="project" >
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-10 textClass colorTextClass"
+								for="pwd" id="bowtie1InputDiv">Input Files:</label>
+						</div>
+<div id="selectedSamplesAssem"></div>
+						
+						<div id="pairedFileDivAssembly">
+							<div class="form-group" id="selectLeftFileFormGroupAlignment">
+								<label class="control-label col-sm-4  col-lg-4 textClass"
+									for="pwd" id="idlableLeftAligmentRead">Select left file</label>
+								<div class="col-sm-6 col-lg-6">
+									<input type="button" class="col-sm-4  col-lg-4  btn-file "
+										data-toggle="modal" data-target="#selectFile"
+										placeholder="Select right file" id='idLeftFileAligmentBrowse'
+										onclick="getAllDirectory('idLeftFileAligmentSelect','fasta,fasta_filtered');"
+										accept=".fa" value="BROWSE...">
+									<div id="idLeftFileAligmentSelect" class="col-sm-6 col-lg-6">No file selected</div>
+								</div>
+							</div>
+							<div class="form-group" id="selectRightFileFormGroupAlignment">
+								<label class="control-label col-sm-4  col-lg-4 textClass"
+									for="pwd" id="lableRightFileAligmentSelect">Select
+									right file</label>
+								<div class="col-sm-6 col-lg-6">
+									<input type="button" class="col-sm-4  col-lg-4  btn-file "
+										data-toggle="modal" data-target="#selectFile"
+										placeholder="Select right file" id='idRightFileAligmentBrowse'
+										onclick="getAllDirectory('idRightFileAligmentSelect','fasta,fasta_filtered');"
+										accept=".fa" value="BROWSE...">
+									<div id="idRightFileAligmentSelect" class="col-sm-6 col-lg-6">No file selected</div>
+								</div>
+							</div>
+							
+
+						</div>
+						<div class="form-group" id="selectSingleFileFormGroupAlignment">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd" id="lableSingleFileAligmentSelect">Select
+								single file</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="button" class="col-sm-4  col-lg-4  btn-file "
+									data-toggle="modal" data-target="#selectFile"
+									placeholder="Select single file"
+									id='idSingleFileAligmentBrowse'
+									onclick="getAllDirectory('idSingleFileAligmentSelect','fasta,fasta_filtered');"
+									accept=".fa" value="BROWSE...">
+								<div id="idSingleFileAligmentSelect" class="col-sm-6 col-lg-6">No file selected</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 test textClass ">
+								Output Folder Name</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="text" class="form-control" id="idOutPutFolderName"
+									value="cluster">
+							</div>
+						</div>
+						<div class="col-sm-10">
+								<a class="btn btn-default1" onclick="addNewUploadAssembly();"
+									id="btnRunbowtie">Add samples</a>
+							</div>
+						<div class="form-group" id="selectOutputFastFileFormGroup">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd">Select Transcript file:</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="button" class="col-sm-4  col-lg-4  btn-file "
+									data-toggle="modal" data-target="#selectFile"
+									placeholder="Select right file"
+									id='idTranscriptFastaFileBrowse'
+									onclick="getAllDirectory('idTranscriptFastaFileSelect','fasta');"
+									accept=".fa" value="BROWSE...">
+								<div id="idTranscriptFastaFileSelect" class="col-sm-6 col-lg-6">No file selected</div>
+							</div>
+						</div>
+						
+						<div class="form-group" id="selectOutDirectoryFormGroupAlignment">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd" id="idlableOutDirectoryAligment">Select output
+								directory</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="button" class="col-sm-4  col-lg-4  btn-file "
+									data-toggle="modal" data-target="#selectFile"
+									placeholder="Select right file"
+									id='idOutDirectoryAligmentBrowse'
+									onclick="getAllDirectory('idOutDirectoryAligmentSelect','diretory');"
+									accept=".fa" value="BROWSE...">
+								<div id="idOutDirectoryAligmentSelect" class="col-sm-6 col-lg-6">No
+									directory selected</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<a class="btn btn-default" onclick="wsAligmentAndEstimate();">Submit</a>
+							</div>
+						</div>
+						<!--===============================End of Assembly============================  -->
+					</form>
+				</div>
+			</div>
+		</div>
+		<div align="center" id="assemblyCmd">
+			<pre id="assemblyCmdOutput" class="helpClass text-left">
+               </pre>
+		</div>
+	</section>
+<section id="customReport"
+		class="container content-section text-center">
+		<div class="row" id="customReportforms">
+			<div class="col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2">
+
+				<div id="customReportGenerationForm">
+					<form class="form-horizontal" id="customReportForm">
+						<h3>Give necessary info to get Report</h3>
+						
+						
+							<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd">Project Name:</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="text" class="form-control"
+									id="projectNameTrinity" placeholder="Project Name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd">Organism Name:</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="text" class="form-control"
+									id="idCustomReportOrganismName" placeholder="Organism Name">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd">Scientist Name:</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="text" class="form-control"
+									id="idCustomReportScientistName" placeholder="Scientist Name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd">Affilation:</label>
+							<div class="col-sm-6 col-lg-6">
+								<textarea class="form-control" placeholder="Specialization"
+									rows="4" id="idCustomReportSpecialization"></textarea>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd">Platform:</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="text" class="form-control"
+									id="idCustomReportPlateform" placeholder="PlateForm">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd">Name of Sample:</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="text" class="form-control"
+									id="idCustomReportNameOfSample" placeholder="Name of Sample">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd">Address:</label>
+							<div class="col-sm-6 col-lg-6">
+
+								<textarea class="form-control" id="idCustomReportAddress"
+									placeholder="Address" rows="3"></textarea>
+							</div>
+						</div>
+						<div class="form-group" id="selectOutputFastFileFormGroup">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd">Select Input Trinity file:</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="button" class="col-sm-4  col-lg-4  btn-file "
+									data-toggle="modal" data-target="#selectFile"
+									placeholder="Select right file"
+									id='idCustomReportOutputFileSelectBrowse'
+									onclick="getAllDirectory('idCustomReportOutputFileSelect','fasta');"
+									value="BROWSE...">
+								<div id="idCustomReportOutputFileSelect"
+									class="col-sm-6 col-lg-6">No file selected</div>
+							</div>
+						</div>
+						<div class="form-group" id="selectOutputClusterFastFileFormGroup">
+							<label class="control-label col-sm-4  col-lg-4 textClass"
+								for="pwd">Select Input amilated file:</label>
+							<div class="col-sm-6 col-lg-6">
+								<input type="button" class="col-sm-4  col-lg-4  btn-file "
+									data-toggle="modal" data-target="#selectFile"
+									placeholder="Select right file"
+									id='idCustomReportOutputClusterFileSelectBrowse'
+									onclick="getAllDirectory('idCustomReportOutputClusterFileSelect','fasta');"
+									value="BROWSE...">
+								<div id="idCustomReportOutputClusterFileSelect"
+									class="col-sm-6 col-lg-6">No file selected</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<a class="btn btn-default" onclick="wsGenerateCustomReport();">Generate
+									Custom Report</a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="divShowCustomReportPdf " class="row">
+			<embed id="embedShowCustomReportPdf" class="col-lg-12" src="">
+		</div>
+	</section>
+	<!-- <div align="center">
+		<section id="help" class="content-section">
+			<pre class="helpClass text-left">
+             <code>
+###############################################################################
+#
+#     ______  ____   ____  ____   ____  ______  __ __
+#    |      ||    \ |    ||    \ |    ||      ||  |  |
+#    |      ||  D  ) |  | |  _  | |  | |      ||  |  |
+#    |_|  |_||    /  |  | |  |  | |  | |_|  |_||  ~  |
+#      |  |  |    \  |  | |  |  | |  |   |  |  |___, |
+#      |  |  |  .  \ |  | |  |  | |  |   |  |  |     |
+#      |__|  |__|\_||____||__|__||____|  |__|  |____/
+#
+###############################################################################
+#
+# Required:
+#
+#  --seqType <string>      :type of reads: ( fa, or fq )
+#
+#  --max_memory <string>      :suggested max memory to use by Trinity where limiting can be enabled. (jellyfish, sorting, etc)
+#                            provied in Gb of RAM, ie.  '--max_memory 10G'
+#
+#  If paired reads:
+#      --left  <string>    :left reads, one or more file names (separated by commas, no spaces)
+#      --right <string>    :right reads, one or more file names (separated by commas, no spaces)
+#
+#  Or, if unpaired reads:
+#      --single <string>   :single reads, one or more file names, comma-delimited (note, if single file contains pairs, can use flag: --run_as_paired )
+#
+####################################
+##  Misc:  #########################
+#
+#  --SS_lib_type <string>          :Strand-specific RNA-Seq read orientation.
+#                                   if paired: RF or FR,
+#                                   if single: F or R.   (dUTP method = RF)
+#                                   See web documentation.
+#
+#  --CPU <int>                     :number of CPUs to use, default: 2
+#  --min_contig_length <int>       :minimum assembled contig length to report
+#                                   (def=200)
+#
+#  --long_reads <string>           :fasta file containing error-corrected or circular consensus (CCS) pac bio reads
+#
+#  --genome_guided_bam <string>    :genome guided mode, provide path to coordinate-sorted bam file.
+#                                   (see genome-guided param section under --show_full_usage_info)
+#
+#  --jaccard_clip                  :option, set if you have paired reads and
+#                                   you expect high gene density with UTR
+#                                   overlap (use FASTQ input file format
+#                                   for reads).
+#                                   (note: jaccard_clip is an expensive
+#                                   operation, so avoid using it unless
+#                                   necessary due to finding excessive fusion
+#                                   transcripts w/o it.)
+#
+#  --trimmomatic                   :run Trimmomatic to quality trim reads
+#                                        see '--quality_trimming_params' under full usage info for tailored settings.
+#                                  
+#
+#  --normalize_reads               :run in silico normalization of reads. Defaults to max. read coverage of 50.
+#                                       see '--normalize_max_read_cov' under full usage info for tailored settings.
+#     
+#  --no_distributed_trinity_exec   :do not run Trinity phase 2 (assembly of partitioned reads), and stop after generating command list.
+#
+#
+#  --output <string>               :name of directory for output (will be
+#                                   created if it doesn't already exist)
+#                                   default( your current working directory: "/home/bionivid1/trinity_out_dir" 
+#                                    note: must include 'trinity' in the name as a safety precaution! )
+#  
+#  --full_cleanup                  :only retain the Trinity fasta file, rename as ${output_dir}.Trinity.fasta
+#
+#  --cite                          :show the Trinity literature citation
+#
+#  --verbose                       :provide additional job status info during the run.
+#
+#  --version                       :reports Trinity version (v2.0.6) and exits.
+#
+#  --show_full_usage_info          :show the many many more options available for running Trinity (expert usage).
+#
+#
+###############################################################################
+#
+#  *Note, a typical Trinity command might be:
+#
+#        Trinity --seqType fq --max_memory 50G --left reads_1.fq  --right reads_2.fq --CPU 6
+#
+#
+#    and for Genome-guided Trinity:
+#
+#        Trinity --genome_guided_bam rnaseq_alignments.csorted.bam --max_memory 50G
+#                --genome_guided_max_intron 10000 --CPU 6
+#
+#     see: /home/bionivid1/Programs/trinityrnaseq-2.0.6/sample_data/test_Trinity_Assembly/
+#          for sample data and 'runMe.sh' for example Trinity execution
+#
+#     For more details, visit: http://trinityrnaseq.github.io
+#
+###############################################################################
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				</code>
+</pre>
+
+		</section>
+	</div>
+	
+
+	
+	<div id="map"></div>
+ -->
+	<!-- <footer>
+		<div class="container text-center">
+			<p>Copyright &copy;2013 Bionivid. All Rights Reserved.</p>
+		</div>
+	</footer> -->
+<script src="js/trinityjs/ws_get_attribute_cmd2.js"></script>
+	<script src="js/trinityjs/jquery.js"></script>
+	<script src="js/trinityjs/bootstrap.min.js"></script>
+	<script src="js/trinityjs/jquery.easing.min.js"></script>
+	<script src="js/trinityjs/url.js"></script>
+	<script src="js/trinityjs/grayscale.js"></script>
+
+	<script src="js/libjs/directory_handling_trinity.js"></script>
+	<script src="js/libjs/utils.js"></script>
+	<script src="js/libjs/file_handling1.js"></script>
+	<script src="js/libjs/custom_report.js"></script>
+	<script src="js/libjs/validation.js"></script>
+	<script src="js/libjs/trinity_form_mangement.js"></script>
+
+
+	<script src="js/libjs/merge_trinity.js"></script>
+		
+
+
+</body>
+</html>

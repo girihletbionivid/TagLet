@@ -1,0 +1,555 @@
+@CHARSET "UTF-8";
+.white, .white a {
+  color: #fff;
+}
+
+.classAlignToRight{
+	float: right !important;
+	width: 100% !important;
+}
+.userIcon{
+font-size: 25px !important;
+	padding-top: 10px;
+}
+#endSelectionDiv{
+	display: none;
+}
+.modal123-body {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+}
+
+input[type=checkbox] {
+	/* Double-sized Checkboxes */
+	-ms-transform: scale(1.2); /* IE */
+	-moz-transform: scale(1.2); /* FF */
+	-webkit-transform: scale(1.2); /* Safari and Chrome */
+	-o-transform: scale(1.2); /* Opera */
+	padding-bottom: 5px;
+}
+
+.btn-file {
+	position: relative;
+	overflow: hidden;
+}
+
+.btn-file input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity = 0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: inherit;
+}
+
+#reportGenerationForm {
+	display: none;
+}
+#divShowPdf {
+	width: 100%;
+	height: 500px;
+}
+
+#embedShowPdf {
+	display: none;
+	width: 100%;
+	height: 500px;
+}
+
+#divShowCustomReportPdf {
+	width: 100%;
+	height: 600px;
+}
+
+#embedShowCustomReportPdf {
+	display: none;
+	width: 100%;
+	height: 600px;
+}
+
+.modal123-dialog {
+	position: fixed;
+	left: 20%;
+	z-index: 12;
+	padding-top: 1px;
+}
+
+#wastDiv {
+	visibility: hidden;
+}
+
+.test+.tooltip>.tooltip-inner {
+	background-color: #8AC007;
+	color: #000;
+	border: 1px solid green;
+	padding: 8px;
+	font-size: 18px;
+}
+
+.textClass {
+	font-size: 15px !important;
+	font: bold !important;
+	text-align: left !important;
+	z-index: 10px !important;
+}
+
+.divHybridCB {
+	float: left;
+}
+
+.divRefferenceCB {
+	float: left;
+	padding-left: 2px;
+}
+
+.textCheckbox {
+	font-size: 20px !important;
+	font: bold !important;
+	text-align: left !important;
+	padding-top: 5px !important;
+}
+
+.modal123-backdrop {
+	opacity: 0.1 !important;
+}
+
+.helpClass {
+	width: 100% !important;
+	height: 475px !important;
+	font-size: 15px !important;
+	background-color: #000 !important;
+	color: #8AC007 !important;
+	overflow: auto !important;
+}
+
+#generateReportBtn {
+	display: none;
+	width: 250px;
+	height: 50px;
+}
+/* Tooltip on top */
+.test+.tooltip.top>.tooltip-arrow {
+	border-top: 5px solid green;
+}
+
+/* Tooltip on bottom */
+.test+.tooltip.bottom>.tooltip-arrow {
+	border-bottom: 5px solid blue;
+}
+
+/* Tooltip on left */
+.test+.tooltip.left>.tooltip-arrow {
+	border-left: 5px solid red;
+}
+
+/* Tooltip on right */
+.test+.tooltip.right>.tooltip-arrow {
+	border-right: 5px solid black;
+}
+
+#ex3::-webkit-scrollbar-thumb {
+	background-color: #000;
+	border-radius: 10px;
+}
+
+#trinityCmd {
+	display: none;
+}
+
+.classHeading {
+	color: #000 !important;
+}
+
+.newClass {
+	color: #000000 !important;
+}
+
+div.transbox {
+	border: 5px solid #FFFFFF;
+	margin: 50px;
+	box-shadow: 0px 0px 0px 15px rgba(0, 0, 0, 0.3), 0px 20px 15px 0px
+		rgba(0, 0, 0, 0.6);
+	margin: 30px;
+	background-color: #ffffff;
+	border: 1px solid #ffffff;
+	opacity: 0.4;
+	/* For IE8 and earlier */
+	filter: alpha(opacity = 60);
+}
+
+div.transbox>p {
+	margin: 10%;
+	font-weight: bold;
+	opacity: 0.7 !important;
+	color: #000000 !important;
+}
+
+#selectOptionalFormGroup1, #selectOptionalFormGroup2,
+	#selectOptionalFormGroup3, #divFAOptions {
+	display: none;
+}
+
+.iconSmallClass {
+	font-size: 15px !important;
+	padding-left: 4px;
+}
+
+#selectSingleFileFormGroup {
+	display: none;
+}
+
+.modal123-scroll {
+	height: 300px;
+	overflow-y: auto;
+}
+
+.colorTextFile {
+	color: #e6e6e6 !important;
+}
+
+.textClassFile {
+	font-size: 18px !important;
+	font: normal; ! important;
+	text-align: left !important;
+}
+
+.class-file {
+	display: block;
+}
+
+.btn-file {
+	color: #000000 !important;
+}
+
+.onHoverChangeColorClass:hover {
+	background-color: #d9d9d9;
+}
+
+.changedColorClass {
+	background-color: #999999;
+}
+
+.changedFontClass {
+	font: bold !important;
+	font-size: 20px !important;
+	color: black !important;
+}
+
+.content {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 960px;
+	padding: 0 15px;
+}
+
+h1 {
+	margin: 60px 0;
+	padding: 0;
+	font-size: 50px;
+	text-align: center;
+}
+
+p {
+	margin: 0 0 30px 0;
+	font-size: 30px;
+	line-height: 1.5;
+}
+
+.fullscreen-bg {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	-webkit-filter: blur(2px);
+	-moz-filter: blur(2px);
+	-o-filter: blur(2px);
+	-ms-filter: blur(2px);
+	filter: blur(2px);
+	z-index: -100;
+}
+
+.fullscreen-bg__video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+@media ( min-aspect-ratio : 16/9) {
+	.fullscreen-bg__video {
+		height: 300%;
+		top: -100%;
+	}
+}
+
+@media ( max-aspect-ratio : 16/9) {
+	.fullscreen-bg__video {
+		width: 300%;
+		left: -100%;
+	}
+}
+
+@media ( max-width : 767px) {
+	.fullscreen-bg {
+		background: url('../img/videoframe.jpg') center center/cover no-repeat;
+	}
+	.fullscreen-bg__video {
+		display: none;
+	}
+}
+
+/*========================== qc============================= */
+#illuminaOuputSection {
+	height: 100%;
+}
+
+.onHoverChangeColorClass:hover {
+	overflow: hidden;
+	background-color: #A4A4A4;
+}
+
+margin: 0; .onDirectorySelection {
+	padding: 0;
+	background-color: #A4A4A4;
+}
+
+/* #454QcForm {
+	display: block;
+	height: 500px !important;
+	
+} */
+#454QcSection {
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.QCForm {
+	display: block;
+	height: 100% !important;
+	/* overflow-y: auto;
+	overflow-x: hidden; */
+}
+
+#customDBForm {
+	height: 500px;
+	overflow-y: hidden;
+	overflow-x: hidden;
+	scrollbar-base-color: orange !important;
+	scrollbar-arrow-color: green !important;
+	scrollbar-DarkShadow-Color: blue !important;
+}
+
+#divRS {
+	font-size: 20px !important;
+	font: bold !important;
+	text-align: left !important;
+	padding-top: 5px !important;
+}
+
+#outerDivRs {
+	display: none;
+}
+
+.om {
+	padding-top: 10px;
+	font-size: 18px !important;
+	font: bold !important;
+	text-align: right !important;
+}
+
+.omLeft {
+	padding-top: 10px;
+	font-size: 18px !important;
+	font: bold !important;
+	text-align: left !important;
+}
+
+.colorTextClass {
+	color: #8AC007 !important;
+}
+
+.colorCollapseClass {
+	color: #000 !important;
+}
+
+.checkBoxClassV {
+	padding-left: 10px !important;
+}
+
+#close {
+	float: right;
+	display: inline-block;
+	padding: 2px 5px;
+position: relative;
+top :-1px;
+right:-15px;	
+}
+
+/* .classSelectedFilesDiv:hover {
+	border: 1px solid #8AC007;
+}
+ */
+.classSelectedDirectory {
+	border: 1px solid #8AC007;
+	padding: 2px;
+}
+
+#divShowCustomReportPdf {
+	width: 100%;
+	height: 500px;
+}
+/*======================dseq====================*/
+#dSeqSection {
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#dseqCmd {
+	padding-top: 10%;
+}
+/*============================uparse================*/
+#readPrepCmdQutput {
+	display: none;
+	height: 100%;
+}
+
+#derepCmdQutput {
+	display: none;
+	height: 100%;
+}
+
+#uparseForm {
+	display: block;
+	height: 500px !important;
+	/* overflow-y: auto; */
+	overflow-x: hidden;
+}
+#uparseSection{
+	height: 100%;
+}
+#readPrepCmdOutputPre {
+	width: 100%;
+	padding: 2%;
+}
+
+#uparseDereplicationForm {
+	display: block;
+	height: 100% !important;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#uparseClusteringForm {
+	display: block;
+	height: 500px !important;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#uparseOTUTableForm {
+	display: block;
+	height: 500px !important;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#divShowCustomReportPdfUparse {
+	width: 100%;
+	height: 600px;
+}
+
+#customReportGenerationFormUparse {
+/* 	height: 500px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	scrollbar-base-color: orange !important;
+	scrollbar-arrow-color: green !important;
+	scrollbar-DarkShadow-Color: blue !important; */
+}
+#divShowCustomReportPdfUparse{
+	display: none;
+}
+#divShowCustomReportPdfUparse {
+	width: 100%;
+	height: 500px;
+}
+
+#uparseTaxonomySection, #taxonomyCmdQutput, #uparseMergeSection {
+	height: 100%;
+}
+
+#taxonomyCmdQutput, #uparseMergeSection, #mergeUparseCmd {
+	padding-top: 10%;
+}
+/*=========================bowtie===========*/
+#bowtieForm {
+	display: block;
+	height: 500px !important;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+#bowtie2Form {
+	display: block;
+	height: 500px !important;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+/* 
+#customDBForm {
+	display: block;
+	height: 800px !important;
+} */
+
+#bowtieCmd {
+	display: none;
+}
+
+#bowtieCmdDB {
+	display: none;
+}
+
+#selectOptionalFormGroup2, #selectOptionalFormGroup3, #divFAOptions {
+	display: none;
+}
+
+#bowtie1OtherN {
+	display: none;
+}
+
+#idFnameAlOutput, #idFnameUnOutput, #idFnameMaxOutput, #idInputSamRg,
+	#idInputPThreads, #idCheckboxPThreadsSubOptions {
+	display: none;
+}
+
+
+
+.classSelectedFilesDiv {
+	border: 1px solid #8AC007;
+
+	
+}
+
+#btnRunbowtie {
+	padding: 5px;
+}
+
+#select454qcOutput {
+	padding-top: 10px !important;
+}
+
+.dropdownBtnClass {
+	height: 100% !important;
+	width:100% !important;
+}

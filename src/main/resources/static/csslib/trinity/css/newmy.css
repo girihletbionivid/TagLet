@@ -1,0 +1,115 @@
+@CHARSET "UTF-8";
+.modal-scroll{
+	height:300px;
+	overflow-y: auto;
+}
+
+#idTagInputHiddenIndexPrefixFile, #idDivResume,#cuffMergeCmdQutput,#cuffDiffCmdQutput
+{
+	display: none;
+}
+#divShowCustomReportPdfTophat,#customReport,#customReportforms{
+	height: 600px !important;
+	width: 100% !important;
+}
+#createDB,#customReport{
+		height: 100% !important;
+		width: 100% !important;
+}
+.colorTextFile {
+	color: #000000 !important;
+}
+.textClassFile {
+	font-size: 18px !important;
+	font: normal; !important;
+	text-align: left !important;
+}
+.class-file{
+	display: block;
+}
+.btn-file{
+	color: #000000 !important;
+}
+.classLocation{
+	color: #000000 !important;
+	font-size: 18px !important;
+	font: normal; !important;
+	text-align: left !important;
+	padding-top: 10px;
+}
+.classPaddingTop{
+	padding-top: 10px;
+	
+}
+.classPaddingTopSection{
+	padding-top: 300px;
+}
+#divShowMergePdf{
+display: none;	
+}
+#mergeCmd{
+	display: none;
+}
+#aboutMerge{
+	height: 100%;
+}
+#mergeSingle{
+	display:none;
+}
+/* #mergeForms{
+height: 500px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+} */
+
+/*=========dseq==================*/
+
+
+
+
+table {
+    width:100%;
+}
+table, th, td {
+    border: 1px solid black !important;
+    border-collapse: collapse !important;
+}
+#myTableClass{
+	border: 1px solid black !important;
+    border-collapse: collapse !important;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+    color: black;
+}
+table#myTableClass tr:nth-child(even) {
+    background-color: #eee;
+}
+table#myTableClass tr:nth-child(odd) {
+   background-color:#fff;
+}
+table#myTableClass th	{
+    background-color: white;
+    color: black;
+}
+#dseqCmdQutputz{
+	display: none;
+	height: 100%;
+	
+}
+.backg{
+	height: 100% !important;
+}
+.fullcll{
+	height: 100% !important;
+}
+.createBtn{
+	position: absolute;
+	right: 0px;
+}
+.divClassInstancesCmd{
+	height: 100%;
+	width: 100%;
+
+}

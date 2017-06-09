@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>TagLet | Girihlet</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'></link>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'></link>
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"></link>
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+<link rel="stylesheet" type="text/css" href="csslib/bootstrap.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/font-awesome.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/animate.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/bootstrap-switch.min.css"></link>
+
+<link rel="stylesheet" type="text/css" href="csslib/checkbox3.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/jquery.dataTables.min.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/dataTables.bootstrap.css"></link>
+
+<link rel="stylesheet" type="text/css" href="csslib/style.css"></link>
+<link rel="stylesheet" type="text/css" href="csslib/flat-blue.css"></link>
+<link rel="stylesheet" href="csslib/comman_for_qc.css"></link>
+</head>
+
+<body class="flat-blue mainDivColor">
+	<span style="display: none" id="myio" th:text="${server}"></span>
+	<span style="display: none" id="userId" th:text="${userId}"></span>
+	<span style="display: none" id="userDir" th:text="${userDir}"></span>
+	
+	<span style="display: none" id="myuserName" th:text="${userName}"></span>
+	<span style="display: none" id="mydesignation" th:text="${designation}"></span>
+	<span style="display: none" id="myinstitute" th:text="${institute}"></span>
+	<span style="display: none" id="myaddress" th:text="${address}"></span>
+	
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog" role="document">
+			<img class="" src="images/spinner.gif" alt="er"></img>
+		</div>
+	</div>
+	<div class="modal fade" id="selectFile" role="dialog">
+		<div class="modal-dialog">
+			Modal content
+			<div class="modal-content textColorForBrowseText">
+				<div class="modal-header">
+					<div class="container-fuild textColorForBrowseText">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title colorTextFile textColorForBrowseText">Files From Server.</h4>
+						<h6 class="modal-title colorTextFile textColorForBrowseText">Please double click to select.</h6>
+					</div>
+				</div>
+				<div class="modal-header">
+					<div class="container-fuild textColorForBrowseText" id="headerNavigatorId">
+						<span id="aTagHomeId"> <a href='#'>Home</a> <span
+							class="glyphicon glyphicon-chevron-right"></span>
+						</span>
+					</div>
+				</div>
+				<div class="modal-body modal-scroll">
+					<div class="container-fuild">
+						<form class="form-horizontal textColorForBrowseText" id="divSubCategorydmd"></form>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="container-fuild">
+						<form>
+							<div class="form-group">
+								<label class="control-label col-sm-2 col-lg-2 classLocation">Location </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="valueSelectedDseq" readonly="readonly" disabled="disabled" />
+								</div>
+							</div>
+							<div class="form-group ">
+								<div class="col-sm-10 classPaddingTop">
+									<button type="button" class="btn btn-default textFormatForBrowseButton" id='createFolderBtn'>Create Folder</button>
+									<button type="button" class="btn btn-default textFormatForBrowseButton" id="openBtnDialog">Open</button>
+									<button type="button" id="closeFileModel" class="btn btn-default textFormatForBrowseButton" data-dismiss="modal">Cancel</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="app-container" id="idAppContainerDiv">
+		<div class="row content-container">
+			<nav class="navbar navbar-default navbar-fixed-top navbar-top">
+				<div class="container-fluid colorForhorizontalBar">
+					<div class="navbar-header">
+						<button type="button" class="navbar-expand-toggle">
+							<i class="fa fa-bars icon"></i>
+						</button>
+						<ol class="breadcrumb navbar-breadcrumb">
+							<li>Raw Data Quality Control</li>
+							<li class="active">QC Report Generation</li>
+						</ol>
+						<button type="button"
+							class="navbar-right-expand-toggle pull-right visible-xs">
+							<i class="fa fa-th"></i>
+						</button>
+					</div>
+						<ul class="nav navbar-nav navbar-right">
+						<button type="button"  class="navbar-right-expand-toggle pull-right visible-xs">
+							<i class="fa fa-times icon"></i>
+						</button>
+						
+						<li class="profile"><a href="http://girihlet.com/" target="_blank">Girihlet Non-Canonical Genomics Company</a></li>
+
+						<li class="dropdown profile"><a href="#"
+							class="dropdown-toggle" data-toggle="dropdown" role="button"
+							aria-expanded="false" id="userDivName"><span th:text="${userName}"></span> <span class="caret"></span></a>
+							<ul class="dropdown-menu animated fadeInDown">
+							<!-- 	<li class="profile-img"><img src="../images/profile.jpg"
+									class="profile-img" /></li> -->
+								<li>
+									<div class="profile-info">
+										<h4 class="username" id="userDivOnlyName">	<span id="userName"  th:text="${userName}"></span></h4>
+										<p id="userDivEmail"><span  id="userEmail" th:text="${userEmail}"></span></p>
+										<div class="btn-group margin-bottom-2x" role="group">
+											<!-- <button type="button" class="btn btn-default">
+												<i class="fa fa-user"></i> Profile
+											</button> -->
+											<button type="button" class="btn btn-default bgColorForButton"
+												onclick="logoutUser();">
+												<i class="fa fa-sign-out"></i> Logout
+											</button>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<div class="side-menu sidebar-inverse" id="idForSideMenuDiv">
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="side-menu-container">
+						<div class="navbar-header colorForNavHeader">
+							<a class="navbar-brand" th:href="@{/introduction?userid=}+${userId}">
+								<div class="icon fa fa-paper-plane"></div>
+								<div class="title">
+									<h3 class="colorForGirihLetName">GirihLet</h3>
+								</div>
+							</a>
+							<button id="buttonForSideMenuDiv" type="button"
+								class="navbar-expand-toggle pull-right visible-xs">
+								<i class="fa fa-times icon"></i>
+							</button>
+						</div>
+						<ul class="nav navbar-nav">
+							<li class="panel panel-default dropdown">
+								<a data-toggle="collapse" href="#dropdown-qc">
+									<span class="icon fa fa-line-chart"></span>
+									<span class="title">Run Raw Data Quality Control</span>
+								</a>
+								<div id="dropdown-qc" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a id="idHrefqc454"  href="../qc454">Long Read [ 454 / Ion Torrent ] </a></li>
+											<li><a id="idHrefIllumina"  href="../qcillumina">Short Read [ Illumina ]</a></li>
+											<li><a id="idHrefQCReport" href="../qcreport">QC Report Generation</a></li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="panel panel-default dropdown">
+								<a id="hRefRunModule1"  href="../TagLet"> 
+									<span class="icon fa fa-tag"></span>
+									<span class="title">Run TagLet</span>
+								</a>
+								<!-- <div id="dropdown-module1" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a id="hRefRunModule1"  href="../TagLet">Fill TagLet Input Form</a></li>
+										</ul>
+										<a id="hRefRunModule1"  href="../TagLet">Fill TagLet Input Form</a>
+									</div>
+								</div> -->
+							</li>
+							<!-- <li class="panel panel-default dropdown">
+								<a data-toggle="collapse" href="#dropdown-module1"> 
+									<span class="icon fa fa-tag"></span>
+									<span class="title">Run TagLet</span>
+								</a>
+								<div id="dropdown-module1" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a id="hRefRunModule1"  href="../TagLet">Fill TagLet Input Form</a></li>
+										</ul>
+									</div>
+								</div>
+							</li> -->
+							<li class="panel panel-default dropdown">
+								<a id="idHrefInstances" href="../ResultSummary"> <span
+									class="icon fa fa-history"></span>
+									<span class="title">Show Result Summary</span>
+								</a> 
+								<!-- <div id="dropdown-example" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav navbar-nav">
+											<li><a  id="idHrefInstances" href="../ResultSummary">Show Result Summary</a></li>
+											<li><a id="idHrefReports" href="../reports">Reports</a></li>
+										</ul>
+									</div>
+								</div> -->
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+			<div class="side-body padding-top">
+				<div class="container-fluid">
+					<div class="row" id="customReportforms">
+						<div class="col-lg-10 col-lg-offset-2 col-sm-8 col-sm-offset-2">
+							<div id="customReportGenerationForm">
+								<form class="form-horizontal" id="reportForm">
+									<div class="form-group">
+										<label class="control-label col-sm-4  col-lg-4 textClass test required"
+											for="pwd">Project Name:</label>
+										<div class="col-sm-6 col-lg-6" id="idPrjNm">
+											<input type="text" class="form-control"
+												 	id="idProjectNameQC" onblur="warningForEmptyField(this.id, 'idPrjNm')"
+													placeholder="Project Name"></input>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-sm-4  col-lg-4 textClass test required"
+											for="pwd">Organism Name:</label>
+										<div class="col-sm-6 col-lg-6" id="orgName">
+											<input type="text" class="form-control " onblur="warningForEmptyField(this.id, 'orgName')"
+													id="idOrganismName" placeholder="Organism Name"></input>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-sm-4  col-lg-4 textClass"
+											for="pwd">Sequencing Application:</label>
+										<div class="col-sm-6 col-lg-6">
+											<select id="idTypeOfInputSelect" onchange="onchangeSeqApplication(this);">
+												<option value="Whole Genome Sequencing" selected="selected">Whole Genome Sequencing</option>
+												<option value="Transcriptome Sequencing">Transcriptome Sequencing</option>
+												<option value="Small RNA Sequencing">Small RNA Sequencing</option>
+												<option value="Exom/Targeted Re-Sequencing">Exom/Targeted Re-Sequencing</option>
+												<option value="ChIP Sequencing">ChIP Sequencing</option>
+												<option value="Metagenome/Microbiome Sequencing">Metagenome/Microbiome Sequencing</option>
+												<option value="Other">Other</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group" id="parentDivForOtherSeqApp"  style="display: none">
+										<label class="control-label col-sm-4  col-lg-4 textClass test required"
+											for="pwd">Other Sequencing Application:</label>
+										<div class="col-sm-6 col-lg-6" id="otherDiv">
+											<input type="text" class="form-control"
+												id="idForOtherSeqApp" onblur="warningForEmptyField(this.id, 'otherDiv')"
+												placeholder="Other Sequencing Application"></input>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-sm-4  col-lg-4 textClass test required"
+											for="pwd">Scientist Name:</label>
+										<div class="col-sm-6 col-lg-6" id="sciName">
+											<input type="text" class="form-control" 
+												id="idScientistName" onblur="warningForEmptyField(this.id, 'sciName')"
+												placeholder="Scientist Name"></input>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-sm-4  col-lg-4 textClass test required"
+											for="pwd">Designation:</label>
+										<div class="col-sm-6 col-lg-6" id="affiliation">
+											<input type="text" class="form-control" 
+												id="idSpecialization" onblur="warningForEmptyField(this.id, 'affiliation')"
+												placeholder="Designation"></input>
+										</div>
+									</div>
+									<div class="form-group" style="display: none">
+										<label class="control-label col-sm-4  col-lg-4 textClass test required"
+											for="pwd">
+											Institute Name:
+											<span></span>
+										</label>
+										<div class="col-sm-6 col-lg-6" id="affiliation">
+											<input type="text" class="form-control" 
+												id="idInstituteName" onblur="warningForEmptyField(this.id, 'Institute Name')"
+												placeholder="Institute Name"></input>
+										</div>
+									</div>
+									<!-- <div class="form-group">
+										<label class="control-label col-sm-4  col-lg-4 textClass test required"
+											for="pwd">Name of Sample:</label>
+										<div class="col-sm-6 col-lg-6" id="nameOfSample">
+											<input type="text" class="form-control" 
+												id="idNameOfSample" onblur="warningForEmptyField(this.id, 'nameOfSample')"
+												placeholder="Name of Sample"></input>
+										</div>
+									</div> -->
+									<div class="form-group">
+										<label class="control-label col-sm-4  col-lg-4 textClass test required"
+											for="pwd">Address:</label>
+										<div class="col-sm-6 col-lg-6" id="address">
+											<textarea class="form-control" 
+												id="idAddress" onblur="warningForEmptyField(this.id, 'address')"
+												placeholder="Address" rows="3"></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-sm-4  col-lg-4 test textClass">
+											Sequencing Type: </label>
+										<div class="col-sm-6 col-lg-6">
+											<select id="idSequencingType" onchange="onSelectInputTypeQCReport(this);">
+												<option value="illumina" selected="selected">Illumina</option>
+												<option value="fourFiveFour">454QC</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-sm-4  col-lg-4 textClass test required"
+											for="pwd">Sequencing PlatForm:</label>
+										<div class="col-sm-6 col-lg-6" id="platForm">
+											<input type="text" class="form-control"
+												id="idPlateform" onblur="warningForEmptyField(this.id, 'platForm')"
+												placeholder="PlatForm"></input>
+										</div>
+									</div>
+									<div id="cloneDiv">
+										<div class="form-group">
+											<label class="control-label col-sm-4  col-lg-4 test textClass required">
+												Sample Name:
+											</label>
+											<div class="col-sm-6 col-lg-6" id="idSampleNm">
+												<input type="text" class="form-control" 
+													id="idSampleName454Qc" placeholder="Sample Name"></input>
+													<!-- onblur="warningForEmptyField(this.id,'idSampleNm')" -->
+											</div>
+										</div>
+										<div class="form-group" id="endSelectionDiv">
+											<label class="control-label col-sm-4  col-lg-4 test textClass">
+												<span class=" glyphicon glyphicon-question-sign iconSmallClass textClass" 
+													data-placement="left" data-toggle="tooltip"
+													title="Read layout whether paired end reads or single end reads.">
+												</span>
+												&nbsp;&nbsp;
+												Sequencing Read Layout:
+											</label>
+											<div class="col-sm-6 col-lg-6">
+												<select class="form-control" id="idTypeOfOutputSelectIllumina" onchange="changeLayoutOptions(this,0,1);">
+													<option value="Paired End" selected="selected">Paired</option>
+													<option value="Single End">Single</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group"
+											id="selectpOutputDirectoryGroupIllumina">
+											<label class="control-label col-sm-4  col-lg-4 textClass test required"
+												for="pwd" id="lableSingleFileSelectIllumina">
+												<span class=" glyphicon glyphicon-question-sign iconSmallClass textClass" 
+													data-placement="left" data-toggle="tooltip"
+													title="This folder should contain the files generated by NGSQCToolkit.">
+												</span>
+												&nbsp;&nbsp;
+												Select QC Output Folder:
+											</label>
+											<div class="col-sm-6 col-lg-6" id="idSelectOutputFolderDiv">
+												<input type="button" class="col-sm-4  col-lg-4  btn-file "
+													data-toggle="modal" data-target="#selectFile"
+													placeholder="Select output Dir file" id="idOutputDirctoryBrowse"
+													onclick="getAllDirectory('idOutputDirctorySelectIllumina','diretory');"
+													accept=".fa" value="BROWSE..."></input>
+												<div id="idOutputDirctorySelectIllumina"
+													class="col-sm-6 col-lg-6 text-left">No folder selected</div>
+											</div>
+										</div>
+										<div class="form-group" id="addMoreSampleDiv">
+											<label class="control-label col-sm-4  col-lg-4 test textClass">
+											</label>
+											<div class="col-sm-6 col-lg-6">
+												<a class="btn btn-default bgColorForButton" 
+													onclick="addMoreSamples();">+ Add More Samples</a>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="control-label col-sm-4 col-lg-4 textClass"></div>
+										<div class="col-sm-6 col-lg-6">
+											<a class="btn btn-default bgColorForButton bgColorForButton1"
+												onclick="wsGenerateServerSideReport();">Generate Report</a>
+										</div>
+										<div class="col-sm-3 col-lg-3">
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div id="divShowCustomReportPdf" class="row">
+						<iframe src="" id="iframeCustomReport"
+							style="width: 100%; height: 100%;" frameborder="0" scrolling="no">
+							<p>It appears your web browser doesn't support iframes.</p>
+						</iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer class="app-footer">
+			<div class="wrapper">
+				<span class="pull-right">1.0 <a href="#"> <!-- <i class="fa fa-long-arrow-up"></i> -->GirihLet
+				</a></span>GirihLet© 2016 Copyright.
+			</div>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="jslib/jquery.js"></script>
+	<script type="text/javascript" src="jslib/jquery.min.js"></script>
+	
+	<script type="text/javascript" src="jslib/bootstrap.min.js"></script>
+	<script type="text/javascript" src="jslib/bootstrap-switch.min.js"></script>
+	<script type="text/javascript" src="jslib/jquery.matchHeight-min.js"></script>
+	<script type="text/javascript" src="jslib/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="jslib/dataTables.bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="jslib/ace/ace.js"></script>
+	<script type="text/javascript" src="jslib/ace/mode-html.js"></script>
+	<script type="text/javascript" src="jslib/ace/theme-github.js"></script>
+	<script type="text/javascript" src="jslib/app.js"></script>
+	
+	<script type="text/javascript" src="js/libjsqcreport/qcform_management.js"></script>
+	
+	<script type="text/javascript" src="js/url.js"></script>
+	<script src="js/comman.js"></script>
+	<script type="text/javascript" src="js/ws_get_attribute_cmd2.js"></script>
+	<script type="text/javascript" src="js/libjs/utils.js"></script>
+	<script type="text/javascript" src="js/libjslogin/login.js"></script>
+	<script type="text/javascript" src="js/user_js/ws_get_processes.js"></script>
+	
+	<script type="text/javascript" src="js/libjsqcreport/rest_utils.js"></script>
+	<script type="text/javascript" src="js/libjsqcreport/custom_report_qc.js"></script>
+	
+	<script type="text/javascript" src="js/libjsqcreport/validation_qc_Report.js"></script>
+	<script type="text/javascript" src="js/libjsqcreport/validation_Of_Rest_Utils.js"></script>
+	
+	<script type="text/javascript" src="js/libjsqcreport/file_handling1.js"></script>
+	<script type="text/javascript" src="js/libjsqcreport/file_handling_final.js"></script>
+	
+</body>
+</html>
+
